@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pedimento.schema.json",
+  "title": "PedimentoSimplificado",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_pdf",
+    "extraction_version",
+    "pedimento",
+    "importador",
+    "agente_aduanal",
+    "fechas",
+    "liquidacion",
+    "pago_electronico",
+    "transporte",
+    "bultos",
+    "seguro",
+    "documentos",
+    "observaciones",
+    "e_documents",
+    "raw_text"
+  ],
+  "properties": {
+    "source_pdf": { "type": "string" },
+    "extraction_version": { "type": "string" },
+    "pedimento": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numero_raw": { "type": ["string", "null"] },
+        "operacion": { "type": ["string", "null"] },
+        "clave": { "type": ["string", "null"] },
+        "patente": { "type": ["string", "null"] },
+        "aduana": { "type": ["string", "null"] },
+        "destino": { "type": ["string", "null"] },
+        "peso_bruto": { "type": ["number", "null"] }
+      }
+    },
+    "importador": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rfc": { "type": ["string", "null"] },
+        "curp": { "type": ["string", "null"] }
+      }
+    },
+    "agente_aduanal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nombre": { "type": ["string", "null"] },
+        "rfc": { "type": ["string", "null"] },
+        "curp": { "type": ["string", "null"] },
+        "numero_certificado": { "type": ["string", "null"] },
+        "efirma": { "type": ["string", "null"] }
+      }
+    },
+    "fechas": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entrada": { "type": ["string", "null"], "format": "date" },
+        "pago": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "liquidacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dta": { "type": ["number", "null"] },
+        "prv": { "type": ["number", "null"] },
+        "iva": { "type": ["number", "null"] },
+        "total": { "type": ["number", "null"] }
+      }
+    },
+    "pago_electronico": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "banco": { "type": ["string", "null"] },
+        "linea_captura": { "type": ["string", "null"] },
+        "importe": { "type": ["number", "null"] },
+        "fecha": { "type": ["string", "null"], "format": "date" },
+        "operacion_bancaria": { "type": ["string", "null"] },
+        "transaccion_sat": { "type": ["string", "null"] }
+      }
+    },
+    "transporte": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "identificacion": { "type": ["string", "null"] },
+        "pais": { "type": ["string", "null"] },
+        "guia_bl": { "type": ["string", "null"] },
+        "contenedor": { "type": ["string", "null"] }
+      }
+    },
+    "bultos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "total": { "type": ["integer", "null"] }
+      }
+    },
+    "seguro": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "monto": { "type": ["number", "null"] },
+        "moneda": { "type": ["string", "null"] }
+      }
+    },
+    "documentos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cove": { "type": ["string", "null"] },
+        "total_partidas": { "type": ["string", "null"] },
+        "clave_prevalidador": { "type": ["string", "null"] }
+      }
+    },
+    "observaciones": { "type": ["string", "null"] },
+    "e_documents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "raw_text": { "type": "string" }
+  }
+}
