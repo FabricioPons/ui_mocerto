@@ -1,0 +1,132 @@
+{
+  "source_pdf": "PED. SIMPLIFICADO AT2501392.pdf",
+  "extraction_version": "v3_full",
+  "metadata": {
+    "paginas": "1 de2",
+    "tiene_pago_electronico": true,
+    "fin_pedimento": true,
+    "destino_origen": "INTERIOR DEL PAÍS",
+    "forma": "SIMPLIFICADA"
+  },
+  "pedimento": {
+    "numero_raw": "25 81 3645 5001495",
+    "operacion": "IMP",
+    "clave": "A1",
+    "patente": "3645",
+    "pedimento_numero": "5001495",
+    "aduana_codigo": "810",
+    "destino": "9",
+    "peso_bruto": 25458.0,
+    "ref": "AT2501392",
+    "seccion_aduanera_codigo": "810",
+    "seccion_aduanera_nombre": "ALTAMIRA",
+    "codigo_aceptacion": "5UMV4G14",
+    "marcas_numeros": "S/M S/N"
+  },
+  "importador": {
+    "rfc": "SES7402068M2",
+    "curp": null
+  },
+  "agente_aduanal": {
+    "nombre": "GUILLERMO ORTEGA HURTADO DE MENDOZA",
+    "rfc": "OEHG580722HB7",
+    "curp": "OEHG580722HTSRRL06",
+    "patente_autorizacion": "3645",
+    "numero_certificado": "00001000000515525747",
+    "efirma": "ssVAIj2XE8NDyZHu+34Xe9KgwUyoNzvhTIN935ze6Hbedvcf+yWf3MsexHRmk1TuveaHNgFggBDRa8rAs/LNqJ4Zkm8CBeNAIgLBV2fC55FBpFCLSFDTDnqP6XERMuwfKeyGJexl46mQm2LfbjWKbh95aG2UUI5fw==",
+    "firma_adicional": "ErAD+AisvocANRa3qSVOP77fgCjnXagA0VkZ1IaKOT2nLJMfToLbCbBt7C952KZGrj1Bma/UPUzsSeQHMFbKgBoRbF9l7wZFhLNBxn9Ov9Mfn7hZc1fyNNozY2yNMQpxxr7O/lrr8gIl/fXGaqTHH97NI9JMEowBhpZZsHA/Cst/GONz6FuVp",
+    "tiene_declaracion": true,
+    "articulo_ley": "81"
+  },
+  "fechas": {
+    "entrada": "2025-10-10",
+    "pago": "2025-10-16"
+  },
+  "liquidacion": {
+    "dta": 445.0,
+    "prv": 290.0,
+    "iva": 79146.0,
+    "iva_prv": 46.0,
+    "otros": 0.0,
+    "efectivo": 79927.0,
+    "total": 79927.0,
+    "tiene_cuadro": true
+  },
+  "deposito_referenciado": {
+    "linea_captura": "032504FHP6P147588221",
+    "importe": 79927.0
+  },
+  "pago_electronico": {
+    "banco": "BBVA BANCOMER",
+    "linea_captura": "032504FHP6P147588221",
+    "importe": 79927.0,
+    "fecha": "2025-10-16",
+    "operacion_bancaria": "01225289561121",
+    "transaccion_sat": "40012161020251759141"
+  },
+  "transporte": {
+    "identificacion": "MSCEVERESTVIII",
+    "pais": "LBR",
+    "guia_bl": "MEDUE1503261",
+    "guia_bl_tipo": "M",
+    "contenedor": "GLDU3540997",
+    "medio_presentacion": "Otros Medios Electrónicos: (Pago Electrónico)",
+    "medio_recepcion": "Efectivo (cargo a cuenta)"
+  },
+  "transportista": {
+    "rfc": null
+  },
+  "bultos": {
+    "total": 25,
+    "tipo": "BULTOS"
+  },
+  "seguro": {
+    "monto": 92.98,
+    "moneda": "USD"
+  },
+  "documentos": {
+    "cove": "COVE257QXUEB8",
+    "total_partidas": "1",
+    "clave_prevalidador": "010",
+    "exportador_autorizado": "ESEAOR17000186",
+    "tiene_certificaciones": true
+  },
+  "usuario": {
+    "nombre": "Laura Guadalupe",
+    "rfc": "BMA991220B15"
+  },
+  "observaciones": {
+    "textos": [
+      "MERCANCIA DESCONSOLIDADA DEL CONTENEDOR: GLDU3540997",
+      "SE REALIZA ACUSE DE VALOR CONFORME A CARTA 3.1.8.",
+      "DE CONFORMIDAD CON EL ARTICULO 65 DEL REGLAMENTO DE LA LEY ADUANERA:",
+      "SE SUBDIVIDE EL PRESENTE BL MEDUE1503261 UTILIZANDO PARA ESTA OPERACION 25,458.00 KG SIENDO ESTA LA PRIMERA SUBDIVISION."
+    ],
+    "subdivision_bl": {
+      "bl_numero": "MEDUE1503261",
+      "peso_kg": 25458.0,
+      "descripcion": "SE SUBDIVIDE EL PRESENTE BL MEDUE1503261 UTILIZANDO PARA ESTA OPERACION 25,458.00 KG SIENDO ESTA LA PRIMERA SUBDIVISION."
+    },
+    "articulo_referencia": "DE CONFORMIDAD CON EL ARTICULO 65 DEL REGLAMENTO DE LA LEY ADUANERA:",
+    "acuse_valor": "SE REALIZA ACUSE DE VALOR CONFORME A CARTA 3.1.8.",
+    "mercancia_desconsolidada": "MERCANCIA DESCONSOLIDADA DEL CONTENEDOR: GLDU3540997"
+  },
+  "e_documents": [
+    "01702515SMH06",
+    "0428250G3JLJ4",
+    "0428250G3JLQ6",
+    "0433250CNCWU7",
+    "0436250M9EYN3",
+    "0436250M9EYP1",
+    "0436250M9EYV8",
+    "0436250M9EYW7",
+    "0436250M9EYY6",
+    "0436250M9EZC1",
+    "0436250M9EZN3",
+    "018425023CTC8",
+    "01922514VQEV1",
+    "0438251AB48P6"
+  ],
+  "partidas": [],
+  "raw_text": "REF: AT2501392 -0 FORMA SIMPLIFICADA DEL PEDIMENTO Página 1 de2\nNUM. PEDIMENTO: 25 81 3645 5001495 T.OPER: IMP CVE.PEDIMENTO: A1 CERTIFICACIONES\nDESTINO: 9 PESO BRUTO: 25458.000 ADUANA E/S: 810\nDATOS DEL IMPORTADOR / EXPORTADOR\nClave en el RFC: SES7402068M2 CURP:\nCODIGO DE ACEPTACIÓN\nCODIGO DE BARRAS\n810 ALTAMIRA\nCLAVE DE LA SECCION\nADUANERA DE\n5UMV4G14 DESPACHO:\nMARCAS,NUMEROS Y TOTAL DE BULTOS: S/M S/N 25\nFECHAS\nENTRADA 10/10/2025\nPAGO 16/10/2025\nCUADRO DE LIQUIDACION\nCONCEPTO F.P IMPORTE CONCEPTO F.P IMPORTE TOTALES\nDTA 0 445 IVA PRV 0 46 EFECTIVO 79927\nPRV 0 290 OTROS 0\nIVA 0 79146 TOTAL 79927\nDEPOSITO REFERENCIADO - LÍNEA DE CAPTURA\n032504FHP6P147588221 79927\n***PAGO ELECTRÓNICO***\nNOMBRE DE LA INSTITUCION BANCARIA: BBVA BANCOMER\nPATENTE: 3645 PEDIMENTO: 5001495 ADUANA: 810\nLINEA DE CAPTURA: 032504FHP6P147588221\nIMPORTE PAGADO: $ 79,927.00 FECHA DE PAGO: 16/10/2025\nNUMERO DE OPERACION BANCARIA: 01225289561121\nNUMERO DE TRANSACCIÓN SAT: 40012161020251759141\nMEDIO DE PRESENTACIÓN:Otros Medios Electrónicos: (Pago Electrónico)\nMEDIO DE RECEPCIÓN/ COBRO: Efectivo (cargo a cuenta)\nNUMERO(GUIA/ORDEN EMBARQUE)/ID: MEDUE1503261 M\nNUMERO DE ACUSE DE VALOR: COVE257QXUEB8\nNUMERO DE E-DOCUMENT : 01702515SMH06 0428250G3JLJ4 0428250G3JLQ6 0433250CNCWU7\nNUMERO DE E-DOCUMENT : 0436250M9EYN3 0436250M9EYP1 0436250M9EYV8 0436250M9EYW7\nNUMERO DE E-DOCUMENT : 0436250M9EYY6 0436250M9EZC1 0436250M9EZN3 018425023CTC8\nNUMERO DE E-DOCUMENT : 01922514VQEV1 0438251AB48P6\nAGENTE ADUANAL, AGENCIA ADUANAL, APODERADO ADUANAL O DE ALMACEN. DECLARO BAJO PROTESTA DE DECIR\nVERDAD, EN LOS TERMINOS DE LO\nNOMBRE O RAZ. SOC.: GUILLERMO ORTEGA HURTADO DE MENDOZA OEHG580722HB7 DISPUESTO POR EL ARTICULO 81 DE LA LEY,\nPATENTE O AUTORIZACION:\nClave en el RFC: BMA991220B15 CURP: OEHG580722HTSRRL06\n3645\nNUMERO DE SERIE DEL CERTIFICADO: 00001000000515525747\nErAD+AisvocANRa3qSVOP77fgCjnXagA0VkZ1IaKOT2nLJMfToLbCbBt7C952KZGrj1Bma/UPUzsSeQHMFbKgBoRbF9l7wZFhLNBxn9Ov9Mfn7hZc1fyNNozY2yNMQpxxr7O/lrr8gIl/fXGaqTHH97NI9JMEowBhpZZsHA/Cst/GONz6FuVp\ne.firma: ssVAIj2XE8NDyZHu+34Xe9KgwUyoNzvhTIN935ze6Hbedvcf+yWf3MsexHRmk1TuveaHNgFggBDRa8rAs/LNqJ4Zkm8CBeNAIgLBV2fC55FBpFCLSFDTDnqP6XERMuwfKeyGJexl46mQm2LfbjWKbh95aG2UUI5fw==\nEl pago de las contribuciones puede realizarse mediante el servicio de pago electrónico conforme a lo establecido en la regla 1.6.2., con la posibilidad de que la cuenta bancaria de la persona que contrate los\nservicios sea afectada directamente por el Banco. El agente aduanal o apoderado aduanal que utilice el servicio de pago electrónico” deberá imprimir la certificación bancaria en el campo correspondiente de la\nforma simplificada del pedimento o en el documento oficial conforme al apéndice 23 “Pago Electrónico” del anexo 22\nEl Importador-Exportador podrá solicitar la certificación de la información transmitida al SAAI por el agente aduanal o apoderado aduanal en el momento de la elaboración del pedimento en la DGIA.\nDESTINO/ORIGEN.INTERIOR DEL PAÍS\nUsuario: Laura Guadalupe\nREF: AT2501392 Pagina 2 de2\nANEXO DEL PEDIMENTO\nNUM. PEDIMENTO: 2581 3645 5001495 TIPO OPER: IMP CVE.PEDIM: A1 Clave en el RFC:SES7402068M2\nCURP:\nTRANSPORTE IDENTIFICACION: MSCEVERESTVIII PAIS: LBR\nTRANSPORTISTA Clave en el RFC:\nCURP DOMICILIO/CIUDAD/ESTADO\nOBSERVACIONES\nTOTAL DE BULTOS: 25 BULTOS\nSEGURO: $92.98 USD\nNUMERO DE EXPORTADOR AUTORIZADO: ESEAOR17000186\nMERCANCIA DESCONSOLIDADA DEL CONTENEDOR: GLDU3540997\nSE REALIZA ACUSE DE VALOR CONFORME A CARTA 3.1.8.\nDE CONFORMIDAD CON EL ARTICULO 65 DEL REGLAMENTO DE LA LEY ADUANERA:\nSE SUBDIVIDE EL PRESENTE BL MEDUE1503261 UTILIZANDO PARA ESTA OPERACION 25,458.00 KG SIENDO ESTA LA PRIMERA SUBDIVISION.\n**********FIN DE PEDIMENTO******* **********NUM. TOTAL DE PARTIDAS:1 ********** **********NUM. CLAVE PREVALIDADOR:010 **********\nAGENTE ADUANAL, AGENCIA ADUANAL, APODERADO ADUANAL O DE ALMACEN. DECLARO BAJO PROTESTA DE DECIR\nVERDAD, EN LOS TERMINOS DE LO\nNOMBRE O RAZ. SOC.: GUILLERMO ORTEGA HURTADO DE MENDOZA OEHG580722HB7 DISPUESTO POR EL ARTICULO 81 DE LA LEY,\nPATENTE O AUTORIZACION:\nClave en el RFC: BMA991220B15 CURP: OEHG580722HTSRRL06\n3645\nNUMERO DE SERIE DEL CERTIFICADO: 00001000000515525747\nErAD+AisvocANRa3qSVOP77fgCjnXagA0VkZ1IaKOT2nLJMfToLbCbBt7C952KZGrj1Bma/UPUzsSeQHMFbKgBoRbF9l7wZFhLNBxn9Ov9Mfn7hZc1fyNNozY2yNMQpxxr7O/lrr8gIl/fXGaqTHH97NI9JMEowBhpZZsHA/Cst/GONz6FuVp\ne.firma: ssVAIj2XE8NDyZHu+34Xe9KgwUyoNzvhTIN935ze6Hbedvcf+yWf3MsexHRmk1TuveaHNgFggBDRa8rAs/LNqJ4Zkm8CBeNAIgLBV2fC55FBpFCLSFDTDnqP6XERMuwfKeyGJexl46mQm2LfbjWKbh95aG2UUI5fw==\nDESTINO/ORIGEN.INTERIOR DEL PAÍS\nUsuario: Laura Guadalupe"
+}
