@@ -1,0 +1,3356 @@
+{
+  "$schema": "field_taxonomy",
+  "project": "Mocerto - Mexican Import Transaction Document Taxonomy",
+  "description": "Comprehensive field taxonomy extracted from 30+ documents of a single import transaction (SES3555). Each document type lists all unique fields found, with metadata for data type, obligation, and cross-references to Anexo 22/19 where applicable.",
+  "transaction_reference": "SES3555",
+  "sources": {
+    "primary_docs": "DOCS3555.zip (Google Drive)",
+    "regulatory_refs": [
+      "Anexo 22 - Instructivo llenado pedimento (DOF 15-ene-2026)",
+      "Anexo 19 - Datos inexactos/falsos (DOF 14-ene-2026)"
+    ]
+  },
+  "statistics": {
+    "total_document_types": 17,
+    "total_unique_fields": 411,
+    "regulatory_critical_fields_anexo19": 29,
+    "languages": [
+      "es",
+      "en",
+      "zh"
+    ],
+    "generated": "2026-02-05"
+  },
+  "document_types": [
+    {
+      "doc_type_id": "PEDIMENTO",
+      "doc_type_name": "Pedimento de Importación",
+      "doc_type_name_en": "Customs Declaration (Import Entry)",
+      "regulatory_basis": "Anexo 22 RGCE 2026",
+      "sample_files": [
+        "3645_81_5000103_IP_PN_1.pdf",
+        "PROFORMA/81_5001570_IC_PN_1.pdf"
+      ],
+      "sections": [
+        {
+          "section": "Encabezado / Header",
+          "fields": [
+            {
+              "id": "PED-001",
+              "name": "Número de Pedimento",
+              "name_en": "Pedimento Number",
+              "format": "AA BB CCCC DEEEEEE",
+              "type": "string",
+              "required": true,
+              "anexo22": "Campo 1",
+              "anexo19": true,
+              "example": "25 81 3645 5000103"
+            },
+            {
+              "id": "PED-002",
+              "name": "T.OPER",
+              "name_en": "Operation Type",
+              "type": "string",
+              "required": true,
+              "anexo22": "Campo 2",
+              "anexo19": true,
+              "values": [
+                "IMP",
+                "EXP",
+                "TRA"
+              ],
+              "example": "IMP"
+            },
+            {
+              "id": "PED-003",
+              "name": "CVE.PEDIMENTO",
+              "name_en": "Pedimento Type Code",
+              "type": "string",
+              "required": true,
+              "anexo22": "Campo 3 / Apéndice 2",
+              "anexo19": true,
+              "example": "A1"
+            },
+            {
+              "id": "PED-004",
+              "name": "REGIMEN",
+              "name_en": "Customs Regime",
+              "type": "string",
+              "required": true,
+              "anexo22": "Campo 4",
+              "example": "IMD"
+            },
+            {
+              "id": "PED-005",
+              "name": "DESTINO",
+              "name_en": "Destination Code",
+              "type": "integer",
+              "required": true,
+              "anexo22": "Campo 5",
+              "example": 9
+            },
+            {
+              "id": "PED-006",
+              "name": "Tipo de Cambio",
+              "name_en": "Exchange Rate",
+              "type": "decimal(5)",
+              "required": true,
+              "anexo22": "Campo 6",
+              "example": 20.2777
+            },
+            {
+              "id": "PED-007",
+              "name": "Peso Bruto",
+              "name_en": "Gross Weight (kg)",
+              "type": "decimal(3)",
+              "required": true,
+              "anexo22": "Campo 7",
+              "example": 378910.0
+            },
+            {
+              "id": "PED-008",
+              "name": "Aduana E/S",
+              "name_en": "Entry/Exit Customs Office",
+              "type": "string(3)",
+              "required": true,
+              "anexo22": "Campo 8 / Apéndice 1",
+              "example": "810"
+            },
+            {
+              "id": "PED-009",
+              "name": "Valor Dólares",
+              "name_en": "Value in USD",
+              "type": "decimal(2)",
+              "required": true,
+              "anexo22": "Campo 9",
+              "example": 333841.52
+            },
+            {
+              "id": "PED-010",
+              "name": "Valor Aduana",
+              "name_en": "Customs Value (MXN)",
+              "type": "decimal(2)",
+              "required": true,
+              "anexo22": "Campo 10",
+              "anexo19": true,
+              "example": 6769539.0
+            },
+            {
+              "id": "PED-011",
+              "name": "Precio Pagado / Valor Comercial",
+              "name_en": "Price Paid / Commercial Value",
+              "type": "decimal(2)",
+              "required": true,
+              "anexo22": "Campo 11",
+              "anexo19": true,
+              "example": 6738448.0
+            }
+          ]
+        },
+        {
+          "section": "Medios de Transporte",
+          "fields": [
+            {
+              "id": "PED-012",
+              "name": "Transporte Entrada/Salida",
+              "name_en": "Entry/Exit Transport Mode",
+              "type": "integer",
+              "required": true,
+              "anexo22": "Apéndice 3",
+              "anexo19": true,
+              "example": 1
+            },
+            {
+              "id": "PED-013",
+              "name": "Transporte Arribo",
+              "name_en": "Arrival Transport Mode",
+              "type": "integer",
+              "required": true,
+              "example": 7
+            },
+            {
+              "id": "PED-014",
+              "name": "Transporte Salida",
+              "name_en": "Departure Transport Mode",
+              "type": "integer",
+              "required": true,
+              "example": 7
+            }
+          ]
+        },
+        {
+          "section": "Datos del Importador/Exportador",
+          "fields": [
+            {
+              "id": "PED-015",
+              "name": "Clave en el RFC",
+              "name_en": "Tax ID (RFC)",
+              "type": "string(13)",
+              "required": true,
+              "anexo19": true,
+              "example": "SCO8007138GA"
+            },
+            {
+              "id": "PED-016",
+              "name": "CURP",
+              "name_en": "Personal ID",
+              "type": "string(18)",
+              "required": false,
+              "notes": "Required for individuals only"
+            },
+            {
+              "id": "PED-017",
+              "name": "Nombre/Razón Social",
+              "name_en": "Company Name",
+              "type": "string",
+              "required": true,
+              "example": "SERVIACERO COMERCIAL SA DE CV"
+            },
+            {
+              "id": "PED-018",
+              "name": "Domicilio",
+              "name_en": "Address",
+              "type": "string",
+              "required": true,
+              "example": "CIRCUITO OLEODUCTO No.Ext. 202 Col. CIUDAD INDUSTRIAL C.P.37490, LEON, GTO"
+            }
+          ]
+        },
+        {
+          "section": "Incrementables y Decrementables",
+          "fields": [
+            {
+              "id": "PED-019",
+              "name": "Val. Seguros",
+              "name_en": "Insurance Value Base",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-020",
+              "name": "Seguros (Incrementable)",
+              "name_en": "Insurance Addition",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true,
+              "example": 31090
+            },
+            {
+              "id": "PED-021",
+              "name": "Fletes (Incrementable)",
+              "name_en": "Freight Addition",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-022",
+              "name": "Embalajes (Incrementable)",
+              "name_en": "Packing Addition",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-023",
+              "name": "Otros Incrementables",
+              "name_en": "Other Additions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-024",
+              "name": "Transporte Decrementables",
+              "name_en": "Transport Deductions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-025",
+              "name": "Seguros Decrementables",
+              "name_en": "Insurance Deductions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-026",
+              "name": "Carga Decrementables",
+              "name_en": "Loading Deductions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-027",
+              "name": "Descarga Decrementables",
+              "name_en": "Unloading Deductions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-028",
+              "name": "Otros Decrementables",
+              "name_en": "Other Deductions",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            }
+          ]
+        },
+        {
+          "section": "Control y Fechas",
+          "fields": [
+            {
+              "id": "PED-029",
+              "name": "Código de Aceptación",
+              "name_en": "Acceptance Code",
+              "type": "string",
+              "required": true,
+              "example": "VZSUFFW3"
+            },
+            {
+              "id": "PED-030",
+              "name": "Clave Sección Aduanera de Despacho",
+              "name_en": "Customs Section Code",
+              "type": "string",
+              "required": true,
+              "example": "810 ALTAMIRA"
+            },
+            {
+              "id": "PED-031",
+              "name": "Marcas, Números y Total de Bultos",
+              "name_en": "Marks, Numbers & Packages",
+              "type": "string",
+              "required": true,
+              "example": "S/M S/N 52"
+            },
+            {
+              "id": "PED-032",
+              "name": "Fecha de Entrada",
+              "name_en": "Entry Date",
+              "type": "date",
+              "required": true,
+              "anexo19": true,
+              "example": "08/03/2025"
+            },
+            {
+              "id": "PED-033",
+              "name": "Fecha de Pago",
+              "name_en": "Payment Date",
+              "type": "date",
+              "required": true,
+              "anexo19": true,
+              "example": "12/03/2025"
+            }
+          ]
+        },
+        {
+          "section": "Tasas a Nivel Pedimento",
+          "fields": [
+            {
+              "id": "PED-034",
+              "name": "DTA - CVE T.TASA / TASA",
+              "name_en": "Customs Processing Fee Rate",
+              "type": "object",
+              "required": true,
+              "example": {
+                "CVE": 4,
+                "TASA": 445.0
+              }
+            },
+            {
+              "id": "PED-035",
+              "name": "PRV - CVE T.TASA / TASA",
+              "name_en": "Pre-validation Fee Rate",
+              "type": "object",
+              "required": true,
+              "example": {
+                "CVE": 2,
+                "TASA": 290.0
+              }
+            },
+            {
+              "id": "PED-036",
+              "name": "IVA PRV - CVE T.TASA / TASA",
+              "name_en": "VAT on Pre-validation Rate",
+              "type": "object",
+              "required": true,
+              "example": {
+                "CVE": 1,
+                "TASA": 16.0
+              }
+            }
+          ]
+        },
+        {
+          "section": "Cuadro de Liquidación",
+          "fields": [
+            {
+              "id": "PED-037",
+              "name": "Concepto",
+              "name_en": "Tax Concept",
+              "type": "string",
+              "required": true,
+              "values": [
+                "DTA",
+                "PRV",
+                "IVA",
+                "IVA PRV",
+                "CC",
+                "IGI/IGE"
+              ]
+            },
+            {
+              "id": "PED-038",
+              "name": "F.P (Forma de Pago)",
+              "name_en": "Payment Method",
+              "type": "integer",
+              "required": true
+            },
+            {
+              "id": "PED-039",
+              "name": "Importe",
+              "name_en": "Amount",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-040",
+              "name": "Total Efectivo",
+              "name_en": "Cash Total",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-041",
+              "name": "Total Otros",
+              "name_en": "Other Total",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-042",
+              "name": "Total General",
+              "name_en": "Grand Total",
+              "type": "decimal",
+              "required": true
+            }
+          ]
+        },
+        {
+          "section": "Depósito Referenciado / Pago Electrónico",
+          "fields": [
+            {
+              "id": "PED-043",
+              "name": "Línea de Captura",
+              "name_en": "Payment Reference Line",
+              "type": "string",
+              "required": true,
+              "anexo19": true,
+              "example": "0325011QDTP145375234"
+            },
+            {
+              "id": "PED-044",
+              "name": "Institución Bancaria",
+              "name_en": "Bank Name",
+              "type": "string",
+              "required": false,
+              "example": "BBVA BANCOMER"
+            },
+            {
+              "id": "PED-045",
+              "name": "Importe Pagado",
+              "name_en": "Amount Paid",
+              "type": "decimal",
+              "required": false
+            },
+            {
+              "id": "PED-046",
+              "name": "Fecha de Pago Electrónico",
+              "name_en": "Electronic Payment Date",
+              "type": "date",
+              "required": false
+            },
+            {
+              "id": "PED-047",
+              "name": "Número Operación Bancaria",
+              "name_en": "Bank Operation Number",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-048",
+              "name": "Número Transacción SAT",
+              "name_en": "SAT Transaction Number",
+              "type": "string",
+              "required": false
+            }
+          ]
+        },
+        {
+          "section": "Datos del Proveedor/Comprador",
+          "fields": [
+            {
+              "id": "PED-049",
+              "name": "ID Fiscal (Proveedor)",
+              "name_en": "Supplier Tax ID",
+              "type": "string",
+              "required": true,
+              "example": "3700381324"
+            },
+            {
+              "id": "PED-050",
+              "name": "Nombre/Razón Social (Proveedor)",
+              "name_en": "Supplier Name",
+              "type": "string",
+              "required": true,
+              "example": "HOA SEN GROUP"
+            },
+            {
+              "id": "PED-051",
+              "name": "Domicilio (Proveedor)",
+              "name_en": "Supplier Address",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-052",
+              "name": "Vinculación",
+              "name_en": "Related Party (Y/N)",
+              "type": "boolean",
+              "required": true,
+              "example": false
+            }
+          ]
+        },
+        {
+          "section": "Datos de Factura (en Pedimento)",
+          "fields": [
+            {
+              "id": "PED-053",
+              "name": "Número de Factura",
+              "name_en": "Invoice Number",
+              "type": "string",
+              "required": true,
+              "example": "350012001475HS-7"
+            },
+            {
+              "id": "PED-054",
+              "name": "Fecha (Factura)",
+              "name_en": "Invoice Date",
+              "type": "date",
+              "required": true
+            },
+            {
+              "id": "PED-055",
+              "name": "INCOTERM",
+              "name_en": "Incoterm",
+              "type": "string(3)",
+              "required": true,
+              "anexo19": true,
+              "example": "CIF"
+            },
+            {
+              "id": "PED-056",
+              "name": "Moneda",
+              "name_en": "Currency",
+              "type": "string(3)",
+              "required": true,
+              "example": "USD"
+            },
+            {
+              "id": "PED-057",
+              "name": "Val. Mon. Fact.",
+              "name_en": "Invoice Currency Value",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-058",
+              "name": "Factor Mon. Fact.",
+              "name_en": "Currency Factor",
+              "type": "decimal(8)",
+              "required": true,
+              "example": 1.0
+            },
+            {
+              "id": "PED-059",
+              "name": "Val. Dólares (Factura)",
+              "name_en": "USD Value per Invoice",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-060",
+              "name": "COVE (Acuse de Valor)",
+              "name_en": "Value Declaration Ref",
+              "type": "string",
+              "required": true,
+              "example": "COVE2579SWAO1"
+            }
+          ]
+        },
+        {
+          "section": "Transporte (Anexo del Pedimento)",
+          "fields": [
+            {
+              "id": "PED-061",
+              "name": "Identificación del Transporte",
+              "name_en": "Vessel Name",
+              "type": "string",
+              "required": true,
+              "example": "FWMERCURY"
+            },
+            {
+              "id": "PED-062",
+              "name": "País del Transporte",
+              "name_en": "Flag State",
+              "type": "string(3)",
+              "required": true,
+              "example": "MHL"
+            },
+            {
+              "id": "PED-063",
+              "name": "Número Guía/Orden de Embarque",
+              "name_en": "B/L Numbers",
+              "type": "array[string]",
+              "required": true,
+              "example": [
+                "SKSMPMAME5201000"
+              ]
+            },
+            {
+              "id": "PED-064",
+              "name": "Tipo de Guía (M/H)",
+              "name_en": "B/L Type Master/House",
+              "type": "string(1)",
+              "required": true,
+              "example": "M"
+            },
+            {
+              "id": "PED-065",
+              "name": "RFC Transportista",
+              "name_en": "Carrier Tax ID",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-066",
+              "name": "CURP Transportista",
+              "name_en": "Carrier CURP",
+              "type": "string",
+              "required": false
+            }
+          ]
+        },
+        {
+          "section": "Identificadores (Clave/Complemento)",
+          "fields": [
+            {
+              "id": "PED-067",
+              "name": "Clave Identificador",
+              "name_en": "Identifier Key",
+              "type": "string(2)",
+              "required": true,
+              "anexo22": "Apéndice 8",
+              "values_sample": [
+                "ED",
+                "CS",
+                "IC",
+                "CR",
+                "TL",
+                "PO",
+                "EO",
+                "PM",
+                "C1"
+              ]
+            },
+            {
+              "id": "PED-068",
+              "name": "Complemento 1",
+              "name_en": "Complement 1",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-069",
+              "name": "Complemento 2",
+              "name_en": "Complement 2",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-070",
+              "name": "Complemento 3",
+              "name_en": "Complement 3",
+              "type": "string",
+              "required": false
+            }
+          ]
+        },
+        {
+          "section": "Partidas (Line Items)",
+          "fields": [
+            {
+              "id": "PED-071",
+              "name": "SEC (Secuencial)",
+              "name_en": "Line Number",
+              "type": "integer",
+              "required": true,
+              "example": 1
+            },
+            {
+              "id": "PED-072",
+              "name": "Fracción Arancelaria",
+              "name_en": "Tariff Code (HS)",
+              "type": "string(8)",
+              "required": true,
+              "anexo19": true,
+              "example": "72104999"
+            },
+            {
+              "id": "PED-073",
+              "name": "SUBD/NICO",
+              "name_en": "National Identifier",
+              "type": "string(2)",
+              "required": true,
+              "anexo19": true,
+              "example": "01"
+            },
+            {
+              "id": "PED-074",
+              "name": "VINC",
+              "name_en": "Related Party Flag",
+              "type": "integer",
+              "required": true
+            },
+            {
+              "id": "PED-075",
+              "name": "MET VAL",
+              "name_en": "Valuation Method",
+              "type": "integer",
+              "required": true,
+              "example": 1
+            },
+            {
+              "id": "PED-076",
+              "name": "UMC",
+              "name_en": "Commercial Unit of Measure",
+              "type": "integer",
+              "required": true,
+              "anexo22": "Apéndice 7"
+            },
+            {
+              "id": "PED-077",
+              "name": "Cantidad UMC",
+              "name_en": "Commercial Quantity",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-078",
+              "name": "UMT",
+              "name_en": "Tariff Unit of Measure",
+              "type": "integer",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-079",
+              "name": "Cantidad UMT",
+              "name_en": "Tariff Quantity",
+              "type": "decimal",
+              "required": true,
+              "anexo19": true
+            },
+            {
+              "id": "PED-080",
+              "name": "P.V/C",
+              "name_en": "Seller/Buyer Country",
+              "type": "string(3)",
+              "required": true,
+              "anexo19": true,
+              "example": "VNM"
+            },
+            {
+              "id": "PED-081",
+              "name": "P.O/D",
+              "name_en": "Origin/Destination Country",
+              "type": "string(3)",
+              "required": true,
+              "anexo19": true,
+              "example": "VNM"
+            },
+            {
+              "id": "PED-082",
+              "name": "Descripción",
+              "name_en": "Goods Description",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-083",
+              "name": "Val. Adu./USD",
+              "name_en": "Customs Value per Line",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-084",
+              "name": "Imp. Precio Pag.",
+              "name_en": "Price Paid per Line",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-085",
+              "name": "Precio Unitario",
+              "name_en": "Unit Price",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-086",
+              "name": "Val. Agreg.",
+              "name_en": "Value Added (IMMEX)",
+              "type": "decimal",
+              "required": false
+            },
+            {
+              "id": "PED-087",
+              "name": "CON. (Contribución)",
+              "name_en": "Tax Type",
+              "type": "string",
+              "required": true,
+              "values": [
+                "CC",
+                "IGI/IGE",
+                "IVA"
+              ]
+            },
+            {
+              "id": "PED-088",
+              "name": "TASA (partida)",
+              "name_en": "Tax Rate",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-089",
+              "name": "T.T (Tipo Tasa)",
+              "name_en": "Rate Type",
+              "type": "integer",
+              "required": true
+            },
+            {
+              "id": "PED-090",
+              "name": "F.P (partida)",
+              "name_en": "Payment Method",
+              "type": "integer",
+              "required": true
+            },
+            {
+              "id": "PED-091",
+              "name": "Importe (partida)",
+              "name_en": "Tax Amount",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-092",
+              "name": "Clave Permiso/NOM",
+              "name_en": "Permit/NOM Key",
+              "type": "string",
+              "required": false,
+              "example": "C1"
+            },
+            {
+              "id": "PED-093",
+              "name": "Número de Permiso/NOM",
+              "name_en": "Permit/NOM Number",
+              "type": "string",
+              "required": false,
+              "anexo19": true
+            },
+            {
+              "id": "PED-094",
+              "name": "Firma Descargo",
+              "name_en": "Discharge Signature",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-095",
+              "name": "Val. Com. Dls. (partida)",
+              "name_en": "Commercial Value USD",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-096",
+              "name": "Cantidad UMT/C",
+              "name_en": "Quantity per Line",
+              "type": "decimal",
+              "required": true
+            },
+            {
+              "id": "PED-097",
+              "name": "Marca",
+              "name_en": "Brand",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-098",
+              "name": "Modelo",
+              "name_en": "Model",
+              "type": "string",
+              "required": false
+            },
+            {
+              "id": "PED-099",
+              "name": "Código Producto",
+              "name_en": "Product Code",
+              "type": "string",
+              "required": false
+            }
+          ]
+        },
+        {
+          "section": "Observaciones",
+          "fields": [
+            {
+              "id": "PED-100",
+              "name": "Total de Bultos",
+              "name_en": "Total Packages",
+              "type": "integer",
+              "required": true
+            },
+            {
+              "id": "PED-101",
+              "name": "Observaciones",
+              "name_en": "Remarks",
+              "type": "string",
+              "required": false
+            }
+          ]
+        },
+        {
+          "section": "Agente Aduanal / Certificación",
+          "fields": [
+            {
+              "id": "PED-102",
+              "name": "Nombre Agente",
+              "name_en": "Customs Agent Name",
+              "type": "string",
+              "required": true,
+              "example": "GUILLERMO ORTEGA HURTADO DE MENDOZA"
+            },
+            {
+              "id": "PED-103",
+              "name": "RFC Agente/Agencia",
+              "name_en": "Agent Tax ID",
+              "type": "string",
+              "required": true,
+              "example": "BMA991220B15"
+            },
+            {
+              "id": "PED-104",
+              "name": "CURP Agente",
+              "name_en": "Agent CURP",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-105",
+              "name": "Patente o Autorización",
+              "name_en": "Patent Number",
+              "type": "string(4)",
+              "required": true,
+              "anexo19": true,
+              "example": "3645"
+            },
+            {
+              "id": "PED-106",
+              "name": "Número Serie Certificado",
+              "name_en": "Certificate Serial",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-107",
+              "name": "e.firma",
+              "name_en": "Electronic Signature",
+              "type": "string",
+              "required": true
+            },
+            {
+              "id": "PED-108",
+              "name": "Referencia Interna",
+              "name_en": "Internal Ref",
+              "type": "string",
+              "required": false,
+              "example": "AT2401730"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "doc_type_id": "BL",
+      "doc_type_name": "Conocimiento de Embarque",
+      "doc_type_name_en": "Bill of Lading",
+      "variants": [
+        "Original B/L",
+        "Copy Non-Negotiable",
+        "Delivery Order (Revalidación)",
+        "Sea Waybill"
+      ],
+      "sample_files": [
+        "26EZ705 BL.pdf",
+        "BL.pdf",
+        "BL REV.pdf"
+      ],
+      "fields": [
+        {
+          "id": "BL-001",
+          "name": "B/L Number",
+          "type": "string",
+          "required": true,
+          "example": "ONEYDLCG00246800"
+        },
+        {
+          "id": "BL-002",
+          "name": "Booking Number",
+          "type": "string",
+          "required": true,
+          "example": "DLCG00246800"
+        },
+        {
+          "id": "BL-003",
+          "name": "Shipper/Exporter (Name+Address+Country)",
+          "type": "object",
+          "required": true
+        },
+        {
+          "id": "BL-004",
+          "name": "Consignee (Name+Address+TaxID)",
+          "type": "object",
+          "required": true
+        },
+        {
+          "id": "BL-005",
+          "name": "Notify Party (Name+Address+TaxID)",
+          "type": "object",
+          "required": false
+        },
+        {
+          "id": "BL-006",
+          "name": "Pre-Carriage By",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-007",
+          "name": "Place of Receipt",
+          "type": "string",
+          "required": true,
+          "example": "DALIAN, CHINA"
+        },
+        {
+          "id": "BL-008",
+          "name": "Ocean Vessel",
+          "type": "string",
+          "required": true,
+          "example": "HMM DAON"
+        },
+        {
+          "id": "BL-009",
+          "name": "Voyage Number",
+          "type": "string",
+          "required": true,
+          "example": "020W"
+        },
+        {
+          "id": "BL-010",
+          "name": "Flag",
+          "type": "string",
+          "required": true,
+          "example": "LIBERIA"
+        },
+        {
+          "id": "BL-011",
+          "name": "Port of Loading (POL)",
+          "type": "string",
+          "required": true,
+          "example": "DALIAN, CHINA"
+        },
+        {
+          "id": "BL-012",
+          "name": "Port of Discharge (POD)",
+          "type": "string",
+          "required": true,
+          "example": "MANZANILLO, MEXICO"
+        },
+        {
+          "id": "BL-013",
+          "name": "Place of Delivery",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "BL-014",
+          "name": "Final Destination",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-015",
+          "name": "Type of Movement",
+          "type": "string",
+          "required": true,
+          "values": [
+            "FCL/FCL",
+            "LCL/LCL"
+          ],
+          "example": "FCL/FCL"
+        },
+        {
+          "id": "BL-016",
+          "name": "Service Type (CY/CY)",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "BL-017",
+          "name": "Container Number(s)",
+          "type": "array[string]",
+          "required": true,
+          "anexo19": true,
+          "example": [
+            "TTNU8246386",
+            "JAYU1098003"
+          ]
+        },
+        {
+          "id": "BL-018",
+          "name": "Seal Number(s)",
+          "type": "array[string]",
+          "required": true,
+          "example": [
+            "CN65755BC",
+            "L6611229"
+          ]
+        },
+        {
+          "id": "BL-019",
+          "name": "Marks & Numbers",
+          "type": "string",
+          "required": false,
+          "example": "N/M"
+        },
+        {
+          "id": "BL-020",
+          "name": "Quantity (Packages/Units)",
+          "type": "integer",
+          "required": true,
+          "example": 575
+        },
+        {
+          "id": "BL-021",
+          "name": "Description of Goods",
+          "type": "string",
+          "required": true,
+          "example": "PARAFFIN WAX FR 58"
+        },
+        {
+          "id": "BL-022",
+          "name": "Gross Weight (KGS)",
+          "type": "decimal",
+          "required": true,
+          "example": 29037.5
+        },
+        {
+          "id": "BL-023",
+          "name": "Gross Measurement (CBM)",
+          "type": "decimal",
+          "required": true,
+          "example": 40.0
+        },
+        {
+          "id": "BL-024",
+          "name": "Freight & Charges Payable At/By",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "BL-025",
+          "name": "Service Contract Number",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-026",
+          "name": "Declared Cargo Value (USD)",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "BL-027",
+          "name": "Prepaid Amount",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "BL-028",
+          "name": "Collect Amount",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "BL-029",
+          "name": "Date Cargo Received",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "BL-030",
+          "name": "Date Laden on Board",
+          "type": "date",
+          "required": true,
+          "example": "21 JAN 2026"
+        },
+        {
+          "id": "BL-031",
+          "name": "Place of B/L Issue",
+          "type": "string",
+          "required": true,
+          "example": "DALIAN"
+        },
+        {
+          "id": "BL-032",
+          "name": "Number of Original B/Ls",
+          "type": "integer",
+          "required": true,
+          "example": 3
+        },
+        {
+          "id": "BL-033",
+          "name": "Container Size/Type",
+          "type": "string",
+          "required": true,
+          "anexo19": true,
+          "example": "20 DC / 40 HR"
+        },
+        {
+          "id": "BL-034",
+          "name": "Net Weight per Container",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "BL-035",
+          "name": "Traffic Type (DO)",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-036",
+          "name": "ETA",
+          "type": "date",
+          "required": false
+        },
+        {
+          "id": "BL-037",
+          "name": "Terminal",
+          "type": "string",
+          "required": false,
+          "example": "IPM TERMINAL"
+        },
+        {
+          "id": "BL-038",
+          "name": "Acuse Electrónico",
+          "type": "string",
+          "required": false,
+          "example": "7U8VULJW"
+        },
+        {
+          "id": "BL-039",
+          "name": "Número Único",
+          "type": "string",
+          "required": false,
+          "example": "11291825002597"
+        },
+        {
+          "id": "BL-040",
+          "name": "Reference / Agent",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-041",
+          "name": "Autorización # (Delivery Order)",
+          "type": "string",
+          "required": false,
+          "example": "CMA026646"
+        },
+        {
+          "id": "BL-042",
+          "name": "Entregar Equipo Vacío En",
+          "type": "string",
+          "required": false,
+          "example": "ATM"
+        },
+        {
+          "id": "BL-043",
+          "name": "Export References",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "BL-044",
+          "name": "FMC Number",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "doc_type_id": "AVISO_AUTO",
+      "doc_type_name": "Aviso Automático de Importación",
+      "doc_type_name_en": "Automatic Import Notice (Steel Products)",
+      "issuing_authority": "Secretaría de Economía",
+      "sample_files": [
+        "1119C125184334.pdf",
+        "1119C125184583-588.pdf"
+      ],
+      "fields": [
+        {
+          "id": "AVI-001",
+          "name": "Número de Oficio",
+          "name_en": "Official Letter Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-002",
+          "name": "Número de Folio",
+          "name_en": "Filing Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-003",
+          "name": "Fecha del Folio",
+          "name_en": "Filing Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "AVI-004",
+          "name": "Clave de Aviso Automático",
+          "name_en": "Automatic Notice Key",
+          "type": "string",
+          "required": true,
+          "example": "1119C125184334"
+        },
+        {
+          "id": "AVI-005",
+          "name": "Número de Certificado",
+          "name_en": "Certificate Number",
+          "type": "string",
+          "required": true,
+          "example": "AV25/338"
+        },
+        {
+          "id": "AVI-006",
+          "name": "RFC del Importador",
+          "name_en": "Importer Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-007",
+          "name": "Razón Social",
+          "name_en": "Company Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-008",
+          "name": "Domicilio del Importador",
+          "name_en": "Importer Address",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-009",
+          "name": "Clave Válida Desde",
+          "name_en": "Valid From",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "AVI-010",
+          "name": "Clave Válida Hasta",
+          "name_en": "Valid Until",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "AVI-011",
+          "name": "Fracción Arancelaria",
+          "name_en": "Tariff Code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-012",
+          "name": "NICO",
+          "name_en": "National Identifier",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-013",
+          "name": "País de Origen",
+          "name_en": "Country of Origin",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-014",
+          "name": "Cantidad",
+          "name_en": "Quantity",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "AVI-015",
+          "name": "Unidad de Medida",
+          "name_en": "Unit of Measure",
+          "type": "string",
+          "required": true,
+          "example": "Tonelada"
+        },
+        {
+          "id": "AVI-016",
+          "name": "Valor en USD",
+          "name_en": "Value USD",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "AVI-017",
+          "name": "Precio Unitario USD",
+          "name_en": "Unit Price USD",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "AVI-018",
+          "name": "Descripción del Certificado",
+          "name_en": "Certificate Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-019",
+          "name": "Perfil",
+          "name_en": "Profile/Shape",
+          "type": "string",
+          "required": true,
+          "notes": "Steel-specific"
+        },
+        {
+          "id": "AVI-020",
+          "name": "Calidad",
+          "name_en": "Grade/Quality",
+          "type": "string",
+          "required": true,
+          "example": "SAE 1018"
+        },
+        {
+          "id": "AVI-021",
+          "name": "Tipo de Acero",
+          "name_en": "Steel Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-022",
+          "name": "Tipo de Recubrimiento",
+          "name_en": "Coating Type",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "AVI-023",
+          "name": "Norma (ASTM)",
+          "name_en": "Standard",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "AVI-024",
+          "name": "Aduana de Entrada",
+          "name_en": "Entry Customs",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-025",
+          "name": "Fecha de Envío",
+          "name_en": "Shipment Date",
+          "type": "date",
+          "required": false
+        },
+        {
+          "id": "AVI-026",
+          "name": "Representación Federal",
+          "name_en": "Federal Office",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-027",
+          "name": "Colada (Heat Number)",
+          "name_en": "Heat/Cast Number",
+          "type": "string",
+          "required": true,
+          "notes": "Steel traceability"
+        },
+        {
+          "id": "AVI-028",
+          "name": "Medida (Dimensions)",
+          "name_en": "Product Dimensions",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-029",
+          "name": "Longitud",
+          "name_en": "Length (mm)",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "AVI-030",
+          "name": "Composición Química",
+          "name_en": "Chemical Composition",
+          "type": "object",
+          "required": true,
+          "sub_fields": [
+            "C%",
+            "Mn%",
+            "Si%",
+            "S%",
+            "P%",
+            "Cr%",
+            "Ni%",
+            "Mo%",
+            "Cu%",
+            "Sn%",
+            "V%",
+            "Al%",
+            "N%",
+            "CE%"
+          ]
+        },
+        {
+          "id": "AVI-031",
+          "name": "Bultos (por línea)",
+          "name_en": "Packages per line",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "id": "AVI-032",
+          "name": "Proveedor/Planta",
+          "name_en": "Supplier/Plant Code",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "doc_type_id": "COVE",
+      "doc_type_name": "Comprobante de Valor Electrónico",
+      "doc_type_name_en": "Electronic Value Declaration (COVE)",
+      "issuing_system": "Ventanilla Digital Mexicana de Comercio Exterior",
+      "sample_files": [
+        "PROFORMA/COVE257RZRJU1.pdf"
+      ],
+      "fields": [
+        {
+          "id": "COV-001",
+          "name": "Número COVE",
+          "name_en": "COVE Number",
+          "type": "string",
+          "required": true,
+          "example": "COVE257RZRJU1"
+        },
+        {
+          "id": "COV-002",
+          "name": "Tipo de Operación",
+          "name_en": "Operation Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-003",
+          "name": "Relación de Facturas",
+          "name_en": "Invoice Relationship",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-004",
+          "name": "Número de Factura",
+          "name_en": "Invoice Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-005",
+          "name": "Tipo de Figura",
+          "name_en": "Figure Type",
+          "type": "string",
+          "required": true,
+          "example": "Importador"
+        },
+        {
+          "id": "COV-006",
+          "name": "Fecha de Expedición",
+          "name_en": "Issue Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "COV-007",
+          "name": "Observaciones",
+          "name_en": "Remarks",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "COV-008",
+          "name": "RFC de Consulta",
+          "name_en": "Consultation Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-009",
+          "name": "Número de Patente Aduanal",
+          "name_en": "Customs Patent",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-010",
+          "name": "Subdivisión",
+          "name_en": "Subdivision",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-011",
+          "name": "Certificado de Origen",
+          "name_en": "Certificate of Origin",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-012",
+          "name": "No. Exportador Autorizado",
+          "name_en": "Authorized Exporter No.",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "COV-013",
+          "name": "Proveedor - Tipo Identificador",
+          "name_en": "Supplier ID Type",
+          "type": "string",
+          "required": true,
+          "values": [
+            "TAX_ID",
+            "SIN_TAX_ID",
+            "RFC",
+            "CURP"
+          ]
+        },
+        {
+          "id": "COV-014",
+          "name": "Proveedor - Tax ID",
+          "name_en": "Supplier Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-015",
+          "name": "Proveedor - Nombre",
+          "name_en": "Supplier Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-016",
+          "name": "Proveedor - Domicilio",
+          "name_en": "Supplier Address",
+          "type": "object",
+          "required": true,
+          "sub_fields": [
+            "calle",
+            "no_ext",
+            "no_int",
+            "cp",
+            "colonia",
+            "localidad",
+            "entidad",
+            "municipio",
+            "pais"
+          ]
+        },
+        {
+          "id": "COV-017",
+          "name": "Destinatario - Tipo Identificador",
+          "name_en": "Consignee ID Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-018",
+          "name": "Destinatario - RFC",
+          "name_en": "Consignee Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-019",
+          "name": "Destinatario - Nombre",
+          "name_en": "Consignee Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-020",
+          "name": "Destinatario - Domicilio",
+          "name_en": "Consignee Address",
+          "type": "object",
+          "required": true,
+          "sub_fields": [
+            "calle",
+            "no_ext",
+            "no_int",
+            "cp",
+            "colonia",
+            "localidad",
+            "entidad",
+            "municipio",
+            "pais"
+          ]
+        },
+        {
+          "id": "COV-021",
+          "name": "Mercancía - Descripción",
+          "name_en": "Goods Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-022",
+          "name": "Mercancía - Unidad de Medida",
+          "name_en": "Unit of Measure",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-023",
+          "name": "Mercancía - Cantidad",
+          "name_en": "Quantity",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "COV-024",
+          "name": "Mercancía - Tipo Moneda",
+          "name_en": "Currency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COV-025",
+          "name": "Mercancía - Valor Unitario",
+          "name_en": "Unit Value",
+          "type": "decimal(6)",
+          "required": true
+        },
+        {
+          "id": "COV-026",
+          "name": "Mercancía - Valor Total",
+          "name_en": "Total Value",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "COV-027",
+          "name": "Mercancía - Valor Total USD",
+          "name_en": "Total Value USD",
+          "type": "decimal",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "INS",
+      "doc_type_name": "Póliza de Seguro de Carga",
+      "doc_type_name_en": "Cargo Insurance Policy",
+      "doc_type_name_zh": "货物运输保险保险单",
+      "sample_files": [
+        "26EZ705 INS.pdf"
+      ],
+      "fields": [
+        {
+          "id": "INS-001",
+          "name": "Número de Póliza",
+          "name_zh": "保险单号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-002",
+          "name": "Invoice No.",
+          "name_zh": "发票号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-003",
+          "name": "B/L No.",
+          "name_zh": "提单号",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "INS-004",
+          "name": "Contract No.",
+          "name_zh": "合同号",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "INS-005",
+          "name": "L/C No.",
+          "name_zh": "信用证号",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "INS-006",
+          "name": "Asegurado (Insured)",
+          "name_zh": "被保险人",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-007",
+          "name": "Marks & Nos.",
+          "name_zh": "标记",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "INS-008",
+          "name": "Package & Quantity",
+          "name_zh": "包装及数量",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-009",
+          "name": "Goods Description",
+          "name_zh": "保险货物项目",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-010",
+          "name": "Amount Insured",
+          "name_zh": "保险金额",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "INS-011",
+          "name": "Total Amount Insured (words)",
+          "name_zh": "总保险金额",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-012",
+          "name": "Premium",
+          "name_zh": "保费",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-013",
+          "name": "Date of Commencement",
+          "name_zh": "启运日期",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "INS-014",
+          "name": "Per Conveyance",
+          "name_zh": "装载运输工具",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-015",
+          "name": "From",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-016",
+          "name": "Via",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "INS-017",
+          "name": "To",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-018",
+          "name": "Conditions/Coverage",
+          "name_zh": "承保险别",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "INS-019",
+          "name": "Claim Agent",
+          "type": "object",
+          "required": false,
+          "sub_fields": [
+            "name",
+            "address",
+            "tel",
+            "fax"
+          ]
+        },
+        {
+          "id": "INS-020",
+          "name": "Insurance Company",
+          "type": "string",
+          "required": true,
+          "example": "PICC"
+        },
+        {
+          "id": "INS-021",
+          "name": "Policy Type (E-Policy)",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "COA",
+      "doc_type_name": "Certificado de Análisis",
+      "doc_type_name_en": "Certificate of Analysis",
+      "doc_type_name_zh": "产品质量检验证书",
+      "sample_files": [
+        "26EZ705 COA.pdf",
+        "26EZ705 COA-F.pdf"
+      ],
+      "fields": [
+        {
+          "id": "COA-001",
+          "name": "Unidad Productora",
+          "name_zh": "生产单位",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-002",
+          "name": "Marca Comercial",
+          "name_zh": "生产商标",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-003",
+          "name": "Número de Certificado",
+          "name_zh": "编号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-004",
+          "name": "Nombre del Producto",
+          "name_zh": "产品名称",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-005",
+          "name": "Especificación/Grado",
+          "name_zh": "规格牌号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-006",
+          "name": "Número de Lote",
+          "name_zh": "产品批(罐)号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-007",
+          "name": "Cantidad del Lote",
+          "name_zh": "批量",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-008",
+          "name": "Norma Aplicada",
+          "name_zh": "执行标准编号",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-009",
+          "name": "Fecha de Producción",
+          "name_zh": "生产日期",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "COA-010",
+          "name": "Parámetros de Análisis",
+          "name_zh": "分析项目",
+          "type": "array[object]",
+          "required": true,
+          "sub_fields": [
+            "parameter_name",
+            "quality_standard",
+            "actual_result",
+            "test_method"
+          ],
+          "example_params": [
+            "熔点",
+            "含油量",
+            "颜色",
+            "光安定性",
+            "针入度",
+            "运动黏度",
+            "嗅味",
+            "水溶性酸碱",
+            "机械杂质及水"
+          ]
+        },
+        {
+          "id": "COA-011",
+          "name": "Conclusión",
+          "name_zh": "判定结论",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-012",
+          "name": "Aprobador",
+          "name_zh": "批准人",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "COA-013",
+          "name": "Revisor",
+          "name_zh": "审核人",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "EIR",
+      "doc_type_name": "Equipment Interchange Receipt",
+      "doc_type_name_en": "Container Inspection Report",
+      "sample_files": [
+        "EIR JAYU1098003.pdf"
+      ],
+      "fields": [
+        {
+          "id": "EIR-001",
+          "name": "Servicio",
+          "name_en": "Service Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-002",
+          "name": "Número de EIR",
+          "name_en": "EIR Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-003",
+          "name": "Número de Orden",
+          "name_en": "Order Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-004",
+          "name": "Fecha",
+          "name_en": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "EIR-005",
+          "name": "Estado (Entregado)",
+          "name_en": "Condition",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-006",
+          "name": "Número de Pedimento",
+          "name_en": "Pedimento No.",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-007",
+          "name": "Contenedor",
+          "name_en": "Container Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-008",
+          "name": "Tamaño",
+          "name_en": "Size (ft)",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "id": "EIR-009",
+          "name": "Tipo",
+          "name_en": "Type",
+          "type": "string",
+          "required": true,
+          "example": "DRY"
+        },
+        {
+          "id": "EIR-010",
+          "name": "VGM",
+          "name_en": "Verified Gross Mass",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "EIR-011",
+          "name": "Ubicación",
+          "name_en": "Location",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-012",
+          "name": "Booking",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-013",
+          "name": "Destino",
+          "name_en": "Destination",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-014",
+          "name": "IMO",
+          "name_en": "Hazmat Class",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-015",
+          "name": "Temperatura",
+          "name_en": "Temperature",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-016",
+          "name": "Sellos",
+          "name_en": "Seals",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-017",
+          "name": "Línea Transportista",
+          "name_en": "Carrier Line",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-018",
+          "name": "Chofer",
+          "name_en": "Driver",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-019",
+          "name": "Línea Naviera",
+          "name_en": "Shipping Line",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-020",
+          "name": "Buque",
+          "name_en": "Vessel",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-021",
+          "name": "Viaje",
+          "name_en": "Voyage",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-022",
+          "name": "Agencia Aduanal",
+          "name_en": "Customs Agency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-023",
+          "name": "Cliente",
+          "name_en": "Client",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-024",
+          "name": "Comentarios (Condición)",
+          "name_en": "Physical Condition",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "EIR-025",
+          "name": "Firma Entrega",
+          "name_en": "Delivery Signature",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EIR-026",
+          "name": "Firma Recibe",
+          "name_en": "Receiving Signature",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "EDOC",
+      "doc_type_name": "Acuse de Digitalización (e-document)",
+      "doc_type_name_en": "Document Digitalization Receipt",
+      "sample_files": [
+        "278864553.pdf"
+      ],
+      "fields": [
+        {
+          "id": "EDO-001",
+          "name": "Folio de la Solicitud",
+          "name_en": "Request ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-002",
+          "name": "RFC",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-003",
+          "name": "Operación",
+          "name_en": "Operation",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-004",
+          "name": "Número e_document",
+          "name_en": "e-Document Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-005",
+          "name": "Tipo de Documento",
+          "name_en": "Document Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-006",
+          "name": "Nombre del Documento",
+          "name_en": "Document Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-007",
+          "name": "RFC para Consulta",
+          "name_en": "Consultation Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-008",
+          "name": "Fecha de Registro",
+          "name_en": "Registration Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "EDO-009",
+          "name": "Cadena Original",
+          "name_en": "Original Hash",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-010",
+          "name": "Sello Digital Solicitante",
+          "name_en": "Applicant Digital Seal",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-011",
+          "name": "Sello Digital Ventanilla",
+          "name_en": "Single Window Seal",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "EDO-012",
+          "name": "Leyenda (Vigencia)",
+          "name_en": "Validity Notice",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "CARTA_ENCOM",
+      "doc_type_name": "Carta Encomienda",
+      "doc_type_name_en": "Power of Attorney for Customs",
+      "sample_files": [
+        "CARTA ENCOMIENDA ONE .pdf"
+      ],
+      "fields": [
+        {
+          "id": "CEN-001",
+          "name": "Fecha",
+          "name_en": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "CEN-002",
+          "name": "Naviera",
+          "name_en": "Shipping Line",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-003",
+          "name": "RFC de la Empresa",
+          "name_en": "Company Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-004",
+          "name": "Razón Social",
+          "name_en": "Company Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-005",
+          "name": "Domicilio Fiscal",
+          "name_en": "Fiscal Address",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-006",
+          "name": "Número de B/L",
+          "name_en": "B/L Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-007",
+          "name": "Agente Aduanal",
+          "name_en": "Customs Agent",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-008",
+          "name": "Patente",
+          "name_en": "Patent Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-009",
+          "name": "Aduana de Despacho",
+          "name_en": "Customs Office",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-010",
+          "name": "Representante Legal",
+          "name_en": "Legal Rep Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CEN-011",
+          "name": "Firma",
+          "name_en": "Signature",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "PRESUPUESTO",
+      "doc_type_name": "Presupuesto / Cuenta de Gastos",
+      "doc_type_name_en": "Customs Broker Fee Estimate",
+      "sample_files": [
+        "PROFORMA/PRE CTA DE GASTOS SES3555.pdf"
+      ],
+      "fields": [
+        {
+          "id": "PRE-001",
+          "name": "Operación (Ref)",
+          "name_en": "Operation Reference",
+          "type": "string",
+          "required": true,
+          "example": "SES3555"
+        },
+        {
+          "id": "PRE-002",
+          "name": "B/L",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PRE-003",
+          "name": "Contenedor",
+          "name_en": "Container",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PRE-004",
+          "name": "Peso Bruto",
+          "name_en": "Gross Weight",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "PRE-005",
+          "name": "Número de Contenedores",
+          "name_en": "Container Count",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "id": "PRE-006",
+          "name": "Aduana",
+          "name_en": "Customs Office",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PRE-007",
+          "name": "Cliente",
+          "name_en": "Client",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PRE-008",
+          "name": "Conceptos de Gasto",
+          "name_en": "Fee Items",
+          "type": "array[object]",
+          "required": true,
+          "sub_fields": [
+            "concepto",
+            "codigo_sat",
+            "tarifa",
+            "monto",
+            "iva",
+            "total"
+          ],
+          "concepts": [
+            "Honorarios",
+            "Maniobras",
+            "Almacenajes",
+            "Muellaje",
+            "Reconocimiento",
+            "Complementarios",
+            "COVE/Edocument",
+            "Horas Hombre",
+            "Contraprestación",
+            "Pedimento y Validación",
+            "Mensajería"
+          ]
+        },
+        {
+          "id": "PRE-009",
+          "name": "Gastos Terminal/Puerto",
+          "name_en": "Port Charges",
+          "type": "array[object]",
+          "required": true,
+          "concepts": [
+            "Vacío",
+            "Muellaje",
+            "Daño",
+            "Reconocimiento",
+            "Revalidación",
+            "Limpieza"
+          ]
+        },
+        {
+          "id": "PRE-010",
+          "name": "Tipo de Cambio",
+          "name_en": "Exchange Rate",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "PRE-011",
+          "name": "Total General",
+          "name_en": "Grand Total",
+          "type": "decimal",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "FACTURA",
+      "doc_type_name": "Factura Comercial",
+      "doc_type_name_en": "Commercial Invoice",
+      "sample_files": [
+        "26EZ705 INV.pdf",
+        "FV25288.pdf"
+      ],
+      "notes": "Image-based PDFs. Fields inferred from COVE and pedimento cross-references.",
+      "fields": [
+        {
+          "id": "FAC-001",
+          "name": "Número de Factura",
+          "name_en": "Invoice Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-002",
+          "name": "Fecha",
+          "name_en": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "FAC-003",
+          "name": "Vendedor/Exportador",
+          "name_en": "Seller/Exporter",
+          "type": "object",
+          "required": true,
+          "sub_fields": [
+            "name",
+            "address",
+            "tax_id"
+          ]
+        },
+        {
+          "id": "FAC-004",
+          "name": "Comprador/Importador",
+          "name_en": "Buyer/Importer",
+          "type": "object",
+          "required": true,
+          "sub_fields": [
+            "name",
+            "address",
+            "rfc"
+          ]
+        },
+        {
+          "id": "FAC-005",
+          "name": "INCOTERM",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-006",
+          "name": "Moneda",
+          "name_en": "Currency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-007",
+          "name": "Descripción de Mercancía",
+          "name_en": "Goods Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-008",
+          "name": "Cantidad",
+          "name_en": "Quantity",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "FAC-009",
+          "name": "Unidad de Medida",
+          "name_en": "Unit of Measure",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-010",
+          "name": "Precio Unitario",
+          "name_en": "Unit Price",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "FAC-011",
+          "name": "Valor Total",
+          "name_en": "Total Value",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "FAC-012",
+          "name": "País de Origen",
+          "name_en": "Country of Origin",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "FAC-013",
+          "name": "Peso Neto",
+          "name_en": "Net Weight",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "FAC-014",
+          "name": "Peso Bruto",
+          "name_en": "Gross Weight",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "FAC-015",
+          "name": "Número de Contrato",
+          "name_en": "Contract Number",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "FAC-016",
+          "name": "Condiciones de Pago",
+          "name_en": "Payment Terms",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "doc_type_id": "PACKING_LIST",
+      "doc_type_name": "Lista de Empaque",
+      "doc_type_name_en": "Packing List",
+      "sample_files": [
+        "26EZ705 PL.pdf"
+      ],
+      "notes": "Image-based PDF. Fields inferred from standard packing list format.",
+      "fields": [
+        {
+          "id": "PL-001",
+          "name": "Número de P/L",
+          "name_en": "Packing List Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-002",
+          "name": "Fecha",
+          "name_en": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "PL-003",
+          "name": "Exportador",
+          "name_en": "Exporter",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-004",
+          "name": "Importador",
+          "name_en": "Importer",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-005",
+          "name": "Número de Factura Ref",
+          "name_en": "Invoice Reference",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-006",
+          "name": "Descripción",
+          "name_en": "Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-007",
+          "name": "Número de Bultos",
+          "name_en": "Number of Packages",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "id": "PL-008",
+          "name": "Tipo de Embalaje",
+          "name_en": "Package Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-009",
+          "name": "Peso Neto (kg)",
+          "name_en": "Net Weight",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "PL-010",
+          "name": "Peso Bruto (kg)",
+          "name_en": "Gross Weight",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "PL-011",
+          "name": "Volumen (CBM)",
+          "name_en": "Volume",
+          "type": "decimal",
+          "required": false
+        },
+        {
+          "id": "PL-012",
+          "name": "Marcas y Números",
+          "name_en": "Marks & Numbers",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "PL-013",
+          "name": "Contenedor",
+          "name_en": "Container Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "PL-014",
+          "name": "Sello",
+          "name_en": "Seal Number",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "CARTA_318",
+      "doc_type_name": "Carta 3.1.8 (Declaración de Valor)",
+      "doc_type_name_en": "Value Declaration Letter (Rule 3.1.8)",
+      "sample_files": [
+        "Carta 3.1.8.pdf",
+        "CARTA 3 1 8 Norbright Industry.docx",
+        "CARTA EXCEL 3.1.8 - SES3555 Y SES3557.xlsx"
+      ],
+      "notes": "Letter from importer declaring value per RGCE rule 3.1.8 when original invoice is not available or requires supplementation.",
+      "fields": [
+        {
+          "id": "C38-001",
+          "name": "Fecha",
+          "name_en": "Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "C38-002",
+          "name": "RFC del Importador",
+          "name_en": "Importer Tax ID",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-003",
+          "name": "Razón Social",
+          "name_en": "Company Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-004",
+          "name": "Proveedor",
+          "name_en": "Supplier Name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-005",
+          "name": "Descripción de Mercancía",
+          "name_en": "Goods Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-006",
+          "name": "Número de Factura",
+          "name_en": "Invoice Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-007",
+          "name": "Valor Declarado",
+          "name_en": "Declared Value",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "C38-008",
+          "name": "Moneda",
+          "name_en": "Currency",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-009",
+          "name": "INCOTERM",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "C38-010",
+          "name": "Firma del Representante Legal",
+          "name_en": "Legal Rep Signature",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "CERT_PROD",
+      "doc_type_name": "Certificado de Producción / Origen",
+      "doc_type_name_en": "Production/Origin Certificate",
+      "sample_files": [
+        "CE.pdf",
+        "CERTIFICADO PRODUCCION.pdf"
+      ],
+      "notes": "Image-based PDFs. Typically issued by manufacturer/chamber of commerce.",
+      "fields": [
+        {
+          "id": "CRT-001",
+          "name": "Número de Certificado",
+          "name_en": "Certificate Number",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-002",
+          "name": "Fecha de Emisión",
+          "name_en": "Issue Date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "id": "CRT-003",
+          "name": "Emisor",
+          "name_en": "Issuing Entity",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-004",
+          "name": "Exportador/Productor",
+          "name_en": "Exporter/Producer",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-005",
+          "name": "Importador/Destinatario",
+          "name_en": "Importer/Consignee",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-006",
+          "name": "Descripción de Mercancía",
+          "name_en": "Goods Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-007",
+          "name": "País de Origen",
+          "name_en": "Country of Origin",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CRT-008",
+          "name": "Fracción Arancelaria",
+          "name_en": "Tariff Code",
+          "type": "string",
+          "required": false
+        },
+        {
+          "id": "CRT-009",
+          "name": "Firma/Sello",
+          "name_en": "Signature/Seal",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "HOJA_INSTRUC",
+      "doc_type_name": "Hoja de Instrucciones para Pedimento",
+      "doc_type_name_en": "Pedimento Instruction Sheet",
+      "sample_files": [
+        "F-BMA-CT-01 HOJA DE INSTRUCCIONES PARA ELABORACION DE PEDIMENTOS REV.08.xlsx"
+      ],
+      "notes": "Excel form used by importers to communicate pedimento data to customs broker.",
+      "fields": [
+        {
+          "id": "HI-001",
+          "name": "Referencia del Cliente",
+          "name_en": "Client Reference",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-002",
+          "name": "Datos del Importador",
+          "name_en": "Importer Data",
+          "type": "object",
+          "required": true
+        },
+        {
+          "id": "HI-003",
+          "name": "Tipo de Operación",
+          "name_en": "Operation Type",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-004",
+          "name": "Régimen",
+          "name_en": "Regime",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-005",
+          "name": "Datos del Proveedor",
+          "name_en": "Supplier Data",
+          "type": "object",
+          "required": true
+        },
+        {
+          "id": "HI-006",
+          "name": "Datos de Factura",
+          "name_en": "Invoice Data",
+          "type": "object",
+          "required": true
+        },
+        {
+          "id": "HI-007",
+          "name": "INCOTERM",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-008",
+          "name": "Fracción Arancelaria",
+          "name_en": "Tariff Code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-009",
+          "name": "Descripción de Mercancía",
+          "name_en": "Goods Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-010",
+          "name": "País de Origen",
+          "name_en": "Country of Origin",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "HI-011",
+          "name": "Instrucciones Especiales",
+          "name_en": "Special Instructions",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "doc_type_id": "CLAS_ARANCEL",
+      "doc_type_name": "Clasificación Arancelaria",
+      "doc_type_name_en": "Tariff Classification Worksheet",
+      "sample_files": [
+        "Copia de AT2501492 - CLAS. ARANCELARIA NUEVA INCAL.xlsx"
+      ],
+      "fields": [
+        {
+          "id": "CA-001",
+          "name": "Referencia",
+          "name_en": "Reference",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-002",
+          "name": "Fracción Arancelaria",
+          "name_en": "Tariff Code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-003",
+          "name": "NICO",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-004",
+          "name": "Descripción TIGIE",
+          "name_en": "Tariff Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-005",
+          "name": "Descripción Comercial",
+          "name_en": "Commercial Description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-006",
+          "name": "Regulaciones y Restricciones",
+          "name_en": "Regulations",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-007",
+          "name": "Unidad de Medida TIGIE",
+          "name_en": "Tariff UoM",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-008",
+          "name": "IGI (Tasa Arancelaria)",
+          "name_en": "Import Duty Rate",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "CA-009",
+          "name": "Preferencia Arancelaria",
+          "name_en": "Tariff Preference",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    {
+      "doc_type_id": "SOLIC_CONTRIB",
+      "doc_type_name": "Solicitud de Contribuciones",
+      "doc_type_name_en": "Tax Calculation Request",
+      "sample_files": [
+        "PROFORMA/SOLICITUD CONTRIBUCIONES SES3555.xlsx"
+      ],
+      "fields": [
+        {
+          "id": "SC-001",
+          "name": "Operación",
+          "name_en": "Operation",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "SC-002",
+          "name": "Fracción Arancelaria",
+          "name_en": "Tariff Code",
+          "type": "string",
+          "required": true
+        },
+        {
+          "id": "SC-003",
+          "name": "Valor en Aduana",
+          "name_en": "Customs Value",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "SC-004",
+          "name": "IGI/CC (Arancel)",
+          "name_en": "Import Duty",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "SC-005",
+          "name": "DTA",
+          "name_en": "Customs Processing Fee",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "SC-006",
+          "name": "PRV",
+          "name_en": "Pre-validation",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "SC-007",
+          "name": "IVA",
+          "name_en": "VAT",
+          "type": "decimal",
+          "required": true
+        },
+        {
+          "id": "SC-008",
+          "name": "Total Contribuciones",
+          "name_en": "Total Taxes",
+          "type": "decimal",
+          "required": true
+        }
+      ]
+    },
+    {
+      "doc_type_id": "ANEXO_19_REF",
+      "doc_type_name": "Anexo 19 - Campos Críticos (Infracciones Art. 184-III)",
+      "doc_type_name_en": "Annex 19 - Critical Fields (Infraction Art. 184-III)",
+      "description": "Fields from Anexo 19 RGCE 2026 that trigger infractions under Art. 184-III of the Customs Law if declared incorrectly, falsely, or omitted.",
+      "critical_fields": [
+        {
+          "roman": "I",
+          "name": "Fecha de entrada",
+          "maps_to": "PED-032"
+        },
+        {
+          "roman": "II",
+          "name": "Clave del pedimento",
+          "maps_to": "PED-003"
+        },
+        {
+          "roman": "III",
+          "name": "Tipo de operación",
+          "maps_to": "PED-002"
+        },
+        {
+          "roman": "IV",
+          "name": "Número de pedimento",
+          "maps_to": "PED-001"
+        },
+        {
+          "roman": "V",
+          "name": "RFC importador/exportador",
+          "maps_to": "PED-015"
+        },
+        {
+          "roman": "VI",
+          "name": "País vendedor/comprador",
+          "maps_to": "PED-080"
+        },
+        {
+          "roman": "VII",
+          "name": "País de origen/último destino",
+          "maps_to": "PED-081"
+        },
+        {
+          "roman": "VIII",
+          "name": "Medio de transporte de entrada",
+          "maps_to": "PED-012"
+        },
+        {
+          "roman": "IX",
+          "name": "Fracción arancelaria y NICO",
+          "maps_to": "PED-072, PED-073"
+        },
+        {
+          "roman": "X",
+          "name": "Unidad de medida TIGIE",
+          "maps_to": "PED-078"
+        },
+        {
+          "roman": "XI",
+          "name": "Cantidad UMT",
+          "maps_to": "PED-079"
+        },
+        {
+          "roman": "XII",
+          "name": "Valor en aduana",
+          "maps_to": "PED-010"
+        },
+        {
+          "roman": "XIII",
+          "name": "Importe de fletes",
+          "maps_to": "PED-021"
+        },
+        {
+          "roman": "XIV",
+          "name": "Importe de seguros",
+          "maps_to": "PED-020"
+        },
+        {
+          "roman": "XV",
+          "name": "Importe de embalajes",
+          "maps_to": "PED-022"
+        },
+        {
+          "roman": "XVI",
+          "name": "Otros incrementables",
+          "maps_to": "PED-023"
+        },
+        {
+          "roman": "XVII",
+          "name": "Fecha de pago",
+          "maps_to": "PED-033"
+        },
+        {
+          "roman": "XVIII",
+          "name": "Valor comercial",
+          "maps_to": "PED-011"
+        },
+        {
+          "roman": "XIX",
+          "name": "Valor agregado IMMEX",
+          "maps_to": "PED-086"
+        },
+        {
+          "roman": "XX",
+          "name": "Patente o autorización",
+          "maps_to": "PED-105"
+        },
+        {
+          "roman": "XXI",
+          "name": "Permisos/identificadores (claves)",
+          "maps_to": "PED-067"
+        },
+        {
+          "roman": "XXII",
+          "name": "Números de permisos/identificadores",
+          "maps_to": "PED-093"
+        },
+        {
+          "roman": "XXIII",
+          "name": "Números de serie, parte, marca, modelo",
+          "maps_to": "PED-097, PED-098, PED-099"
+        },
+        {
+          "roman": "XXIV",
+          "name": "Número de contenedor",
+          "maps_to": "BL-017"
+        },
+        {
+          "roman": "XXV",
+          "name": "Tipo de contenedor/vehículo",
+          "maps_to": "BL-033"
+        },
+        {
+          "roman": "XXVI",
+          "name": "Depósito referenciado (línea de captura)",
+          "maps_to": "PED-043"
+        },
+        {
+          "roman": "XXVII",
+          "name": "Código QR / verificador de pago",
+          "maps_to": "PED-029"
+        },
+        {
+          "roman": "XXVIII",
+          "name": "INCOTERM",
+          "maps_to": "PED-055"
+        },
+        {
+          "roman": "XXIX",
+          "name": "Decrementables",
+          "maps_to": "PED-024 to PED-028"
+        }
+      ]
+    }
+  ]
+}
