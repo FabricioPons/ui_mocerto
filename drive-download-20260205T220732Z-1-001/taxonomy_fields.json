@@ -1,0 +1,3893 @@
+{
+  "metadata": {
+    "description": "Complete taxonomy of all unique fields found across Mexican customs import document PDFs",
+    "source_folder": "drive-download-20260205T220732Z-1-001",
+    "total_document_types": 19,
+    "total_unique_fields": 523,
+    "generated": "2026-02-05",
+    "total_field_definitions": 691,
+    "total_unique_field_paths": 691
+  },
+  "document_types": {
+    "pedimento": {
+      "label": "Pedimento (Customs Declaration)",
+      "description": "Official Mexican customs import/export declaration filed with SAT/Aduana",
+      "source_files": [
+        "3645_81_5000103_IP_PN_1.pdf",
+        "escaneo_*.pdf (page 1)"
+      ],
+      "fields": {
+        "header": {
+          "ref": {
+            "type": "string",
+            "description": "Reference number (e.g. AT2401730)",
+            "example": "AT2401730"
+          },
+          "num_pedimento": {
+            "type": "string",
+            "description": "Pedimento number: year-aduana-patente-sequential",
+            "example": "25 81 3645 5000103"
+          },
+          "t_oper": {
+            "type": "string",
+            "description": "Tipo de operaci\u00f3n (IMP=Import, EXP=Export)",
+            "example": "IMP"
+          },
+          "cve_pedimento": {
+            "type": "string",
+            "description": "Clave del pedimento type code",
+            "example": "A1"
+          },
+          "regimen": {
+            "type": "string",
+            "description": "Customs regime (IMD=Importaci\u00f3n Definitiva)",
+            "example": "IMD"
+          },
+          "certificaciones": {
+            "type": "string",
+            "description": "Certification codes"
+          },
+          "tipo_cambio": {
+            "type": "number",
+            "description": "Exchange rate MXN/USD",
+            "example": 20.2777
+          },
+          "peso_bruto": {
+            "type": "number",
+            "unit": "kg",
+            "description": "Gross weight in kg",
+            "example": 378910.0
+          },
+          "destino": {
+            "type": "integer",
+            "description": "Destination code",
+            "example": 9
+          },
+          "aduana_es": {
+            "type": "integer",
+            "description": "Customs port code (entry/exit)",
+            "example": 810
+          },
+          "pagina": {
+            "type": "string",
+            "description": "Page number (e.g. 1 de 4)"
+          }
+        },
+        "valores": {
+          "valor_dolares": {
+            "type": "number",
+            "currency": "USD",
+            "description": "Total value in US dollars"
+          },
+          "valor_aduana": {
+            "type": "number",
+            "currency": "MXN",
+            "description": "Customs value in MXN"
+          },
+          "precio_pagado_valor_comercial": {
+            "type": "number",
+            "currency": "MXN",
+            "description": "Price paid / commercial value"
+          },
+          "val_seguros": {
+            "type": "number",
+            "description": "Insurance value"
+          },
+          "seguros": {
+            "type": "number",
+            "description": "Insurance amount"
+          },
+          "fletes": {
+            "type": "number",
+            "description": "Freight amount"
+          },
+          "embalajes": {
+            "type": "number",
+            "description": "Packaging costs"
+          },
+          "otros_incrementables": {
+            "type": "number",
+            "description": "Other additions to value"
+          }
+        },
+        "valor_decrementables": {
+          "transporte_decrementables": {
+            "type": "number"
+          },
+          "seguros_decrementables": {
+            "type": "number"
+          },
+          "carga_decrementables": {
+            "type": "number"
+          },
+          "descarga_decrementables": {
+            "type": "number"
+          },
+          "otros_decrementables": {
+            "type": "number"
+          }
+        },
+        "importador_exportador": {
+          "clave_rfc": {
+            "type": "string",
+            "description": "RFC tax ID of importer/exporter",
+            "example": "SCO8007138GA"
+          },
+          "curp": {
+            "type": "string",
+            "description": "CURP of individual importer (if applicable)"
+          },
+          "nombre_denominacion_razon_social": {
+            "type": "string",
+            "description": "Legal name",
+            "example": "SERVIACERO COMERCIAL SA DE CV"
+          },
+          "domicilio": {
+            "type": "string",
+            "description": "Full address"
+          }
+        },
+        "seccion_aduanera": {
+          "codigo_aceptacion": {
+            "type": "string",
+            "description": "Acceptance code",
+            "example": "VZSUFFW3"
+          },
+          "clave_seccion_aduanera_despacho": {
+            "type": "string",
+            "description": "Customs section code and name",
+            "example": "810 ALTAMIRA"
+          }
+        },
+        "bultos_marcas": {
+          "marcas_numeros_total_bultos": {
+            "type": "string",
+            "description": "Marks, numbers and total packages",
+            "example": "S/M S/N"
+          },
+          "total_bultos": {
+            "type": "integer",
+            "example": 52
+          }
+        },
+        "fechas": {
+          "fecha_entrada": {
+            "type": "date",
+            "description": "Entry date at customs"
+          },
+          "fecha_pago": {
+            "type": "date",
+            "description": "Payment date"
+          }
+        },
+        "tasas_nivel_pedimento": {
+          "contrib": {
+            "type": "string",
+            "description": "Tax type (DTA, PRV, IVA PRV)"
+          },
+          "cve_t_tasa": {
+            "type": "integer",
+            "description": "Rate type code"
+          },
+          "tasa": {
+            "type": "number",
+            "description": "Tax rate value"
+          }
+        },
+        "cuadro_liquidacion": {
+          "concepto": {
+            "type": "string",
+            "description": "Tax concept (DTA, PRV, IVA, IVA PRV, CC)"
+          },
+          "forma_pago": {
+            "type": "integer",
+            "description": "Payment method code"
+          },
+          "importe": {
+            "type": "number",
+            "description": "Amount"
+          },
+          "totales_efectivo": {
+            "type": "number"
+          },
+          "totales_otros": {
+            "type": "number"
+          },
+          "totales_total": {
+            "type": "number"
+          }
+        },
+        "pago": {
+          "nombre_institucion_bancaria": {
+            "type": "string",
+            "example": "BBVA BANCOMER"
+          },
+          "patente": {
+            "type": "string",
+            "example": "3645"
+          },
+          "pedimento": {
+            "type": "string",
+            "example": "5000103"
+          },
+          "aduana": {
+            "type": "integer",
+            "example": 810
+          },
+          "linea_captura": {
+            "type": "string"
+          },
+          "importe_pagado": {
+            "type": "number"
+          },
+          "fecha_pago": {
+            "type": "date"
+          },
+          "numero_operacion_bancaria": {
+            "type": "string"
+          },
+          "numero_transaccion_sat": {
+            "type": "string"
+          },
+          "medio_presentacion": {
+            "type": "string"
+          },
+          "medio_recepcion_cobro": {
+            "type": "string"
+          }
+        },
+        "proveedor_comprador": {
+          "id_fiscal": {
+            "type": "string",
+            "description": "Foreign tax ID",
+            "example": "3700381324"
+          },
+          "nombre_denominacion_razon_social": {
+            "type": "string",
+            "example": "HOA SEN GROUP"
+          },
+          "domicilio": {
+            "type": "string"
+          },
+          "vinculacion": {
+            "type": "boolean",
+            "description": "Related party transaction (YES/NO)"
+          },
+          "facturas": {
+            "type": "array",
+            "items": {
+              "num_factura": {
+                "type": "string"
+              },
+              "fecha": {
+                "type": "date"
+              },
+              "incoterm": {
+                "type": "string",
+                "example": "CIF"
+              },
+              "moneda": {
+                "type": "string",
+                "example": "USD"
+              },
+              "val_mon_fact": {
+                "type": "number"
+              },
+              "factor_mon_fact": {
+                "type": "number"
+              },
+              "val_dolares": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "agente_aduanal": {
+          "nombre_raz_soc": {
+            "type": "string"
+          },
+          "clave_rfc": {
+            "type": "string"
+          },
+          "curp": {
+            "type": "string"
+          },
+          "patente_autorizacion": {
+            "type": "string"
+          },
+          "numero_serie_certificado": {
+            "type": "string"
+          },
+          "e_firma": {
+            "type": "string",
+            "description": "Digital signature"
+          }
+        },
+        "transporte": {
+          "identificacion": {
+            "type": "string",
+            "description": "Vessel/vehicle name",
+            "example": "FWMERCURY"
+          },
+          "pais": {
+            "type": "string",
+            "description": "Flag country code",
+            "example": "MHL"
+          },
+          "transportista_rfc": {
+            "type": "string"
+          },
+          "transportista_curp": {
+            "type": "string"
+          },
+          "transportista_domicilio": {
+            "type": "string"
+          },
+          "numeros_guia_orden_embarque": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "B/L or waybill numbers"
+          }
+        },
+        "identificadores": {
+          "type": "array",
+          "description": "Complementary ID codes (ED=e-document, CS, IC, CR)",
+          "items": {
+            "clave": {
+              "type": "string",
+              "example": "ED"
+            },
+            "complemento_1": {
+              "type": "string"
+            },
+            "complemento_2": {
+              "type": "string"
+            },
+            "complemento_3": {
+              "type": "string"
+            }
+          }
+        },
+        "observaciones": {
+          "type": "string"
+        },
+        "partidas": {
+          "type": "array",
+          "description": "Line items (goods declarations)",
+          "items": {
+            "numero_partida": {
+              "type": "integer"
+            },
+            "fraccion": {
+              "type": "string",
+              "description": "Tariff fraction code",
+              "example": "72104999"
+            },
+            "subd_nico": {
+              "type": "string",
+              "description": "Sub-classification NICO",
+              "example": "01"
+            },
+            "vinculacion": {
+              "type": "integer"
+            },
+            "met_val": {
+              "type": "integer",
+              "description": "Valuation method"
+            },
+            "umc": {
+              "type": "integer",
+              "description": "Commercial unit of measure code"
+            },
+            "cantidad_umc": {
+              "type": "number",
+              "description": "Quantity in commercial UOM"
+            },
+            "umt": {
+              "type": "integer",
+              "description": "Tariff unit of measure code"
+            },
+            "cantidad_umt": {
+              "type": "number",
+              "description": "Quantity in tariff UOM"
+            },
+            "pais_valor_comercial": {
+              "type": "string",
+              "description": "Country of commercial value"
+            },
+            "pais_origen_destino": {
+              "type": "string",
+              "description": "Country of origin/destination"
+            },
+            "secuencia": {
+              "type": "string"
+            },
+            "descripcion": {
+              "type": "string",
+              "description": "Goods description"
+            },
+            "contribucion": {
+              "type": "string",
+              "description": "Tax type (CC, IGI/IGE, IVA)"
+            },
+            "tasa": {
+              "type": "number"
+            },
+            "tipo_tasa": {
+              "type": "integer"
+            },
+            "forma_pago": {
+              "type": "integer"
+            },
+            "importe": {
+              "type": "number"
+            },
+            "val_adu_usd": {
+              "type": "number",
+              "description": "Customs value in USD"
+            },
+            "imp_precio_pag": {
+              "type": "number",
+              "description": "Price paid value"
+            },
+            "precio_unit": {
+              "type": "number",
+              "description": "Unit price"
+            },
+            "val_agreg": {
+              "type": "number",
+              "description": "Value added"
+            },
+            "marca": {
+              "type": "string"
+            },
+            "modelo": {
+              "type": "string"
+            },
+            "codigo_producto": {
+              "type": "string"
+            },
+            "permisos": {
+              "type": "array",
+              "items": {
+                "clave": {
+                  "type": "string",
+                  "example": "C1"
+                },
+                "num_permiso": {
+                  "type": "string"
+                },
+                "firma_descargo": {
+                  "type": "string"
+                },
+                "val_com_dls": {
+                  "type": "number"
+                },
+                "cantidad_umt_c": {
+                  "type": "number"
+                }
+              }
+            },
+            "identificadores_partida": {
+              "type": "array",
+              "description": "TL (country), PO (value+supplier), EO, PM codes",
+              "items": {
+                "identif": {
+                  "type": "string"
+                },
+                "complemento_1": {
+                  "type": "string"
+                },
+                "complemento_2": {
+                  "type": "string"
+                },
+                "complemento_3": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "footer": {
+          "num_total_partidas": {
+            "type": "integer"
+          },
+          "clave_prevalidador": {
+            "type": "string",
+            "example": "010"
+          },
+          "destino_origen": {
+            "type": "string",
+            "example": "INTERIOR DEL PAIS"
+          },
+          "usuario": {
+            "type": "string"
+          },
+          "fecha_hora_impresion": {
+            "type": "datetime"
+          }
+        }
+      }
+    },
+    "vucem_acuse_digitalizacion": {
+      "label": "VUCEM Acuse Digitalizaci\u00f3n de Documentos",
+      "description": "Digital document registration receipt from VUCEM portal",
+      "source_files": [
+        "278864553.pdf"
+      ],
+      "fields": {
+        "folio_solicitud": {
+          "type": "string",
+          "description": "Request folio number"
+        },
+        "rfc": {
+          "type": "string"
+        },
+        "nombre_solicitante": {
+          "type": "string"
+        },
+        "operacion": {
+          "type": "string",
+          "example": "Registro de documentos digitalizados"
+        },
+        "numero_e_document": {
+          "type": "string",
+          "description": "Unique e-document code",
+          "example": "04382514200L5"
+        },
+        "tipo_documento": {
+          "type": "string",
+          "description": "Document type being digitized"
+        },
+        "nombre_documento": {
+          "type": "string",
+          "description": "File name of uploaded document"
+        },
+        "rfc_consulta": {
+          "type": "string",
+          "description": "RFC for lookup/consultation"
+        },
+        "fecha_registro": {
+          "type": "date"
+        },
+        "cadena_original": {
+          "type": "string",
+          "description": "Hash chain of original document"
+        },
+        "sello_digital_solicitante": {
+          "type": "string"
+        },
+        "sello_digital_ventanilla": {
+          "type": "string"
+        },
+        "leyenda": {
+          "type": "string",
+          "description": "Validity notice (90-day expiry)"
+        }
+      }
+    },
+    "bill_of_lading": {
+      "label": "Bill of Lading / Sea Waybill",
+      "description": "Ocean transport document issued by shipping carrier",
+      "source_files": [
+        "BL.pdf",
+        "26EZ705 BL.pdf"
+      ],
+      "fields": {
+        "shipper_exporter": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "tax_id": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          },
+          "contacto": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "consignee": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "tax_id_rfc": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          },
+          "contacto": {
+            "type": "string"
+          }
+        },
+        "notify_party": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "tax_id": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          }
+        },
+        "booking_no": {
+          "type": "string"
+        },
+        "bl_number": {
+          "type": "string",
+          "description": "Bill of Lading number",
+          "example": "IBC1399710"
+        },
+        "voyage_number": {
+          "type": "string"
+        },
+        "vessel": {
+          "type": "string",
+          "example": "X-PRESS MULHACEN"
+        },
+        "flag": {
+          "type": "string",
+          "description": "Vessel flag country"
+        },
+        "export_references": {
+          "type": "string"
+        },
+        "forwarding_agent_references": {
+          "type": "string"
+        },
+        "fmc_no": {
+          "type": "string"
+        },
+        "pre_carriage_by": {
+          "type": "string"
+        },
+        "place_of_receipt": {
+          "type": "string"
+        },
+        "port_of_loading": {
+          "type": "string",
+          "example": "BILBAO"
+        },
+        "port_of_discharge": {
+          "type": "string",
+          "example": "ALTAMIRA"
+        },
+        "place_of_delivery": {
+          "type": "string"
+        },
+        "final_destination": {
+          "type": "string"
+        },
+        "type_of_movement": {
+          "type": "string",
+          "example": "FCL / FCL  CY / CY"
+        },
+        "freight_to_be_paid_at": {
+          "type": "string"
+        },
+        "number_of_original_waybills": {
+          "type": "string"
+        },
+        "service_contract_no": {
+          "type": "string"
+        },
+        "doc_form_no": {
+          "type": "string"
+        },
+        "commodity_code": {
+          "type": "string"
+        },
+        "exchange_rate": {
+          "type": "string"
+        },
+        "tariff_item": {
+          "type": "string"
+        },
+        "freight_charges": {
+          "code": {
+            "type": "string"
+          },
+          "freighted_as": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number"
+          },
+          "prepaid": {
+            "type": "number"
+          },
+          "collect": {
+            "type": "number"
+          }
+        },
+        "containers": {
+          "type": "array",
+          "items": {
+            "container_number": {
+              "type": "string",
+              "example": "JAYU1098003"
+            },
+            "seal_number": {
+              "type": "string",
+              "example": "L6611229"
+            },
+            "size_type": {
+              "type": "string",
+              "example": "20 DC"
+            }
+          }
+        },
+        "cargo": {
+          "marks_and_numbers": {
+            "type": "string"
+          },
+          "no_and_kind_of_packages": {
+            "type": "string",
+            "example": "24 CASES"
+          },
+          "description_of_goods": {
+            "type": "string"
+          },
+          "gross_weight_kg": {
+            "type": "number"
+          },
+          "tare_kg": {
+            "type": "number"
+          },
+          "measurement_cbm": {
+            "type": "number"
+          },
+          "declared_cargo_value_usd": {
+            "type": "number"
+          }
+        },
+        "date_cargo_received": {
+          "type": "date"
+        },
+        "date_laden_on_board": {
+          "type": "date"
+        },
+        "place_of_issue": {
+          "type": "string"
+        },
+        "date_of_issue": {
+          "type": "date"
+        },
+        "signed_by": {
+          "type": "string"
+        },
+        "agent_at_destination": {
+          "type": "string"
+        },
+        "additional_clauses": {
+          "type": "string"
+        }
+      }
+    },
+    "delivery_order": {
+      "label": "Delivery Order (BL Revalidado)",
+      "description": "Revalidated B/L for cargo release at destination port",
+      "source_files": [
+        "BL REV.pdf"
+      ],
+      "fields": {
+        "shipper": {
+          "type": "string"
+        },
+        "consignee": {
+          "type": "string"
+        },
+        "notify_party": {
+          "type": "string"
+        },
+        "bl_no": {
+          "type": "string"
+        },
+        "vessel": {
+          "type": "string"
+        },
+        "voyage": {
+          "type": "string"
+        },
+        "flag": {
+          "type": "string"
+        },
+        "eta": {
+          "type": "date",
+          "description": "Estimated time of arrival"
+        },
+        "reference": {
+          "type": "string",
+          "description": "Agent reference"
+        },
+        "terminal": {
+          "type": "string"
+        },
+        "acuse_electronico": {
+          "type": "string"
+        },
+        "numero_unico": {
+          "type": "string"
+        },
+        "pol": {
+          "type": "string",
+          "description": "Port of Loading"
+        },
+        "pod": {
+          "type": "string",
+          "description": "Port of Discharge"
+        },
+        "place_of_delivery": {
+          "type": "string"
+        },
+        "entregar_equipo_vacio_en": {
+          "type": "string",
+          "description": "Empty container return location"
+        },
+        "autorizacion": {
+          "type": "string"
+        },
+        "date_issue": {
+          "type": "datetime"
+        },
+        "revalidado": {
+          "type": "boolean"
+        },
+        "marks_and_numbers": {
+          "type": "string"
+        },
+        "no_of_packages": {
+          "type": "integer"
+        },
+        "description_of_goods": {
+          "type": "string"
+        },
+        "gross_weight_kg": {
+          "type": "number"
+        },
+        "containers": {
+          "type": "array",
+          "items": {
+            "container_number": {
+              "type": "string"
+            },
+            "size_type": {
+              "type": "string"
+            },
+            "seal": {
+              "type": "string"
+            },
+            "qty": {
+              "type": "integer"
+            },
+            "net_wt_kgm": {
+              "type": "number"
+            },
+            "trafico": {
+              "type": "string",
+              "example": "FCL"
+            }
+          }
+        },
+        "observaciones": {
+          "type": "string"
+        }
+      }
+    },
+    "commercial_invoice": {
+      "label": "Commercial Invoice (Factura Comercial)",
+      "description": "Seller's invoice for goods sold internationally",
+      "source_files": [
+        "FV25288.pdf",
+        "SES3555 FA.pdf",
+        "26EZ705 INV.pdf"
+      ],
+      "fields": {
+        "seller": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          },
+          "vat_tax_id": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "buyer": {
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          },
+          "rfc_tax_id": {
+            "type": "string"
+          }
+        },
+        "invoice_number": {
+          "type": "string",
+          "example": "FV25/288"
+        },
+        "date": {
+          "type": "date"
+        },
+        "po_number": {
+          "type": "string",
+          "description": "Purchase order number"
+        },
+        "lc_number": {
+          "type": "string",
+          "description": "Letter of credit number"
+        },
+        "customer_number": {
+          "type": "string"
+        },
+        "shipping_route": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "by": {
+            "type": "string",
+            "description": "Transport mode (BY SEA, etc.)"
+          }
+        },
+        "incoterm": {
+          "type": "string",
+          "example": "CIF"
+        },
+        "currency": {
+          "type": "string",
+          "example": "USD"
+        },
+        "shipping_marks": {
+          "type": "string"
+        },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "s_pedido": {
+              "type": "string",
+              "description": "Order reference"
+            },
+            "descripcion": {
+              "type": "string"
+            },
+            "fraccion_arancelaria": {
+              "type": "string",
+              "description": "Tariff code (P.Estad.)"
+            },
+            "longitud": {
+              "type": "number"
+            },
+            "cantidad_kg": {
+              "type": "number"
+            },
+            "precio_unitario": {
+              "type": "number",
+              "description": "Unit price (per TON or MT)"
+            },
+            "importe": {
+              "type": "number"
+            }
+          }
+        },
+        "totals": {
+          "bultos": {
+            "type": "integer",
+            "description": "Number of packages"
+          },
+          "peso_total_kg": {
+            "type": "number"
+          },
+          "valor_mercancia": {
+            "type": "number",
+            "description": "Goods value (FOB)"
+          },
+          "flete": {
+            "type": "number",
+            "description": "Freight cost"
+          },
+          "seguro": {
+            "type": "number",
+            "description": "Insurance cost"
+          },
+          "bruto_usd": {
+            "type": "number",
+            "description": "Gross invoice total"
+          },
+          "total_usd": {
+            "type": "number"
+          },
+          "total_in_words": {
+            "type": "string"
+          }
+        },
+        "payment_terms": {
+          "type": "string",
+          "example": "TRANSFERENCIA A 60 DIAS BL"
+        },
+        "vencimientos": {
+          "type": "string",
+          "description": "Due date and amount"
+        },
+        "condiciones_transporte": {
+          "type": "string"
+        },
+        "bank_information": {
+          "beneficiary": {
+            "type": "string"
+          },
+          "account_no": {
+            "type": "string"
+          },
+          "beneficiary_bank": {
+            "type": "string"
+          },
+          "swift_code": {
+            "type": "string"
+          },
+          "bank_address": {
+            "type": "string"
+          },
+          "intermediate_bank": {
+            "type": "string"
+          },
+          "intermediate_swift": {
+            "type": "string"
+          },
+          "aba_no": {
+            "type": "string"
+          },
+          "chips_uid_no": {
+            "type": "string"
+          }
+        },
+        "forma_envio": {
+          "type": "string"
+        },
+        "matricula": {
+          "type": "string"
+        }
+      }
+    },
+    "packing_list": {
+      "label": "Packing List (Lista de Empaque)",
+      "description": "Detailed packing specifications of shipped goods",
+      "source_files": [
+        "26EZ705 PL.pdf"
+      ],
+      "fields": {
+        "document_number": {
+          "type": "string",
+          "example": "26EZ705"
+        },
+        "po_number": {
+          "type": "string"
+        },
+        "date": {
+          "type": "date"
+        },
+        "shipping_marks": {
+          "type": "string"
+        },
+        "line_items": {
+          "type": "array",
+          "items": {
+            "description": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "string",
+              "example": "575 BAG"
+            },
+            "net_weight_kg": {
+              "type": "number"
+            },
+            "gross_weight_kg": {
+              "type": "number"
+            },
+            "measurement_cbm": {
+              "type": "number"
+            }
+          }
+        },
+        "total_net_weight_kg": {
+          "type": "number"
+        },
+        "total_gross_weight_kg": {
+          "type": "number"
+        },
+        "total_measurement_cbm": {
+          "type": "number"
+        },
+        "total_quantity": {
+          "type": "string"
+        },
+        "batch_no": {
+          "type": "string",
+          "example": "20260107206#004"
+        }
+      }
+    },
+    "carta_encomienda": {
+      "label": "Carta Encomienda",
+      "description": "Letter delegating customs clearance rights to customs agent",
+      "source_files": [
+        "CE.pdf",
+        "CARTA ENCOMIENDA ONE .pdf"
+      ],
+      "fields": {
+        "fecha": {
+          "type": "date"
+        },
+        "destinatario_naviera": {
+          "type": "string",
+          "description": "Shipping line addressed to"
+        },
+        "empresa_importadora": {
+          "nombre": {
+            "type": "string"
+          },
+          "rfc": {
+            "type": "string"
+          },
+          "domicilio_fiscal": {
+            "type": "string"
+          }
+        },
+        "numero_bl": {
+          "type": "string",
+          "description": "Bill of Lading number being delegated"
+        },
+        "agente_aduanal": {
+          "nombre": {
+            "type": "string",
+            "example": "GUILLERMO ORTEGA HURTADO DE MENDOZA"
+          },
+          "patente": {
+            "type": "string",
+            "example": "3645"
+          }
+        },
+        "aduana_despacho": {
+          "type": "string",
+          "description": "Customs port for clearance",
+          "example": "Manzanillo"
+        },
+        "representante_legal": {
+          "nombre": {
+            "type": "string"
+          },
+          "rfc": {
+            "type": "string"
+          }
+        },
+        "firma": {
+          "type": "boolean"
+        }
+      }
+    },
+    "carta_3_1_8": {
+      "label": "Carta 3.1.8 (Value Declaration Letter)",
+      "description": "Importer's declaration of commercial value per Regla 3.1.8",
+      "source_files": [
+        "Carta 3.1.8.pdf"
+      ],
+      "fields": {
+        "titular_aduana": {
+          "type": "string",
+          "description": "Customs authority addressed to"
+        },
+        "ciudad_fecha": {
+          "type": "string"
+        },
+        "representante_legal": {
+          "nombre": {
+            "type": "string"
+          },
+          "rfc": {
+            "type": "string"
+          }
+        },
+        "empresa_importadora": {
+          "nombre": {
+            "type": "string"
+          },
+          "rfc": {
+            "type": "string"
+          }
+        },
+        "instrumento_publico": {
+          "numero": {
+            "type": "string"
+          },
+          "fecha": {
+            "type": "date"
+          },
+          "notario": {
+            "type": "string"
+          },
+          "demarcacion": {
+            "type": "string"
+          }
+        },
+        "domicilio_fiscal": {
+          "calle": {
+            "type": "string"
+          },
+          "numero": {
+            "type": "string"
+          },
+          "colonia": {
+            "type": "string"
+          },
+          "cp": {
+            "type": "string"
+          },
+          "ciudad": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          }
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "correo_electronico": {
+          "type": "string"
+        },
+        "factura_numero": {
+          "type": "string"
+        },
+        "factura_fecha": {
+          "type": "date"
+        },
+        "proveedor": {
+          "nombre": {
+            "type": "string"
+          },
+          "domicilio": {
+            "type": "string"
+          },
+          "tax_id": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          }
+        },
+        "incoterm": {
+          "type": "string"
+        },
+        "seguro": {
+          "type": "number",
+          "currency": "USD"
+        },
+        "mercancia": {
+          "type": "array",
+          "items": {
+            "descripcion": {
+              "type": "string"
+            },
+            "cantidad": {
+              "type": "number"
+            },
+            "unidad_medida": {
+              "type": "string"
+            },
+            "precio_unitario_usd": {
+              "type": "number"
+            },
+            "valor_comercial_usd": {
+              "type": "number"
+            }
+          }
+        },
+        "total_factura_usd": {
+          "type": "number"
+        }
+      }
+    },
+    "manifestacion_de_valor": {
+      "label": "Manifestaci\u00f3n de Valor",
+      "description": "Official SAT value declaration form for customs valuation",
+      "source_files": [
+        "MV SES3555.pdf"
+      ],
+      "fields": {
+        "proveedor": {
+          "nombre_denominacion_social": {
+            "type": "string"
+          },
+          "domicilio_calle": {
+            "type": "string"
+          },
+          "numero_exterior": {
+            "type": "string"
+          },
+          "numero_interior": {
+            "type": "string"
+          },
+          "ciudad": {
+            "type": "string"
+          },
+          "codigo_postal": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "correo_electronico": {
+            "type": "string"
+          }
+        },
+        "vinculacion": {
+          "existe_vinculacion": {
+            "type": "boolean"
+          },
+          "influyo_valor": {
+            "type": "boolean"
+          }
+        },
+        "importador": {
+          "nombre_denominacion_social": {
+            "type": "string"
+          },
+          "apellido_paterno": {
+            "type": "string"
+          },
+          "apellido_materno": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "rfc_homoclave": {
+            "type": "string"
+          },
+          "calle": {
+            "type": "string"
+          },
+          "numero_exterior": {
+            "type": "string"
+          },
+          "numero_interior": {
+            "type": "string"
+          },
+          "colonia": {
+            "type": "string"
+          },
+          "cp": {
+            "type": "string"
+          },
+          "municipio_delegacion": {
+            "type": "string"
+          },
+          "entidad_federativa": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "correo_electronico": {
+            "type": "string"
+          }
+        },
+        "agente_apoderado_aduanal": {
+          "apellido_paterno": {
+            "type": "string"
+          },
+          "apellido_materno": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "numero_patente_autorizacion": {
+            "type": "string"
+          }
+        },
+        "datos_factura": {
+          "numero_factura": {
+            "type": "string"
+          },
+          "fecha_dia": {
+            "type": "integer"
+          },
+          "fecha_mes": {
+            "type": "integer"
+          },
+          "fecha_ano": {
+            "type": "integer"
+          }
+        },
+        "metodo_valoracion": {
+          "metodo_unico": {
+            "type": "boolean"
+          },
+          "metodos": {
+            "valor_transaccion_mercancias": {
+              "type": "boolean"
+            },
+            "valor_transaccion_identicas": {
+              "type": "boolean"
+            },
+            "valor_transaccion_similares": {
+              "type": "boolean"
+            },
+            "valor_precio_unitario_venta": {
+              "type": "boolean"
+            },
+            "valor_reconstruido": {
+              "type": "boolean"
+            },
+            "valor_determinado_art_78": {
+              "type": "boolean"
+            }
+          },
+          "descripcion_mercancia": {
+            "type": "string"
+          }
+        },
+        "numero_pedimento": {
+          "type": "string"
+        },
+        "valor_transaccion": {
+          "precio_pagado_moneda_facturacion": {
+            "type": "number"
+          },
+          "precio_pagado_en_letra": {
+            "type": "string"
+          }
+        },
+        "art_66_conceptos_no_integran_valor": {
+          "es_precio_en_factura": {
+            "type": "boolean"
+          },
+          "es_precio_otros_documentos": {
+            "type": "boolean"
+          },
+          "existen_conceptos_art_66": {
+            "type": "boolean"
+          },
+          "conceptos_desglosados_en_factura": {
+            "type": "boolean"
+          }
+        },
+        "art_65_conceptos_integran_valor": {
+          "existen_cargos_art_65": {
+            "type": "boolean"
+          },
+          "importador_opta_acompanar": {
+            "type": "boolean"
+          },
+          "cargos": {
+            "type": "array",
+            "items": {
+              "mercancia_proveedor": {
+                "type": "string"
+              },
+              "factura_documento": {
+                "type": "string"
+              },
+              "importe_moneda_facturacion": {
+                "type": "number"
+              },
+              "concepto_cargo": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "otros_metodos": {
+          "base_gravable_compraventa_exportacion": {
+            "type": "boolean"
+          },
+          "circunstancia_distinta_arts_67_71": {
+            "type": "boolean"
+          },
+          "detalle": {
+            "type": "array",
+            "items": {
+              "mercancia": {
+                "type": "string"
+              },
+              "valor_determinado": {
+                "type": "number"
+              },
+              "metodo_valor_utilizado": {
+                "type": "string"
+              },
+              "motivo": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "importacion_temporal": {
+          "valor_provisional": {
+            "type": "boolean"
+          },
+          "documentacion_anexa": {
+            "type": "boolean"
+          }
+        },
+        "periodicidad": {
+          "type": "string",
+          "enum": [
+            "Por operaci\u00f3n",
+            "Por periodo de seis meses"
+          ]
+        },
+        "firmante_rfc": {
+          "type": "string"
+        },
+        "firmante_fecha": {
+          "type": "date"
+        },
+        "firmante_nombre": {
+          "type": "string"
+        }
+      }
+    },
+    "certificado_produccion": {
+      "label": "Certificado de Producci\u00f3n",
+      "description": "Producer's certificate confirming goods origin and specifications",
+      "source_files": [
+        "CERTIFICADO PRODUCCION.pdf"
+      ],
+      "fields": {
+        "destinatario_nombre": {
+          "type": "string"
+        },
+        "destinatario_direccion": {
+          "type": "string"
+        },
+        "factura_referencia": {
+          "type": "string"
+        },
+        "descripcion_mercancia": {
+          "type": "string"
+        },
+        "cantidad_peso_kg": {
+          "type": "number"
+        },
+        "fraccion_arancelaria": {
+          "type": "string"
+        },
+        "valor_usd": {
+          "type": "number"
+        },
+        "pais_exportador": {
+          "type": "string"
+        },
+        "pais_origen": {
+          "type": "string"
+        },
+        "empresa_remitente": {
+          "type": "string"
+        },
+        "empresa_destinataria": {
+          "type": "string"
+        }
+      }
+    },
+    "certificado_calidad": {
+      "label": "Certificado de Calidad (Quality Certificate)",
+      "description": "Steel mill quality certificate with chemical and mechanical properties",
+      "source_files": [
+        "SES3555 FA.pdf (pages 3-4)"
+      ],
+      "fields": {
+        "articulo_calidad": {
+          "type": "string",
+          "description": "Article/quality grade",
+          "example": "CAL. PLETINA 2\" SAE1018"
+        },
+        "descripcion_material": {
+          "type": "string"
+        },
+        "normas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "EN10277",
+            "EN10278",
+            "EN10204"
+          ]
+        },
+        "fecha": {
+          "type": "date"
+        },
+        "numero_certificado": {
+          "type": "string",
+          "example": "AV25/338"
+        },
+        "pagina": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "peso_kg": {
+              "type": "number"
+            },
+            "valor_usd": {
+              "type": "number"
+            },
+            "bultos": {
+              "type": "integer"
+            },
+            "colada": {
+              "type": "string",
+              "description": "Heat/batch number"
+            },
+            "propiedades_mecanicas": {
+              "limite_elastico_re_mpa": {
+                "type": "number",
+                "description": "Yield strength"
+              },
+              "resistencia_traccion_rm_mpa": {
+                "type": "number",
+                "description": "Tensile strength"
+              },
+              "alargamiento_a_pct": {
+                "type": "number",
+                "description": "Elongation %"
+              }
+            },
+            "composicion_quimica": {
+              "C_pct": {
+                "type": "number",
+                "description": "Carbon %"
+              },
+              "Mn_pct": {
+                "type": "number",
+                "description": "Manganese %"
+              },
+              "Si_pct": {
+                "type": "number",
+                "description": "Silicon %"
+              },
+              "S_pct": {
+                "type": "number",
+                "description": "Sulfur %"
+              },
+              "P_pct": {
+                "type": "number",
+                "description": "Phosphorus %"
+              },
+              "Cr_pct": {
+                "type": "number",
+                "description": "Chromium %"
+              },
+              "Ni_pct": {
+                "type": "number",
+                "description": "Nickel %"
+              },
+              "Mo_pct": {
+                "type": "number",
+                "description": "Molybdenum %"
+              },
+              "Cu_pct": {
+                "type": "number",
+                "description": "Copper %"
+              },
+              "Sn_pct": {
+                "type": "number",
+                "description": "Tin %"
+              },
+              "V_pct": {
+                "type": "number",
+                "description": "Vanadium %"
+              },
+              "Al_pct": {
+                "type": "number",
+                "description": "Aluminum %"
+              },
+              "N_pct": {
+                "type": "number",
+                "description": "Nitrogen %"
+              },
+              "CE_pct": {
+                "type": "number",
+                "description": "Carbon Equivalent %"
+              }
+            }
+          }
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "country_of_origin": {
+          "type": "string"
+        },
+        "manufacturing_standard": {
+          "type": "string",
+          "example": "ASTM A108-13"
+        },
+        "dimensions": {
+          "longitudes_estandar": {
+            "type": "string",
+            "example": "3000mm a 6000mm"
+          }
+        },
+        "firmado_por": {
+          "type": "string",
+          "description": "Quality director"
+        }
+      }
+    },
+    "certificate_of_analysis": {
+      "label": "Certificate of Analysis (COA)",
+      "description": "Trader/manufacturer analysis report of chemical product quality",
+      "source_files": [
+        "26EZ705 COA.pdf"
+      ],
+      "fields": {
+        "to_buyer": {
+          "type": "string"
+        },
+        "document_number": {
+          "type": "string"
+        },
+        "po_number": {
+          "type": "string"
+        },
+        "date": {
+          "type": "date"
+        },
+        "shipper": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "shipping_marks": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "commodity": {
+          "type": "string",
+          "example": "PARAFFIN WAX FR 58"
+        },
+        "test_results": {
+          "type": "array",
+          "items": {
+            "test_item": {
+              "type": "string"
+            },
+            "result": {
+              "type": "string"
+            }
+          },
+          "example_items": [
+            "MELTING POINT",
+            "OIL CONTENT",
+            "LIGHT STABILITY",
+            "COLOR",
+            "PENETRATION",
+            "ODOR",
+            "SOLID IMPURITY AND WATER",
+            "WATER-SOLUBLE ACID OR ALKALI"
+          ]
+        },
+        "batch_no": {
+          "type": "string"
+        }
+      }
+    },
+    "factory_coa": {
+      "label": "Factory Certificate of Analysis (Chinese)",
+      "description": "Original factory quality inspection report from manufacturer",
+      "source_files": [
+        "26EZ705 COA-F.pdf"
+      ],
+      "fields": {
+        "production_unit": {
+          "type": "string",
+          "description": "\u751f\u4ea7\u5355\u4f4d"
+        },
+        "trademark": {
+          "type": "string",
+          "description": "\u751f\u4ea7\u5546\u6807"
+        },
+        "product_name": {
+          "type": "string",
+          "description": "\u4ea7\u54c1\u540d\u79f0"
+        },
+        "specification": {
+          "type": "string",
+          "description": "\u89c4\u683c\u724c\u53f7"
+        },
+        "batch_number": {
+          "type": "string",
+          "description": "\u4ea7\u54c1\u6279(\u7f50)\u53f7"
+        },
+        "batch_quantity": {
+          "type": "string",
+          "description": "\u6279\u91cf"
+        },
+        "standard": {
+          "type": "string",
+          "description": "\u6267\u884c\u6807\u51c6\u7f16\u53f7",
+          "example": "GB/T 446-2023"
+        },
+        "production_date": {
+          "type": "date",
+          "description": "\u751f\u4ea7\u65e5\u671f"
+        },
+        "document_number": {
+          "type": "string",
+          "description": "\u7f16\u53f7"
+        },
+        "test_items": {
+          "type": "array",
+          "items": {
+            "item_name": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string"
+            },
+            "quality_standard": {
+              "type": "string"
+            },
+            "actual_result": {
+              "type": "string"
+            },
+            "test_method": {
+              "type": "string"
+            }
+          },
+          "example_items": [
+            {
+              "cn": "\u7194\u70b9",
+              "en": "Melting point"
+            },
+            {
+              "cn": "\u542b\u6cb9\u91cf",
+              "en": "Oil content"
+            },
+            {
+              "cn": "\u989c\u8272/\u8d5b\u6ce2\u7279\u989c\u8272",
+              "en": "Color/Saybolt color"
+            },
+            {
+              "cn": "\u5149\u5b89\u5b9a\u6027",
+              "en": "Light stability"
+            },
+            {
+              "cn": "\u9488\u5165\u5ea6",
+              "en": "Penetration"
+            },
+            {
+              "cn": "\u8fd0\u52a8\u9ecf\u5ea6",
+              "en": "Kinematic viscosity"
+            },
+            {
+              "cn": "\u55c5\u5473",
+              "en": "Odor"
+            },
+            {
+              "cn": "\u6c34\u6eb6\u6027\u9178\u6216\u78b1",
+              "en": "Water-soluble acid or alkali"
+            },
+            {
+              "cn": "\u673a\u68b0\u6742\u8d28\u53ca\u6c34",
+              "en": "Mechanical impurity and water"
+            }
+          ]
+        },
+        "verdict": {
+          "type": "string",
+          "description": "\u5224\u5b9a\u7ed3\u8bba (\u5408\u683c/\u4e0d\u5408\u683c)"
+        },
+        "approver": {
+          "type": "string",
+          "description": "\u6279\u51c6\u4eba"
+        },
+        "reviewer": {
+          "type": "string",
+          "description": "\u5ba1\u6838\u4eba"
+        }
+      }
+    },
+    "cargo_insurance": {
+      "label": "Cargo Transportation Insurance Policy",
+      "description": "Marine cargo insurance policy covering goods in transit",
+      "source_files": [
+        "26EZ705 INS.pdf"
+      ],
+      "fields": {
+        "policy_no": {
+          "type": "string"
+        },
+        "invoice_no": {
+          "type": "string"
+        },
+        "bl_no": {
+          "type": "string"
+        },
+        "contract_no": {
+          "type": "string"
+        },
+        "lc_no": {
+          "type": "string"
+        },
+        "the_insured": {
+          "type": "string"
+        },
+        "marks_and_nos": {
+          "type": "string"
+        },
+        "package_quantity": {
+          "type": "string"
+        },
+        "goods": {
+          "type": "string"
+        },
+        "amount_insured_usd": {
+          "type": "number"
+        },
+        "total_amount_insured": {
+          "type": "string"
+        },
+        "premium": {
+          "type": "string"
+        },
+        "date_of_commencement": {
+          "type": "date"
+        },
+        "per_conveyance": {
+          "type": "string",
+          "description": "Vessel name"
+        },
+        "from": {
+          "type": "string"
+        },
+        "via": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "string",
+          "description": "Coverage type (All Risks, FPA, WA)"
+        },
+        "claim_payable_at": {
+          "type": "string"
+        },
+        "issuing_date": {
+          "type": "date"
+        },
+        "insurer": {
+          "type": "string"
+        },
+        "survey_agent": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "tel": {
+            "type": "string"
+          },
+          "fax": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "equipment_interchange_receipt": {
+      "label": "Equipment Interchange Receipt (EIR)",
+      "description": "Container return/interchange document at port terminal",
+      "source_files": [
+        "EIR JAYU1098003.pdf"
+      ],
+      "fields": {
+        "eir_number": {
+          "type": "string"
+        },
+        "servicio": {
+          "type": "string",
+          "description": "Service type (e.g. Recepcion de Contenedor Vac\u00edo)"
+        },
+        "entregado": {
+          "type": "string",
+          "description": "Delivery status (Vac\u00edo/Lleno)"
+        },
+        "contenedor": {
+          "type": "string"
+        },
+        "tamano": {
+          "type": "integer",
+          "description": "Container size (20/40)"
+        },
+        "tipo": {
+          "type": "string",
+          "description": "Container type (DRY, REEFER, etc.)"
+        },
+        "vgm": {
+          "type": "number",
+          "unit": "kg",
+          "description": "Verified Gross Mass"
+        },
+        "ubicacion": {
+          "type": "string"
+        },
+        "booking": {
+          "type": "string"
+        },
+        "destino": {
+          "type": "string"
+        },
+        "imo": {
+          "type": "string",
+          "description": "IMO hazmat class"
+        },
+        "temperatura": {
+          "type": "string"
+        },
+        "sellos": {
+          "type": "string"
+        },
+        "linea_transportista": {
+          "type": "string"
+        },
+        "chofer": {
+          "type": "string"
+        },
+        "linea_naviera": {
+          "type": "string"
+        },
+        "buque": {
+          "type": "string"
+        },
+        "viaje": {
+          "type": "string"
+        },
+        "agencia_aduanal": {
+          "type": "string"
+        },
+        "cliente": {
+          "type": "string"
+        },
+        "no_orden": {
+          "type": "string"
+        },
+        "fecha": {
+          "type": "date"
+        },
+        "no_pedimento": {
+          "type": "string"
+        },
+        "comentarios": {
+          "type": "string",
+          "description": "Damage/condition notes"
+        },
+        "codigos_dano": {
+          "type": "array",
+          "description": "Damage codes: PI=Hundido, PO=Abombado, D=Abollado, SC=Raspado, C=Cortado, H=Perforado, B=Doblado, MN=Desprendido, BR=Roto, L=Flojo, DT=Torsion, CR=Rajado, M=Falta, R=Oxidado, DY=Sucio, IR=Rep.Impropia",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "aviso_automatico_importacion": {
+      "label": "Aviso Autom\u00e1tico de Importaci\u00f3n",
+      "description": "Automatic import permit from Secretar\u00eda de Econom\u00eda for controlled goods",
+      "source_files": [
+        "1119C125184334.pdf",
+        "1119C125184583.pdf",
+        "1119C125184584-588.pdf"
+      ],
+      "fields": {
+        "oficio_numero": {
+          "type": "string"
+        },
+        "numero_folio": {
+          "type": "string"
+        },
+        "fecha_emision": {
+          "type": "date"
+        },
+        "numero_permiso_clave": {
+          "type": "string",
+          "example": "1119C125184334"
+        },
+        "certificado_correspondiente": {
+          "type": "string",
+          "example": "AV25/338"
+        },
+        "clave_valida_desde": {
+          "type": "date"
+        },
+        "clave_valida_hasta": {
+          "type": "date"
+        },
+        "destinatario": {
+          "rfc": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "direccion": {
+            "type": "string"
+          }
+        },
+        "fraccion_arancelaria": {
+          "type": "string"
+        },
+        "nico": {
+          "type": "string"
+        },
+        "pais_origen": {
+          "type": "string"
+        },
+        "cantidad": {
+          "type": "number"
+        },
+        "unidad_medida": {
+          "type": "string"
+        },
+        "valor_usd": {
+          "type": "number"
+        },
+        "precio_unitario": {
+          "type": "number"
+        },
+        "descripcion_certificado": {
+          "type": "string"
+        },
+        "perfil": {
+          "type": "string",
+          "example": "Cuadrado / Pletina"
+        },
+        "calidad": {
+          "type": "string",
+          "example": "1018"
+        },
+        "tipo_acero": {
+          "type": "string",
+          "example": "Acero sin alear"
+        },
+        "tipo_recubrimiento": {
+          "type": "string"
+        },
+        "acabado": {
+          "type": "string"
+        },
+        "norma": {
+          "type": "string",
+          "example": "ASTM A108-13"
+        },
+        "accesorios": {
+          "type": "string"
+        },
+        "aduana_entrada": {
+          "type": "string"
+        },
+        "fecha_envio_pais_exportacion": {
+          "type": "date"
+        },
+        "fecha_esperada_importacion": {
+          "type": "date"
+        },
+        "descripcion_fraccion": {
+          "type": "string"
+        },
+        "detalle_mercancia": {
+          "type": "array",
+          "items": {
+            "bultos": {
+              "type": "integer"
+            },
+            "medida_inch": {
+              "type": "string"
+            },
+            "longitud_mm": {
+              "type": "string"
+            },
+            "colada": {
+              "type": "string"
+            },
+            "composicion_quimica": {
+              "C_pct": {
+                "type": "number"
+              },
+              "Mn_pct": {
+                "type": "number"
+              },
+              "Si_pct": {
+                "type": "number"
+              },
+              "S_pct": {
+                "type": "number"
+              },
+              "P_pct": {
+                "type": "number"
+              },
+              "Cr_pct": {
+                "type": "number"
+              },
+              "Ni_pct": {
+                "type": "number"
+              },
+              "Mo_pct": {
+                "type": "number"
+              },
+              "Cu_pct": {
+                "type": "number"
+              },
+              "Sn_pct": {
+                "type": "number"
+              },
+              "V_pct": {
+                "type": "number"
+              },
+              "Al_pct": {
+                "type": "number"
+              },
+              "N_pct": {
+                "type": "number"
+              },
+              "CE_pct": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "sello_digital": {
+          "type": "string"
+        },
+        "cadena_original": {
+          "type": "string"
+        },
+        "firmante": {
+          "type": "string"
+        },
+        "proveedor_referencia": {
+          "type": "string"
+        }
+      }
+    },
+    "carta_instrucciones": {
+      "label": "Carta de Instrucciones Importaci\u00f3n",
+      "description": "Importer's instruction sheet for customs agent with shipment details",
+      "source_files": [
+        "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf (page 5-6)"
+      ],
+      "fields": {
+        "nombre_cliente": {
+          "type": "string"
+        },
+        "rfc": {
+          "type": "string"
+        },
+        "domicilio_completo": {
+          "type": "string"
+        },
+        "nombre_proveedor": {
+          "type": "string"
+        },
+        "id_fiscal_proveedor": {
+          "type": "string"
+        },
+        "despacho_aduanal": {
+          "type": "boolean"
+        },
+        "regimen": {
+          "type": "string",
+          "enum": [
+            "Importaci\u00f3n Definitiva",
+            "Importaci\u00f3n Temporal",
+            "Tr\u00e1nsito"
+          ]
+        },
+        "datos_embarque": {
+          "conocimiento_embarque": {
+            "type": "string"
+          },
+          "origen": {
+            "type": "string"
+          },
+          "factura_numero": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "number"
+          },
+          "bultos": {
+            "type": "integer"
+          },
+          "peso_bruto": {
+            "type": "number"
+          },
+          "descripcion": {
+            "type": "string"
+          }
+        },
+        "fraccion_arancelaria_sugerida": {
+          "type": "string"
+        },
+        "condiciones_compraventa": {
+          "type": "string"
+        },
+        "costo_flete": {
+          "type": "number"
+        },
+        "prima_seguro": {
+          "type": "number"
+        },
+        "otros_gastos_extranjero": {
+          "type": "number"
+        },
+        "vinculacion_cliente_proveedor": {
+          "type": "boolean"
+        },
+        "vucem_cove_options": {
+          "type": "string"
+        },
+        "servicio_entrega_terrestre": {
+          "type": "boolean"
+        },
+        "custodia": {
+          "type": "boolean"
+        },
+        "direccion_entrega": {
+          "type": "string"
+        },
+        "horario_entrega": {
+          "type": "string"
+        },
+        "contacto": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "observaciones_especiales": {
+          "type": "string"
+        }
+      }
+    },
+    "cove_informacion_valor": {
+      "label": "COVE - Informaci\u00f3n de Valor y de Comercializaci\u00f3n",
+      "description": "VUCEM electronic value and trade information declaration",
+      "source_files": [
+        "escaneo_*.pdf (COVE pages)"
+      ],
+      "fields": {
+        "envio_operacion": {
+          "type": "string",
+          "description": "Operation/submission number"
+        },
+        "fecha_recepcion": {
+          "type": "datetime"
+        },
+        "acuse_valor_cove": {
+          "type": "string",
+          "description": "COVE code",
+          "example": "COVE267XKKZS3"
+        },
+        "tipo_operacion": {
+          "type": "string",
+          "example": "Importacion"
+        },
+        "relacion_facturas": {
+          "type": "string"
+        },
+        "no_factura": {
+          "type": "string"
+        },
+        "tipo_figura": {
+          "type": "integer"
+        },
+        "fecha_expedicion": {
+          "type": "date"
+        },
+        "observaciones": {
+          "type": "string"
+        },
+        "rfc_permisos_consulta": {
+          "type": "string"
+        },
+        "numero_patente_aduanal": {
+          "type": "string"
+        },
+        "numero_autorizacion_aduanal": {
+          "type": "string"
+        },
+        "datos_factura": {
+          "subdivision": {
+            "type": "string"
+          },
+          "certificado_origen": {
+            "type": "string"
+          },
+          "no_exportador_autorizado": {
+            "type": "string"
+          }
+        },
+        "proveedor": {
+          "tipo_identificador": {
+            "type": "string"
+          },
+          "tax_id": {
+            "type": "string"
+          },
+          "nombre_razon_social": {
+            "type": "string"
+          },
+          "apellido_paterno": {
+            "type": "string"
+          },
+          "apellido_materno": {
+            "type": "string"
+          },
+          "calle": {
+            "type": "string"
+          },
+          "no_exterior": {
+            "type": "string"
+          },
+          "no_interior": {
+            "type": "string"
+          },
+          "codigo_postal": {
+            "type": "string"
+          },
+          "colonia": {
+            "type": "string"
+          },
+          "localidad": {
+            "type": "string"
+          },
+          "entidad_federativa": {
+            "type": "string"
+          },
+          "municipio": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          }
+        },
+        "destinatario": {
+          "tipo_identificador": {
+            "type": "string"
+          },
+          "tax_id_rfc": {
+            "type": "string"
+          },
+          "nombre_razon_social": {
+            "type": "string"
+          },
+          "apellido_paterno": {
+            "type": "string"
+          },
+          "apellido_materno": {
+            "type": "string"
+          },
+          "calle": {
+            "type": "string"
+          },
+          "no_exterior": {
+            "type": "string"
+          },
+          "no_interior": {
+            "type": "string"
+          },
+          "codigo_postal": {
+            "type": "string"
+          },
+          "colonia": {
+            "type": "string"
+          },
+          "localidad": {
+            "type": "string"
+          },
+          "entidad_federativa": {
+            "type": "string"
+          },
+          "municipio": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          }
+        },
+        "datos_mercancia": {
+          "type": "array",
+          "items": {
+            "renglon": {
+              "type": "integer"
+            },
+            "descripcion_generica": {
+              "type": "string"
+            },
+            "clave_umc": {
+              "type": "string"
+            },
+            "cantidad_umc": {
+              "type": "number"
+            },
+            "tipo_moneda": {
+              "type": "string"
+            },
+            "valor_unitario": {
+              "type": "number"
+            },
+            "valor_total": {
+              "type": "number"
+            },
+            "valor_total_dolares": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "checklist_documentos": {
+      "label": "Check List de Documentos de Comercio Exterior",
+      "description": "Document checklist for customs agent verifying required paperwork",
+      "source_files": [
+        "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf (page 1)"
+      ],
+      "fields": {
+        "proveedor": {
+          "type": "string"
+        },
+        "factura": {
+          "type": "string"
+        },
+        "documentos": {
+          "factura_proveedor_copia": {
+            "type": "boolean"
+          },
+          "packing_list_copia": {
+            "type": "boolean"
+          },
+          "certificado_molino_productor": {
+            "type": "boolean"
+          },
+          "certificado_origen_eur": {
+            "type": "boolean"
+          },
+          "bill_of_lading_original_copia": {
+            "type": "boolean"
+          },
+          "poliza_seguro": {
+            "type": "boolean"
+          },
+          "carta_encomienda": {
+            "type": "boolean"
+          },
+          "carta_garantia": {
+            "type": "boolean"
+          },
+          "carta_3_1_8": {
+            "type": "boolean"
+          },
+          "carta_instrucciones": {
+            "type": "boolean"
+          },
+          "manifestacion_de_valor": {
+            "type": "boolean"
+          },
+          "otros": {
+            "type": "boolean"
+          }
+        },
+        "observaciones_generales": {
+          "type": "string"
+        },
+        "firma_entrega": {
+          "type": "string"
+        },
+        "firma_recibe": {
+          "type": "string"
+        },
+        "fecha": {
+          "type": "date"
+        }
+      }
+    }
+  },
+  "unique_field_names": [
+    "Al_pct",
+    "CE_pct",
+    "C_pct",
+    "Cr_pct",
+    "Cu_pct",
+    "Mn_pct",
+    "Mo_pct",
+    "N_pct",
+    "Ni_pct",
+    "P_pct",
+    "S_pct",
+    "Si_pct",
+    "Sn_pct",
+    "V_pct",
+    "aba_no",
+    "acabado",
+    "accesorios",
+    "account_no",
+    "actual_result",
+    "acuse_electronico",
+    "acuse_valor_cove",
+    "additional_clauses",
+    "address",
+    "aduana",
+    "aduana_despacho",
+    "aduana_entrada",
+    "aduana_es",
+    "agencia_aduanal",
+    "agent_at_destination",
+    "alargamiento_a_pct",
+    "amount_insured_usd",
+    "apellido_materno",
+    "apellido_paterno",
+    "approver",
+    "articulo_calidad",
+    "autorizacion",
+    "bank_address",
+    "base_gravable_compraventa_exportacion",
+    "batch_no",
+    "batch_number",
+    "batch_quantity",
+    "beneficiary",
+    "beneficiary_bank",
+    "bill_of_lading_original_copia",
+    "bl_no",
+    "bl_number",
+    "booking",
+    "booking_no",
+    "bruto_usd",
+    "bultos",
+    "buque",
+    "by",
+    "cadena_original",
+    "calidad",
+    "calle",
+    "cantidad",
+    "cantidad_kg",
+    "cantidad_peso_kg",
+    "cantidad_umc",
+    "cantidad_umt",
+    "cantidad_umt_c",
+    "carga_decrementables",
+    "cargos",
+    "carta_3_1_8",
+    "carta_encomienda",
+    "carta_garantia",
+    "carta_instrucciones",
+    "certificaciones",
+    "certificado_correspondiente",
+    "certificado_molino_productor",
+    "certificado_origen",
+    "certificado_origen_eur",
+    "chips_uid_no",
+    "chofer",
+    "circunstancia_distinta_arts_67_71",
+    "ciudad",
+    "ciudad_fecha",
+    "claim_payable_at",
+    "clave",
+    "clave_prevalidador",
+    "clave_rfc",
+    "clave_seccion_aduanera_despacho",
+    "clave_umc",
+    "clave_valida_desde",
+    "clave_valida_hasta",
+    "cliente",
+    "code",
+    "codigo_aceptacion",
+    "codigo_postal",
+    "codigo_producto",
+    "codigos_dano",
+    "codigos_dano[]",
+    "colada",
+    "collect",
+    "colonia",
+    "comentarios",
+    "commodity",
+    "commodity_code",
+    "complemento_1",
+    "complemento_2",
+    "complemento_3",
+    "concepto",
+    "concepto_cargo",
+    "conceptos_desglosados_en_factura",
+    "condiciones_compraventa",
+    "condiciones_transporte",
+    "conditions",
+    "conocimiento_embarque",
+    "consignee",
+    "contacto",
+    "container_number",
+    "containers",
+    "contenedor",
+    "contract_no",
+    "contrib",
+    "contribucion",
+    "correo_electronico",
+    "costo_flete",
+    "country_of_origin",
+    "cp",
+    "curp",
+    "currency",
+    "custodia",
+    "customer_number",
+    "cve_pedimento",
+    "cve_t_tasa",
+    "date",
+    "date_cargo_received",
+    "date_issue",
+    "date_laden_on_board",
+    "date_of_commencement",
+    "date_of_issue",
+    "datos_mercancia",
+    "declared_cargo_value_usd",
+    "demarcacion",
+    "descarga_decrementables",
+    "descripcion",
+    "descripcion_certificado",
+    "descripcion_fraccion",
+    "descripcion_generica",
+    "descripcion_material",
+    "descripcion_mercancia",
+    "description",
+    "description_of_goods",
+    "despacho_aduanal",
+    "destinatario_direccion",
+    "destinatario_naviera",
+    "destinatario_nombre",
+    "destination",
+    "destino",
+    "destino_origen",
+    "detalle",
+    "detalle_mercancia",
+    "direccion",
+    "direccion_entrega",
+    "doc_form_no",
+    "document_number",
+    "documentacion_anexa",
+    "domicilio",
+    "domicilio_calle",
+    "domicilio_completo",
+    "domicilio_fiscal",
+    "e_firma",
+    "eir_number",
+    "email",
+    "embalajes",
+    "empresa_destinataria",
+    "empresa_remitente",
+    "entidad_federativa",
+    "entregado",
+    "entregar_equipo_vacio_en",
+    "envio_operacion",
+    "es_precio_en_factura",
+    "es_precio_otros_documentos",
+    "estado",
+    "eta",
+    "exchange_rate",
+    "existe_vinculacion",
+    "existen_cargos_art_65",
+    "existen_conceptos_art_66",
+    "export_references",
+    "factor_mon_fact",
+    "factura",
+    "factura_documento",
+    "factura_fecha",
+    "factura_numero",
+    "factura_proveedor_copia",
+    "factura_referencia",
+    "facturas",
+    "fax",
+    "fecha",
+    "fecha_ano",
+    "fecha_dia",
+    "fecha_emision",
+    "fecha_entrada",
+    "fecha_envio_pais_exportacion",
+    "fecha_esperada_importacion",
+    "fecha_expedicion",
+    "fecha_hora_impresion",
+    "fecha_mes",
+    "fecha_pago",
+    "fecha_recepcion",
+    "fecha_registro",
+    "final_destination",
+    "firma",
+    "firma_descargo",
+    "firma_entrega",
+    "firma_recibe",
+    "firmado_por",
+    "firmante",
+    "firmante_fecha",
+    "firmante_nombre",
+    "firmante_rfc",
+    "flag",
+    "flete",
+    "fletes",
+    "fmc_no",
+    "folio_solicitud",
+    "forma_envio",
+    "forma_pago",
+    "forwarding_agent_references",
+    "fraccion",
+    "fraccion_arancelaria",
+    "fraccion_arancelaria_sugerida",
+    "freight_to_be_paid_at",
+    "freighted_as",
+    "from",
+    "goods",
+    "gross_weight_kg",
+    "horario_entrega",
+    "id_fiscal",
+    "id_fiscal_proveedor",
+    "identif",
+    "identificacion",
+    "identificadores",
+    "identificadores_partida",
+    "imo",
+    "imp_precio_pag",
+    "importador_opta_acompanar",
+    "importe",
+    "importe_moneda_facturacion",
+    "importe_pagado",
+    "incoterm",
+    "influyo_valor",
+    "insurer",
+    "intermediate_bank",
+    "intermediate_swift",
+    "invoice_no",
+    "invoice_number",
+    "issuing_date",
+    "item_name",
+    "items",
+    "lc_no",
+    "lc_number",
+    "leyenda",
+    "limite_elastico_re_mpa",
+    "line_items",
+    "linea_captura",
+    "linea_naviera",
+    "linea_transportista",
+    "localidad",
+    "longitud",
+    "longitud_mm",
+    "longitudes_estandar",
+    "manifestacion_de_valor",
+    "manufacturer",
+    "manufacturing_standard",
+    "marca",
+    "marcas_numeros_total_bultos",
+    "marks_and_nos",
+    "marks_and_numbers",
+    "matricula",
+    "measurement_cbm",
+    "medida_inch",
+    "medio_presentacion",
+    "medio_recepcion_cobro",
+    "mercancia",
+    "mercancia_proveedor",
+    "met_val",
+    "metodo_unico",
+    "metodo_valor_utilizado",
+    "modelo",
+    "moneda",
+    "motivo",
+    "municipio",
+    "municipio_delegacion",
+    "name",
+    "net_weight_kg",
+    "net_wt_kgm",
+    "nico",
+    "no_and_kind_of_packages",
+    "no_exportador_autorizado",
+    "no_exterior",
+    "no_factura",
+    "no_interior",
+    "no_of_packages",
+    "no_orden",
+    "no_pedimento",
+    "nombre",
+    "nombre_cliente",
+    "nombre_denominacion_razon_social",
+    "nombre_denominacion_social",
+    "nombre_documento",
+    "nombre_institucion_bancaria",
+    "nombre_proveedor",
+    "nombre_raz_soc",
+    "nombre_razon_social",
+    "nombre_solicitante",
+    "norma",
+    "normas",
+    "normas[]",
+    "notario",
+    "notify_party",
+    "num_factura",
+    "num_pedimento",
+    "num_permiso",
+    "num_total_partidas",
+    "number_of_original_waybills",
+    "numero",
+    "numero_autorizacion_aduanal",
+    "numero_bl",
+    "numero_certificado",
+    "numero_e_document",
+    "numero_exterior",
+    "numero_factura",
+    "numero_folio",
+    "numero_interior",
+    "numero_operacion_bancaria",
+    "numero_partida",
+    "numero_patente_aduanal",
+    "numero_patente_autorizacion",
+    "numero_pedimento",
+    "numero_permiso_clave",
+    "numero_serie_certificado",
+    "numero_transaccion_sat",
+    "numero_unico",
+    "numeros_guia_orden_embarque",
+    "numeros_guia_orden_embarque[]",
+    "observaciones",
+    "observaciones_especiales",
+    "observaciones_generales",
+    "oficio_numero",
+    "operacion",
+    "origen",
+    "otros",
+    "otros_decrementables",
+    "otros_gastos_extranjero",
+    "otros_incrementables",
+    "package_quantity",
+    "packing_list_copia",
+    "pagina",
+    "pais",
+    "pais_exportador",
+    "pais_origen",
+    "pais_origen_destino",
+    "pais_valor_comercial",
+    "partidas",
+    "patente",
+    "patente_autorizacion",
+    "payment_terms",
+    "pedimento",
+    "per_conveyance",
+    "perfil",
+    "periodicidad",
+    "permisos",
+    "peso_bruto",
+    "peso_kg",
+    "peso_total_kg",
+    "place_of_delivery",
+    "place_of_issue",
+    "place_of_receipt",
+    "po_number",
+    "pod",
+    "pol",
+    "policy_no",
+    "poliza_seguro",
+    "port_of_discharge",
+    "port_of_loading",
+    "pre_carriage_by",
+    "precio_pagado_en_letra",
+    "precio_pagado_moneda_facturacion",
+    "precio_pagado_valor_comercial",
+    "precio_unit",
+    "precio_unitario",
+    "precio_unitario_usd",
+    "premium",
+    "prepaid",
+    "prima_seguro",
+    "product_name",
+    "production_date",
+    "production_unit",
+    "proveedor",
+    "proveedor_referencia",
+    "qty",
+    "quality_standard",
+    "quantity",
+    "rate",
+    "ref",
+    "reference",
+    "regimen",
+    "relacion_facturas",
+    "renglon",
+    "resistencia_traccion_rm_mpa",
+    "result",
+    "revalidado",
+    "reviewer",
+    "rfc",
+    "rfc_consulta",
+    "rfc_homoclave",
+    "rfc_permisos_consulta",
+    "rfc_tax_id",
+    "s_pedido",
+    "seal",
+    "seal_number",
+    "secuencia",
+    "seguro",
+    "seguros",
+    "seguros_decrementables",
+    "sello_digital",
+    "sello_digital_solicitante",
+    "sello_digital_ventanilla",
+    "sellos",
+    "service_contract_no",
+    "servicio",
+    "servicio_entrega_terrestre",
+    "shipper",
+    "shipping_marks",
+    "signed_by",
+    "size_type",
+    "specification",
+    "standard",
+    "subd_nico",
+    "subdivision",
+    "swift_code",
+    "t_oper",
+    "tamano",
+    "tare_kg",
+    "tariff_item",
+    "tasa",
+    "tax_id",
+    "tax_id_rfc",
+    "tel",
+    "telefono",
+    "temperatura",
+    "terminal",
+    "test_item",
+    "test_items",
+    "test_method",
+    "test_results",
+    "the_insured",
+    "tipo",
+    "tipo_acero",
+    "tipo_cambio",
+    "tipo_documento",
+    "tipo_figura",
+    "tipo_identificador",
+    "tipo_moneda",
+    "tipo_operacion",
+    "tipo_recubrimiento",
+    "tipo_tasa",
+    "titular_aduana",
+    "to",
+    "to_buyer",
+    "total_amount_insured",
+    "total_bultos",
+    "total_factura_usd",
+    "total_gross_weight_kg",
+    "total_in_words",
+    "total_measurement_cbm",
+    "total_net_weight_kg",
+    "total_quantity",
+    "total_usd",
+    "totales_efectivo",
+    "totales_otros",
+    "totales_total",
+    "trademark",
+    "trafico",
+    "transporte_decrementables",
+    "transportista_curp",
+    "transportista_domicilio",
+    "transportista_rfc",
+    "type_of_movement",
+    "ubicacion",
+    "umc",
+    "umt",
+    "unidad_medida",
+    "unit",
+    "usuario",
+    "val_adu_usd",
+    "val_agreg",
+    "val_com_dls",
+    "val_dolares",
+    "val_mon_fact",
+    "val_seguros",
+    "valor",
+    "valor_aduana",
+    "valor_comercial_usd",
+    "valor_determinado",
+    "valor_determinado_art_78",
+    "valor_dolares",
+    "valor_mercancia",
+    "valor_precio_unitario_venta",
+    "valor_provisional",
+    "valor_reconstruido",
+    "valor_total",
+    "valor_total_dolares",
+    "valor_transaccion_identicas",
+    "valor_transaccion_mercancias",
+    "valor_transaccion_similares",
+    "valor_unitario",
+    "valor_usd",
+    "vat_tax_id",
+    "vencimientos",
+    "verdict",
+    "vessel",
+    "vgm",
+    "via",
+    "viaje",
+    "vinculacion",
+    "vinculacion_cliente_proveedor",
+    "voyage",
+    "voyage_number",
+    "vucem_cove_options"
+  ],
+  "unique_field_paths": [
+    "aviso_automatico_importacion.fields.acabado",
+    "aviso_automatico_importacion.fields.accesorios",
+    "aviso_automatico_importacion.fields.aduana_entrada",
+    "aviso_automatico_importacion.fields.cadena_original",
+    "aviso_automatico_importacion.fields.calidad",
+    "aviso_automatico_importacion.fields.cantidad",
+    "aviso_automatico_importacion.fields.certificado_correspondiente",
+    "aviso_automatico_importacion.fields.clave_valida_desde",
+    "aviso_automatico_importacion.fields.clave_valida_hasta",
+    "aviso_automatico_importacion.fields.descripcion_certificado",
+    "aviso_automatico_importacion.fields.descripcion_fraccion",
+    "aviso_automatico_importacion.fields.destinatario.direccion",
+    "aviso_automatico_importacion.fields.destinatario.nombre",
+    "aviso_automatico_importacion.fields.destinatario.rfc",
+    "aviso_automatico_importacion.fields.detalle_mercancia",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].bultos",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].colada",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Al_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.CE_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.C_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Cr_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Cu_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Mn_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Mo_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.N_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Ni_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.P_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.S_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Si_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.Sn_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].composicion_quimica.V_pct",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].longitud_mm",
+    "aviso_automatico_importacion.fields.detalle_mercancia.[].medida_inch",
+    "aviso_automatico_importacion.fields.fecha_emision",
+    "aviso_automatico_importacion.fields.fecha_envio_pais_exportacion",
+    "aviso_automatico_importacion.fields.fecha_esperada_importacion",
+    "aviso_automatico_importacion.fields.firmante",
+    "aviso_automatico_importacion.fields.fraccion_arancelaria",
+    "aviso_automatico_importacion.fields.nico",
+    "aviso_automatico_importacion.fields.norma",
+    "aviso_automatico_importacion.fields.numero_folio",
+    "aviso_automatico_importacion.fields.numero_permiso_clave",
+    "aviso_automatico_importacion.fields.oficio_numero",
+    "aviso_automatico_importacion.fields.pais_origen",
+    "aviso_automatico_importacion.fields.perfil",
+    "aviso_automatico_importacion.fields.precio_unitario",
+    "aviso_automatico_importacion.fields.proveedor_referencia",
+    "aviso_automatico_importacion.fields.sello_digital",
+    "aviso_automatico_importacion.fields.tipo_acero",
+    "aviso_automatico_importacion.fields.tipo_recubrimiento",
+    "aviso_automatico_importacion.fields.unidad_medida",
+    "aviso_automatico_importacion.fields.valor_usd",
+    "bill_of_lading.fields.additional_clauses",
+    "bill_of_lading.fields.agent_at_destination",
+    "bill_of_lading.fields.bl_number",
+    "bill_of_lading.fields.booking_no",
+    "bill_of_lading.fields.cargo.declared_cargo_value_usd",
+    "bill_of_lading.fields.cargo.description_of_goods",
+    "bill_of_lading.fields.cargo.gross_weight_kg",
+    "bill_of_lading.fields.cargo.marks_and_numbers",
+    "bill_of_lading.fields.cargo.measurement_cbm",
+    "bill_of_lading.fields.cargo.no_and_kind_of_packages",
+    "bill_of_lading.fields.cargo.tare_kg",
+    "bill_of_lading.fields.commodity_code",
+    "bill_of_lading.fields.consignee.contacto",
+    "bill_of_lading.fields.consignee.direccion",
+    "bill_of_lading.fields.consignee.fax",
+    "bill_of_lading.fields.consignee.nombre",
+    "bill_of_lading.fields.consignee.tax_id_rfc",
+    "bill_of_lading.fields.consignee.telefono",
+    "bill_of_lading.fields.containers",
+    "bill_of_lading.fields.containers.[].container_number",
+    "bill_of_lading.fields.containers.[].seal_number",
+    "bill_of_lading.fields.containers.[].size_type",
+    "bill_of_lading.fields.date_cargo_received",
+    "bill_of_lading.fields.date_laden_on_board",
+    "bill_of_lading.fields.date_of_issue",
+    "bill_of_lading.fields.doc_form_no",
+    "bill_of_lading.fields.exchange_rate",
+    "bill_of_lading.fields.export_references",
+    "bill_of_lading.fields.final_destination",
+    "bill_of_lading.fields.flag",
+    "bill_of_lading.fields.fmc_no",
+    "bill_of_lading.fields.forwarding_agent_references",
+    "bill_of_lading.fields.freight_charges.code",
+    "bill_of_lading.fields.freight_charges.collect",
+    "bill_of_lading.fields.freight_charges.freighted_as",
+    "bill_of_lading.fields.freight_charges.prepaid",
+    "bill_of_lading.fields.freight_charges.rate",
+    "bill_of_lading.fields.freight_to_be_paid_at",
+    "bill_of_lading.fields.notify_party.direccion",
+    "bill_of_lading.fields.notify_party.fax",
+    "bill_of_lading.fields.notify_party.nombre",
+    "bill_of_lading.fields.notify_party.tax_id",
+    "bill_of_lading.fields.notify_party.telefono",
+    "bill_of_lading.fields.number_of_original_waybills",
+    "bill_of_lading.fields.place_of_delivery",
+    "bill_of_lading.fields.place_of_issue",
+    "bill_of_lading.fields.place_of_receipt",
+    "bill_of_lading.fields.port_of_discharge",
+    "bill_of_lading.fields.port_of_loading",
+    "bill_of_lading.fields.pre_carriage_by",
+    "bill_of_lading.fields.service_contract_no",
+    "bill_of_lading.fields.shipper_exporter.contacto",
+    "bill_of_lading.fields.shipper_exporter.direccion",
+    "bill_of_lading.fields.shipper_exporter.email",
+    "bill_of_lading.fields.shipper_exporter.fax",
+    "bill_of_lading.fields.shipper_exporter.nombre",
+    "bill_of_lading.fields.shipper_exporter.tax_id",
+    "bill_of_lading.fields.shipper_exporter.telefono",
+    "bill_of_lading.fields.signed_by",
+    "bill_of_lading.fields.tariff_item",
+    "bill_of_lading.fields.type_of_movement",
+    "bill_of_lading.fields.vessel",
+    "bill_of_lading.fields.voyage_number",
+    "cargo_insurance.fields.amount_insured_usd",
+    "cargo_insurance.fields.bl_no",
+    "cargo_insurance.fields.claim_payable_at",
+    "cargo_insurance.fields.conditions",
+    "cargo_insurance.fields.contract_no",
+    "cargo_insurance.fields.date_of_commencement",
+    "cargo_insurance.fields.from",
+    "cargo_insurance.fields.goods",
+    "cargo_insurance.fields.insurer",
+    "cargo_insurance.fields.invoice_no",
+    "cargo_insurance.fields.issuing_date",
+    "cargo_insurance.fields.lc_no",
+    "cargo_insurance.fields.marks_and_nos",
+    "cargo_insurance.fields.package_quantity",
+    "cargo_insurance.fields.per_conveyance",
+    "cargo_insurance.fields.policy_no",
+    "cargo_insurance.fields.premium",
+    "cargo_insurance.fields.survey_agent.address",
+    "cargo_insurance.fields.survey_agent.fax",
+    "cargo_insurance.fields.survey_agent.name",
+    "cargo_insurance.fields.survey_agent.tel",
+    "cargo_insurance.fields.the_insured",
+    "cargo_insurance.fields.to",
+    "cargo_insurance.fields.total_amount_insured",
+    "cargo_insurance.fields.via",
+    "carta_3_1_8.fields.ciudad_fecha",
+    "carta_3_1_8.fields.correo_electronico",
+    "carta_3_1_8.fields.domicilio_fiscal.calle",
+    "carta_3_1_8.fields.domicilio_fiscal.ciudad",
+    "carta_3_1_8.fields.domicilio_fiscal.colonia",
+    "carta_3_1_8.fields.domicilio_fiscal.cp",
+    "carta_3_1_8.fields.domicilio_fiscal.estado",
+    "carta_3_1_8.fields.domicilio_fiscal.numero",
+    "carta_3_1_8.fields.empresa_importadora.nombre",
+    "carta_3_1_8.fields.empresa_importadora.rfc",
+    "carta_3_1_8.fields.factura_fecha",
+    "carta_3_1_8.fields.factura_numero",
+    "carta_3_1_8.fields.incoterm",
+    "carta_3_1_8.fields.instrumento_publico.demarcacion",
+    "carta_3_1_8.fields.instrumento_publico.fecha",
+    "carta_3_1_8.fields.instrumento_publico.notario",
+    "carta_3_1_8.fields.instrumento_publico.numero",
+    "carta_3_1_8.fields.mercancia",
+    "carta_3_1_8.fields.mercancia.[].cantidad",
+    "carta_3_1_8.fields.mercancia.[].descripcion",
+    "carta_3_1_8.fields.mercancia.[].precio_unitario_usd",
+    "carta_3_1_8.fields.mercancia.[].unidad_medida",
+    "carta_3_1_8.fields.mercancia.[].valor_comercial_usd",
+    "carta_3_1_8.fields.proveedor.domicilio",
+    "carta_3_1_8.fields.proveedor.nombre",
+    "carta_3_1_8.fields.proveedor.pais",
+    "carta_3_1_8.fields.proveedor.tax_id",
+    "carta_3_1_8.fields.representante_legal.nombre",
+    "carta_3_1_8.fields.representante_legal.rfc",
+    "carta_3_1_8.fields.seguro",
+    "carta_3_1_8.fields.telefono",
+    "carta_3_1_8.fields.titular_aduana",
+    "carta_3_1_8.fields.total_factura_usd",
+    "carta_encomienda.fields.aduana_despacho",
+    "carta_encomienda.fields.agente_aduanal.nombre",
+    "carta_encomienda.fields.agente_aduanal.patente",
+    "carta_encomienda.fields.destinatario_naviera",
+    "carta_encomienda.fields.empresa_importadora.domicilio_fiscal",
+    "carta_encomienda.fields.empresa_importadora.nombre",
+    "carta_encomienda.fields.empresa_importadora.rfc",
+    "carta_encomienda.fields.fecha",
+    "carta_encomienda.fields.firma",
+    "carta_encomienda.fields.numero_bl",
+    "carta_encomienda.fields.representante_legal.nombre",
+    "carta_encomienda.fields.representante_legal.rfc",
+    "carta_instrucciones.fields.condiciones_compraventa",
+    "carta_instrucciones.fields.contacto",
+    "carta_instrucciones.fields.costo_flete",
+    "carta_instrucciones.fields.custodia",
+    "carta_instrucciones.fields.datos_embarque.bultos",
+    "carta_instrucciones.fields.datos_embarque.conocimiento_embarque",
+    "carta_instrucciones.fields.datos_embarque.descripcion",
+    "carta_instrucciones.fields.datos_embarque.factura_numero",
+    "carta_instrucciones.fields.datos_embarque.origen",
+    "carta_instrucciones.fields.datos_embarque.peso_bruto",
+    "carta_instrucciones.fields.datos_embarque.valor",
+    "carta_instrucciones.fields.despacho_aduanal",
+    "carta_instrucciones.fields.direccion_entrega",
+    "carta_instrucciones.fields.domicilio_completo",
+    "carta_instrucciones.fields.fraccion_arancelaria_sugerida",
+    "carta_instrucciones.fields.horario_entrega",
+    "carta_instrucciones.fields.id_fiscal_proveedor",
+    "carta_instrucciones.fields.nombre_cliente",
+    "carta_instrucciones.fields.nombre_proveedor",
+    "carta_instrucciones.fields.observaciones_especiales",
+    "carta_instrucciones.fields.otros_gastos_extranjero",
+    "carta_instrucciones.fields.prima_seguro",
+    "carta_instrucciones.fields.regimen",
+    "carta_instrucciones.fields.rfc",
+    "carta_instrucciones.fields.servicio_entrega_terrestre",
+    "carta_instrucciones.fields.telefono",
+    "carta_instrucciones.fields.vinculacion_cliente_proveedor",
+    "carta_instrucciones.fields.vucem_cove_options",
+    "certificado_calidad.fields.articulo_calidad",
+    "certificado_calidad.fields.country_of_origin",
+    "certificado_calidad.fields.descripcion_material",
+    "certificado_calidad.fields.dimensions.longitudes_estandar",
+    "certificado_calidad.fields.fecha",
+    "certificado_calidad.fields.firmado_por",
+    "certificado_calidad.fields.items",
+    "certificado_calidad.fields.items.[].bultos",
+    "certificado_calidad.fields.items.[].colada",
+    "certificado_calidad.fields.items.[].composicion_quimica.Al_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.CE_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.C_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Cr_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Cu_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Mn_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Mo_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.N_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Ni_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.P_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.S_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Si_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.Sn_pct",
+    "certificado_calidad.fields.items.[].composicion_quimica.V_pct",
+    "certificado_calidad.fields.items.[].peso_kg",
+    "certificado_calidad.fields.items.[].propiedades_mecanicas.alargamiento_a_pct",
+    "certificado_calidad.fields.items.[].propiedades_mecanicas.limite_elastico_re_mpa",
+    "certificado_calidad.fields.items.[].propiedades_mecanicas.resistencia_traccion_rm_mpa",
+    "certificado_calidad.fields.items.[].valor_usd",
+    "certificado_calidad.fields.manufacturer",
+    "certificado_calidad.fields.manufacturing_standard",
+    "certificado_calidad.fields.normas",
+    "certificado_calidad.fields.normas.[]",
+    "certificado_calidad.fields.numero_certificado",
+    "certificado_calidad.fields.pagina",
+    "certificado_produccion.fields.cantidad_peso_kg",
+    "certificado_produccion.fields.descripcion_mercancia",
+    "certificado_produccion.fields.destinatario_direccion",
+    "certificado_produccion.fields.destinatario_nombre",
+    "certificado_produccion.fields.empresa_destinataria",
+    "certificado_produccion.fields.empresa_remitente",
+    "certificado_produccion.fields.factura_referencia",
+    "certificado_produccion.fields.fraccion_arancelaria",
+    "certificado_produccion.fields.pais_exportador",
+    "certificado_produccion.fields.pais_origen",
+    "certificado_produccion.fields.valor_usd",
+    "certificate_of_analysis.fields.batch_no",
+    "certificate_of_analysis.fields.commodity",
+    "certificate_of_analysis.fields.date",
+    "certificate_of_analysis.fields.destination",
+    "certificate_of_analysis.fields.document_number",
+    "certificate_of_analysis.fields.po_number",
+    "certificate_of_analysis.fields.quantity",
+    "certificate_of_analysis.fields.shipper",
+    "certificate_of_analysis.fields.shipping_marks",
+    "certificate_of_analysis.fields.test_results",
+    "certificate_of_analysis.fields.test_results.[].result",
+    "certificate_of_analysis.fields.test_results.[].test_item",
+    "certificate_of_analysis.fields.to_buyer",
+    "checklist_documentos.fields.documentos.bill_of_lading_original_copia",
+    "checklist_documentos.fields.documentos.carta_3_1_8",
+    "checklist_documentos.fields.documentos.carta_encomienda",
+    "checklist_documentos.fields.documentos.carta_garantia",
+    "checklist_documentos.fields.documentos.carta_instrucciones",
+    "checklist_documentos.fields.documentos.certificado_molino_productor",
+    "checklist_documentos.fields.documentos.certificado_origen_eur",
+    "checklist_documentos.fields.documentos.factura_proveedor_copia",
+    "checklist_documentos.fields.documentos.manifestacion_de_valor",
+    "checklist_documentos.fields.documentos.otros",
+    "checklist_documentos.fields.documentos.packing_list_copia",
+    "checklist_documentos.fields.documentos.poliza_seguro",
+    "checklist_documentos.fields.factura",
+    "checklist_documentos.fields.fecha",
+    "checklist_documentos.fields.firma_entrega",
+    "checklist_documentos.fields.firma_recibe",
+    "checklist_documentos.fields.observaciones_generales",
+    "checklist_documentos.fields.proveedor",
+    "commercial_invoice.fields.bank_information.aba_no",
+    "commercial_invoice.fields.bank_information.account_no",
+    "commercial_invoice.fields.bank_information.bank_address",
+    "commercial_invoice.fields.bank_information.beneficiary",
+    "commercial_invoice.fields.bank_information.beneficiary_bank",
+    "commercial_invoice.fields.bank_information.chips_uid_no",
+    "commercial_invoice.fields.bank_information.intermediate_bank",
+    "commercial_invoice.fields.bank_information.intermediate_swift",
+    "commercial_invoice.fields.bank_information.swift_code",
+    "commercial_invoice.fields.buyer.direccion",
+    "commercial_invoice.fields.buyer.nombre",
+    "commercial_invoice.fields.buyer.rfc_tax_id",
+    "commercial_invoice.fields.condiciones_transporte",
+    "commercial_invoice.fields.currency",
+    "commercial_invoice.fields.customer_number",
+    "commercial_invoice.fields.date",
+    "commercial_invoice.fields.forma_envio",
+    "commercial_invoice.fields.incoterm",
+    "commercial_invoice.fields.invoice_number",
+    "commercial_invoice.fields.lc_number",
+    "commercial_invoice.fields.line_items",
+    "commercial_invoice.fields.line_items.[].cantidad_kg",
+    "commercial_invoice.fields.line_items.[].descripcion",
+    "commercial_invoice.fields.line_items.[].fraccion_arancelaria",
+    "commercial_invoice.fields.line_items.[].importe",
+    "commercial_invoice.fields.line_items.[].longitud",
+    "commercial_invoice.fields.line_items.[].precio_unitario",
+    "commercial_invoice.fields.line_items.[].s_pedido",
+    "commercial_invoice.fields.matricula",
+    "commercial_invoice.fields.payment_terms",
+    "commercial_invoice.fields.po_number",
+    "commercial_invoice.fields.seller.direccion",
+    "commercial_invoice.fields.seller.email",
+    "commercial_invoice.fields.seller.fax",
+    "commercial_invoice.fields.seller.nombre",
+    "commercial_invoice.fields.seller.pais",
+    "commercial_invoice.fields.seller.telefono",
+    "commercial_invoice.fields.seller.vat_tax_id",
+    "commercial_invoice.fields.shipping_marks",
+    "commercial_invoice.fields.shipping_route.by",
+    "commercial_invoice.fields.shipping_route.from",
+    "commercial_invoice.fields.shipping_route.to",
+    "commercial_invoice.fields.totals.bruto_usd",
+    "commercial_invoice.fields.totals.bultos",
+    "commercial_invoice.fields.totals.flete",
+    "commercial_invoice.fields.totals.peso_total_kg",
+    "commercial_invoice.fields.totals.seguro",
+    "commercial_invoice.fields.totals.total_in_words",
+    "commercial_invoice.fields.totals.total_usd",
+    "commercial_invoice.fields.totals.valor_mercancia",
+    "commercial_invoice.fields.vencimientos",
+    "cove_informacion_valor.fields.acuse_valor_cove",
+    "cove_informacion_valor.fields.datos_factura.certificado_origen",
+    "cove_informacion_valor.fields.datos_factura.no_exportador_autorizado",
+    "cove_informacion_valor.fields.datos_factura.subdivision",
+    "cove_informacion_valor.fields.datos_mercancia",
+    "cove_informacion_valor.fields.datos_mercancia.[].cantidad_umc",
+    "cove_informacion_valor.fields.datos_mercancia.[].clave_umc",
+    "cove_informacion_valor.fields.datos_mercancia.[].descripcion_generica",
+    "cove_informacion_valor.fields.datos_mercancia.[].renglon",
+    "cove_informacion_valor.fields.datos_mercancia.[].tipo_moneda",
+    "cove_informacion_valor.fields.datos_mercancia.[].valor_total",
+    "cove_informacion_valor.fields.datos_mercancia.[].valor_total_dolares",
+    "cove_informacion_valor.fields.datos_mercancia.[].valor_unitario",
+    "cove_informacion_valor.fields.destinatario.apellido_materno",
+    "cove_informacion_valor.fields.destinatario.apellido_paterno",
+    "cove_informacion_valor.fields.destinatario.calle",
+    "cove_informacion_valor.fields.destinatario.codigo_postal",
+    "cove_informacion_valor.fields.destinatario.colonia",
+    "cove_informacion_valor.fields.destinatario.entidad_federativa",
+    "cove_informacion_valor.fields.destinatario.localidad",
+    "cove_informacion_valor.fields.destinatario.municipio",
+    "cove_informacion_valor.fields.destinatario.no_exterior",
+    "cove_informacion_valor.fields.destinatario.no_interior",
+    "cove_informacion_valor.fields.destinatario.nombre_razon_social",
+    "cove_informacion_valor.fields.destinatario.pais",
+    "cove_informacion_valor.fields.destinatario.tax_id_rfc",
+    "cove_informacion_valor.fields.destinatario.tipo_identificador",
+    "cove_informacion_valor.fields.envio_operacion",
+    "cove_informacion_valor.fields.fecha_expedicion",
+    "cove_informacion_valor.fields.fecha_recepcion",
+    "cove_informacion_valor.fields.no_factura",
+    "cove_informacion_valor.fields.numero_autorizacion_aduanal",
+    "cove_informacion_valor.fields.numero_patente_aduanal",
+    "cove_informacion_valor.fields.observaciones",
+    "cove_informacion_valor.fields.proveedor.apellido_materno",
+    "cove_informacion_valor.fields.proveedor.apellido_paterno",
+    "cove_informacion_valor.fields.proveedor.calle",
+    "cove_informacion_valor.fields.proveedor.codigo_postal",
+    "cove_informacion_valor.fields.proveedor.colonia",
+    "cove_informacion_valor.fields.proveedor.entidad_federativa",
+    "cove_informacion_valor.fields.proveedor.localidad",
+    "cove_informacion_valor.fields.proveedor.municipio",
+    "cove_informacion_valor.fields.proveedor.no_exterior",
+    "cove_informacion_valor.fields.proveedor.no_interior",
+    "cove_informacion_valor.fields.proveedor.nombre_razon_social",
+    "cove_informacion_valor.fields.proveedor.pais",
+    "cove_informacion_valor.fields.proveedor.tax_id",
+    "cove_informacion_valor.fields.proveedor.tipo_identificador",
+    "cove_informacion_valor.fields.relacion_facturas",
+    "cove_informacion_valor.fields.rfc_permisos_consulta",
+    "cove_informacion_valor.fields.tipo_figura",
+    "cove_informacion_valor.fields.tipo_operacion",
+    "delivery_order.fields.acuse_electronico",
+    "delivery_order.fields.autorizacion",
+    "delivery_order.fields.bl_no",
+    "delivery_order.fields.consignee",
+    "delivery_order.fields.containers",
+    "delivery_order.fields.containers.[].container_number",
+    "delivery_order.fields.containers.[].net_wt_kgm",
+    "delivery_order.fields.containers.[].qty",
+    "delivery_order.fields.containers.[].seal",
+    "delivery_order.fields.containers.[].size_type",
+    "delivery_order.fields.containers.[].trafico",
+    "delivery_order.fields.date_issue",
+    "delivery_order.fields.description_of_goods",
+    "delivery_order.fields.entregar_equipo_vacio_en",
+    "delivery_order.fields.eta",
+    "delivery_order.fields.flag",
+    "delivery_order.fields.gross_weight_kg",
+    "delivery_order.fields.marks_and_numbers",
+    "delivery_order.fields.no_of_packages",
+    "delivery_order.fields.notify_party",
+    "delivery_order.fields.numero_unico",
+    "delivery_order.fields.observaciones",
+    "delivery_order.fields.place_of_delivery",
+    "delivery_order.fields.pod",
+    "delivery_order.fields.pol",
+    "delivery_order.fields.reference",
+    "delivery_order.fields.revalidado",
+    "delivery_order.fields.shipper",
+    "delivery_order.fields.terminal",
+    "delivery_order.fields.vessel",
+    "delivery_order.fields.voyage",
+    "equipment_interchange_receipt.fields.agencia_aduanal",
+    "equipment_interchange_receipt.fields.booking",
+    "equipment_interchange_receipt.fields.buque",
+    "equipment_interchange_receipt.fields.chofer",
+    "equipment_interchange_receipt.fields.cliente",
+    "equipment_interchange_receipt.fields.codigos_dano",
+    "equipment_interchange_receipt.fields.codigos_dano.[]",
+    "equipment_interchange_receipt.fields.comentarios",
+    "equipment_interchange_receipt.fields.contenedor",
+    "equipment_interchange_receipt.fields.destino",
+    "equipment_interchange_receipt.fields.eir_number",
+    "equipment_interchange_receipt.fields.entregado",
+    "equipment_interchange_receipt.fields.fecha",
+    "equipment_interchange_receipt.fields.imo",
+    "equipment_interchange_receipt.fields.linea_naviera",
+    "equipment_interchange_receipt.fields.linea_transportista",
+    "equipment_interchange_receipt.fields.no_orden",
+    "equipment_interchange_receipt.fields.no_pedimento",
+    "equipment_interchange_receipt.fields.sellos",
+    "equipment_interchange_receipt.fields.servicio",
+    "equipment_interchange_receipt.fields.tamano",
+    "equipment_interchange_receipt.fields.temperatura",
+    "equipment_interchange_receipt.fields.tipo",
+    "equipment_interchange_receipt.fields.ubicacion",
+    "equipment_interchange_receipt.fields.vgm",
+    "equipment_interchange_receipt.fields.viaje",
+    "factory_coa.fields.approver",
+    "factory_coa.fields.batch_number",
+    "factory_coa.fields.batch_quantity",
+    "factory_coa.fields.document_number",
+    "factory_coa.fields.product_name",
+    "factory_coa.fields.production_date",
+    "factory_coa.fields.production_unit",
+    "factory_coa.fields.reviewer",
+    "factory_coa.fields.specification",
+    "factory_coa.fields.standard",
+    "factory_coa.fields.test_items",
+    "factory_coa.fields.test_items.[].actual_result",
+    "factory_coa.fields.test_items.[].item_name",
+    "factory_coa.fields.test_items.[].quality_standard",
+    "factory_coa.fields.test_items.[].test_method",
+    "factory_coa.fields.test_items.[].unit",
+    "factory_coa.fields.trademark",
+    "factory_coa.fields.verdict",
+    "manifestacion_de_valor.fields.agente_apoderado_aduanal.apellido_materno",
+    "manifestacion_de_valor.fields.agente_apoderado_aduanal.apellido_paterno",
+    "manifestacion_de_valor.fields.agente_apoderado_aduanal.nombre",
+    "manifestacion_de_valor.fields.agente_apoderado_aduanal.numero_patente_autorizacion",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.cargos",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.cargos.[].concepto_cargo",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.cargos.[].factura_documento",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.cargos.[].importe_moneda_facturacion",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.cargos.[].mercancia_proveedor",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.existen_cargos_art_65",
+    "manifestacion_de_valor.fields.art_65_conceptos_integran_valor.importador_opta_acompanar",
+    "manifestacion_de_valor.fields.art_66_conceptos_no_integran_valor.conceptos_desglosados_en_factura",
+    "manifestacion_de_valor.fields.art_66_conceptos_no_integran_valor.es_precio_en_factura",
+    "manifestacion_de_valor.fields.art_66_conceptos_no_integran_valor.es_precio_otros_documentos",
+    "manifestacion_de_valor.fields.art_66_conceptos_no_integran_valor.existen_conceptos_art_66",
+    "manifestacion_de_valor.fields.datos_factura.fecha_ano",
+    "manifestacion_de_valor.fields.datos_factura.fecha_dia",
+    "manifestacion_de_valor.fields.datos_factura.fecha_mes",
+    "manifestacion_de_valor.fields.datos_factura.numero_factura",
+    "manifestacion_de_valor.fields.firmante_fecha",
+    "manifestacion_de_valor.fields.firmante_nombre",
+    "manifestacion_de_valor.fields.firmante_rfc",
+    "manifestacion_de_valor.fields.importacion_temporal.documentacion_anexa",
+    "manifestacion_de_valor.fields.importacion_temporal.valor_provisional",
+    "manifestacion_de_valor.fields.importador.apellido_materno",
+    "manifestacion_de_valor.fields.importador.apellido_paterno",
+    "manifestacion_de_valor.fields.importador.calle",
+    "manifestacion_de_valor.fields.importador.colonia",
+    "manifestacion_de_valor.fields.importador.correo_electronico",
+    "manifestacion_de_valor.fields.importador.cp",
+    "manifestacion_de_valor.fields.importador.entidad_federativa",
+    "manifestacion_de_valor.fields.importador.municipio_delegacion",
+    "manifestacion_de_valor.fields.importador.nombre",
+    "manifestacion_de_valor.fields.importador.nombre_denominacion_social",
+    "manifestacion_de_valor.fields.importador.numero_exterior",
+    "manifestacion_de_valor.fields.importador.numero_interior",
+    "manifestacion_de_valor.fields.importador.rfc_homoclave",
+    "manifestacion_de_valor.fields.importador.telefono",
+    "manifestacion_de_valor.fields.metodo_valoracion.descripcion_mercancia",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodo_unico",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_determinado_art_78",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_precio_unitario_venta",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_reconstruido",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_transaccion_identicas",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_transaccion_mercancias",
+    "manifestacion_de_valor.fields.metodo_valoracion.metodos.valor_transaccion_similares",
+    "manifestacion_de_valor.fields.numero_pedimento",
+    "manifestacion_de_valor.fields.otros_metodos.base_gravable_compraventa_exportacion",
+    "manifestacion_de_valor.fields.otros_metodos.circunstancia_distinta_arts_67_71",
+    "manifestacion_de_valor.fields.otros_metodos.detalle",
+    "manifestacion_de_valor.fields.otros_metodos.detalle.[].mercancia",
+    "manifestacion_de_valor.fields.otros_metodos.detalle.[].metodo_valor_utilizado",
+    "manifestacion_de_valor.fields.otros_metodos.detalle.[].motivo",
+    "manifestacion_de_valor.fields.otros_metodos.detalle.[].valor_determinado",
+    "manifestacion_de_valor.fields.periodicidad",
+    "manifestacion_de_valor.fields.proveedor.ciudad",
+    "manifestacion_de_valor.fields.proveedor.codigo_postal",
+    "manifestacion_de_valor.fields.proveedor.correo_electronico",
+    "manifestacion_de_valor.fields.proveedor.domicilio_calle",
+    "manifestacion_de_valor.fields.proveedor.estado",
+    "manifestacion_de_valor.fields.proveedor.nombre_denominacion_social",
+    "manifestacion_de_valor.fields.proveedor.numero_exterior",
+    "manifestacion_de_valor.fields.proveedor.numero_interior",
+    "manifestacion_de_valor.fields.proveedor.pais",
+    "manifestacion_de_valor.fields.proveedor.telefono",
+    "manifestacion_de_valor.fields.valor_transaccion.precio_pagado_en_letra",
+    "manifestacion_de_valor.fields.valor_transaccion.precio_pagado_moneda_facturacion",
+    "manifestacion_de_valor.fields.vinculacion.existe_vinculacion",
+    "manifestacion_de_valor.fields.vinculacion.influyo_valor",
+    "packing_list.fields.batch_no",
+    "packing_list.fields.date",
+    "packing_list.fields.document_number",
+    "packing_list.fields.line_items",
+    "packing_list.fields.line_items.[].description",
+    "packing_list.fields.line_items.[].gross_weight_kg",
+    "packing_list.fields.line_items.[].measurement_cbm",
+    "packing_list.fields.line_items.[].net_weight_kg",
+    "packing_list.fields.line_items.[].quantity",
+    "packing_list.fields.po_number",
+    "packing_list.fields.shipping_marks",
+    "packing_list.fields.total_gross_weight_kg",
+    "packing_list.fields.total_measurement_cbm",
+    "packing_list.fields.total_net_weight_kg",
+    "packing_list.fields.total_quantity",
+    "pedimento.fields.agente_aduanal.clave_rfc",
+    "pedimento.fields.agente_aduanal.curp",
+    "pedimento.fields.agente_aduanal.e_firma",
+    "pedimento.fields.agente_aduanal.nombre_raz_soc",
+    "pedimento.fields.agente_aduanal.numero_serie_certificado",
+    "pedimento.fields.agente_aduanal.patente_autorizacion",
+    "pedimento.fields.bultos_marcas.marcas_numeros_total_bultos",
+    "pedimento.fields.bultos_marcas.total_bultos",
+    "pedimento.fields.cuadro_liquidacion.concepto",
+    "pedimento.fields.cuadro_liquidacion.forma_pago",
+    "pedimento.fields.cuadro_liquidacion.importe",
+    "pedimento.fields.cuadro_liquidacion.totales_efectivo",
+    "pedimento.fields.cuadro_liquidacion.totales_otros",
+    "pedimento.fields.cuadro_liquidacion.totales_total",
+    "pedimento.fields.fechas.fecha_entrada",
+    "pedimento.fields.fechas.fecha_pago",
+    "pedimento.fields.footer.clave_prevalidador",
+    "pedimento.fields.footer.destino_origen",
+    "pedimento.fields.footer.fecha_hora_impresion",
+    "pedimento.fields.footer.num_total_partidas",
+    "pedimento.fields.footer.usuario",
+    "pedimento.fields.header.aduana_es",
+    "pedimento.fields.header.certificaciones",
+    "pedimento.fields.header.cve_pedimento",
+    "pedimento.fields.header.destino",
+    "pedimento.fields.header.num_pedimento",
+    "pedimento.fields.header.pagina",
+    "pedimento.fields.header.peso_bruto",
+    "pedimento.fields.header.ref",
+    "pedimento.fields.header.regimen",
+    "pedimento.fields.header.t_oper",
+    "pedimento.fields.header.tipo_cambio",
+    "pedimento.fields.identificadores",
+    "pedimento.fields.identificadores.[].clave",
+    "pedimento.fields.identificadores.[].complemento_1",
+    "pedimento.fields.identificadores.[].complemento_2",
+    "pedimento.fields.identificadores.[].complemento_3",
+    "pedimento.fields.importador_exportador.clave_rfc",
+    "pedimento.fields.importador_exportador.curp",
+    "pedimento.fields.importador_exportador.domicilio",
+    "pedimento.fields.importador_exportador.nombre_denominacion_razon_social",
+    "pedimento.fields.observaciones",
+    "pedimento.fields.pago.aduana",
+    "pedimento.fields.pago.fecha_pago",
+    "pedimento.fields.pago.importe_pagado",
+    "pedimento.fields.pago.linea_captura",
+    "pedimento.fields.pago.medio_presentacion",
+    "pedimento.fields.pago.medio_recepcion_cobro",
+    "pedimento.fields.pago.nombre_institucion_bancaria",
+    "pedimento.fields.pago.numero_operacion_bancaria",
+    "pedimento.fields.pago.numero_transaccion_sat",
+    "pedimento.fields.pago.patente",
+    "pedimento.fields.pago.pedimento",
+    "pedimento.fields.partidas",
+    "pedimento.fields.partidas.[].cantidad_umc",
+    "pedimento.fields.partidas.[].cantidad_umt",
+    "pedimento.fields.partidas.[].codigo_producto",
+    "pedimento.fields.partidas.[].contribucion",
+    "pedimento.fields.partidas.[].descripcion",
+    "pedimento.fields.partidas.[].forma_pago",
+    "pedimento.fields.partidas.[].fraccion",
+    "pedimento.fields.partidas.[].identificadores_partida",
+    "pedimento.fields.partidas.[].identificadores_partida.[].complemento_1",
+    "pedimento.fields.partidas.[].identificadores_partida.[].complemento_2",
+    "pedimento.fields.partidas.[].identificadores_partida.[].complemento_3",
+    "pedimento.fields.partidas.[].identificadores_partida.[].identif",
+    "pedimento.fields.partidas.[].imp_precio_pag",
+    "pedimento.fields.partidas.[].importe",
+    "pedimento.fields.partidas.[].marca",
+    "pedimento.fields.partidas.[].met_val",
+    "pedimento.fields.partidas.[].modelo",
+    "pedimento.fields.partidas.[].numero_partida",
+    "pedimento.fields.partidas.[].pais_origen_destino",
+    "pedimento.fields.partidas.[].pais_valor_comercial",
+    "pedimento.fields.partidas.[].permisos",
+    "pedimento.fields.partidas.[].permisos.[].cantidad_umt_c",
+    "pedimento.fields.partidas.[].permisos.[].clave",
+    "pedimento.fields.partidas.[].permisos.[].firma_descargo",
+    "pedimento.fields.partidas.[].permisos.[].num_permiso",
+    "pedimento.fields.partidas.[].permisos.[].val_com_dls",
+    "pedimento.fields.partidas.[].precio_unit",
+    "pedimento.fields.partidas.[].secuencia",
+    "pedimento.fields.partidas.[].subd_nico",
+    "pedimento.fields.partidas.[].tasa",
+    "pedimento.fields.partidas.[].tipo_tasa",
+    "pedimento.fields.partidas.[].umc",
+    "pedimento.fields.partidas.[].umt",
+    "pedimento.fields.partidas.[].val_adu_usd",
+    "pedimento.fields.partidas.[].val_agreg",
+    "pedimento.fields.partidas.[].vinculacion",
+    "pedimento.fields.proveedor_comprador.domicilio",
+    "pedimento.fields.proveedor_comprador.facturas",
+    "pedimento.fields.proveedor_comprador.facturas.[].factor_mon_fact",
+    "pedimento.fields.proveedor_comprador.facturas.[].fecha",
+    "pedimento.fields.proveedor_comprador.facturas.[].incoterm",
+    "pedimento.fields.proveedor_comprador.facturas.[].moneda",
+    "pedimento.fields.proveedor_comprador.facturas.[].num_factura",
+    "pedimento.fields.proveedor_comprador.facturas.[].val_dolares",
+    "pedimento.fields.proveedor_comprador.facturas.[].val_mon_fact",
+    "pedimento.fields.proveedor_comprador.id_fiscal",
+    "pedimento.fields.proveedor_comprador.nombre_denominacion_razon_social",
+    "pedimento.fields.proveedor_comprador.vinculacion",
+    "pedimento.fields.seccion_aduanera.clave_seccion_aduanera_despacho",
+    "pedimento.fields.seccion_aduanera.codigo_aceptacion",
+    "pedimento.fields.tasas_nivel_pedimento.contrib",
+    "pedimento.fields.tasas_nivel_pedimento.cve_t_tasa",
+    "pedimento.fields.tasas_nivel_pedimento.tasa",
+    "pedimento.fields.transporte.identificacion",
+    "pedimento.fields.transporte.numeros_guia_orden_embarque",
+    "pedimento.fields.transporte.numeros_guia_orden_embarque.[]",
+    "pedimento.fields.transporte.pais",
+    "pedimento.fields.transporte.transportista_curp",
+    "pedimento.fields.transporte.transportista_domicilio",
+    "pedimento.fields.transporte.transportista_rfc",
+    "pedimento.fields.valor_decrementables.carga_decrementables",
+    "pedimento.fields.valor_decrementables.descarga_decrementables",
+    "pedimento.fields.valor_decrementables.otros_decrementables",
+    "pedimento.fields.valor_decrementables.seguros_decrementables",
+    "pedimento.fields.valor_decrementables.transporte_decrementables",
+    "pedimento.fields.valores.embalajes",
+    "pedimento.fields.valores.fletes",
+    "pedimento.fields.valores.otros_incrementables",
+    "pedimento.fields.valores.precio_pagado_valor_comercial",
+    "pedimento.fields.valores.seguros",
+    "pedimento.fields.valores.val_seguros",
+    "pedimento.fields.valores.valor_aduana",
+    "pedimento.fields.valores.valor_dolares",
+    "vucem_acuse_digitalizacion.fields.cadena_original",
+    "vucem_acuse_digitalizacion.fields.fecha_registro",
+    "vucem_acuse_digitalizacion.fields.folio_solicitud",
+    "vucem_acuse_digitalizacion.fields.leyenda",
+    "vucem_acuse_digitalizacion.fields.nombre_documento",
+    "vucem_acuse_digitalizacion.fields.nombre_solicitante",
+    "vucem_acuse_digitalizacion.fields.numero_e_document",
+    "vucem_acuse_digitalizacion.fields.operacion",
+    "vucem_acuse_digitalizacion.fields.rfc",
+    "vucem_acuse_digitalizacion.fields.rfc_consulta",
+    "vucem_acuse_digitalizacion.fields.sello_digital_solicitante",
+    "vucem_acuse_digitalizacion.fields.sello_digital_ventanilla",
+    "vucem_acuse_digitalizacion.fields.tipo_documento"
+  ]
+}
