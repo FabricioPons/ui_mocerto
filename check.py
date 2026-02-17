@@ -26,7 +26,7 @@ client = OpenAI(api_key=api_key)
 # PDF file to upload (can be overridden in .env with PDF_FILE=...)
 PDF_FILE = os.getenv(
     "PDF_FILE",
-    "data/raw/drive-download-20260205T220732Z-1-001/26EZ705 COA-F.pdf",
+    "data/raw/drive-download-20260205T220732Z-1-001/escaneo_grupo4pl100-050_2026-01-29-10-15-42.pdf",
 )
 if not os.path.exists(PDF_FILE):
     raise FileNotFoundError(
@@ -49,7 +49,7 @@ print("\nTesting PDF parsing...\n")
 
 # Ask model to parse PDF
 response = client.responses.create(
-    model="gpt-4o-mini",
+    model="gpt-4.1-mini",
     input=[
         {
             "role": "user",
@@ -57,7 +57,7 @@ response = client.responses.create(
                 {
                     "type": "input_text",
                     "text": (
-                        "Analyze this PDF and provide:\n"
+                        "Analyze this PDF and pr1ovide:\n"
                         "1. Document title\n"
                         "2. 5 bullet summary\n"
                         "3. Any serial numbers\n"

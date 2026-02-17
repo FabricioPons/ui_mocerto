@@ -1,0 +1,807 @@
+{
+  "ped_simplificado": {
+    "source_pdf": "PED. SIMPLIFICADO AT2501392.pdf",
+    "fields": {
+      "numero": "25 81 3645 5001495",
+      "peso_bruto": 25458.0,
+      "bl_numero": "MEDUE1503261",
+      "contenedor": "GLDU3540997",
+      "bultos": 25,
+      "importer_rfc": "SES7402068M2",
+      "vessel": "MSCEVERESTVIII",
+      "port_discharge": "ALTAMIRA",
+      "valor_usd": 92.98
+    }
+  },
+  "operations": [
+    {
+      "operation_id": "A",
+      "documents": [
+        {
+          "file": "278864553.pdf",
+          "type": "vucem_acuse",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "A"
+        },
+        {
+          "file": "3645_81_5000103_IP_PN_1.pdf",
+          "type": "pedimento",
+          "extraction_method": "pdfplumber",
+          "fields": {
+            "pedimento_numero": "25 81 3645 5000103",
+            "peso_bruto": 378910.0,
+            "contenedor": null,
+            "bl_numero": "SKSMPMAME5201000",
+            "bultos": null,
+            "importer_rfc": "SCO8007138GA",
+            "vessel": "FWMERCURY",
+            "port_discharge": "ALTAMIRA",
+            "valor_usd": null
+          },
+          "operation": "A"
+        }
+      ],
+      "comparisons": [],
+      "pedimento": {
+        "numero": "25 81 3645 5001495",
+        "peso_bruto": 25458.0,
+        "bl_numero": "MEDUE1503261",
+        "contenedor": "GLDU3540997",
+        "bultos": 25,
+        "importer_rfc": "SES7402068M2",
+        "vessel": "MSCEVERESTVIII",
+        "port_discharge": "ALTAMIRA",
+        "valor_usd": 92.98
+      }
+    },
+    {
+      "operation_id": "B",
+      "documents": [
+        {
+          "file": "1119C125184334.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184583.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184584.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184585.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184586.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184587.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "1119C125184588.pdf",
+          "type": "aviso_automatico",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "BL REV.pdf",
+          "type": "delivery_order",
+          "extraction_method": "pdfplumber",
+          "fields": {
+            "bl_numero": "IBC1399710",
+            "contenedor": "JAYU1098003",
+            "vessel": "APL MINNESOTA"
+          },
+          "operation": "B"
+        },
+        {
+          "file": "BL.pdf",
+          "type": "bill_of_lading",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "bl_numero": "IBC1399710",
+            "peso_bruto": 24797,
+            "contenedor": "JAYU1098003",
+            "bultos": 24,
+            "supplier_name": "NUEVA INCAL SA",
+            "consignee": "SERVIACERO ESPECIALES SA DE CV",
+            "vessel": "X-PRESS MULHACEN",
+            "port_discharge": "ALTAMIRA"
+          },
+          "operation": "B"
+        },
+        {
+          "file": "CE.pdf",
+          "type": "carta_encomienda",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": null,
+            "valor_usd": null,
+            "contenedor": null,
+            "bl_numero": "IBC1399710",
+            "bultos": null,
+            "supplier_name": "SERVIACERO ESPECIALES S.A. DE C.V.",
+            "consignee": "GUILLERMO ORTEGA HURTADO DE MENDOZA"
+          },
+          "operation": "B"
+        },
+        {
+          "file": "CERTIFICADO PRODUCCION.pdf",
+          "type": "certificado_produccion",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": 24797,
+            "valor_usd": 28322.78,
+            "contenedor": null,
+            "bl_numero": null,
+            "bultos": null,
+            "supplier_name": "Nueva Incal, S.A.U.",
+            "consignee": "Serviacero Especiales, S.A. de C.V."
+          },
+          "operation": "B"
+        },
+        {
+          "file": "Carta 3.1.8.pdf",
+          "type": "carta_3_1_8",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": 24797,
+            "valor_usd": 28322.78,
+            "contenedor": null,
+            "bl_numero": null,
+            "bultos": null,
+            "supplier_name": "SERVIACERO ESPECIALES S.A DE C.V.",
+            "consignee": "NUEVA INCAL, S.A.U."
+          },
+          "operation": "B"
+        },
+        {
+          "file": "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf",
+          "type": "document_compilation",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": 24797,
+            "valor_usd": 28322.78,
+            "contenedor": "JAYU1098003",
+            "bl_numero": "IBC1399710",
+            "bultos": 24,
+            "supplier_name": "Nueva Incal S.A.U.",
+            "consignee": "Serviacero Especiales S.A. de C.V."
+          },
+          "operation": "B"
+        },
+        {
+          "file": "EIR JAYU1098003.pdf",
+          "type": "equipment_interchange_receipt",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "B"
+        },
+        {
+          "file": "FV25288.pdf",
+          "type": "commercial_invoice",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "invoice_number": "FV25/288",
+            "valor_usd": 28322.78,
+            "peso_bruto": 24797,
+            "bultos": 24,
+            "supplier_name": "Nueva Incal S.A.U.",
+            "consignee": "Serviacero Especiales S.A de C.V.",
+            "importer_rfc": "SES7402068M2"
+          },
+          "operation": "B"
+        },
+        {
+          "file": "MV SES3555.pdf",
+          "type": "manifestacion_de_valor",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": null,
+            "valor_usd": 28322.78,
+            "contenedor": null,
+            "bl_numero": null,
+            "bultos": null,
+            "supplier_name": "NUEVA INCAL S.A.U.",
+            "consignee": "SERVIACERO ESPECIALES SA DE CV"
+          },
+          "operation": "B"
+        },
+        {
+          "file": "SES3555 FA.pdf",
+          "type": "commercial_invoice",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "invoice_number": "FV25/288",
+            "valor_usd": 28322.78,
+            "peso_bruto": 24797,
+            "bultos": 24,
+            "supplier_name": "nueva incal",
+            "consignee": "SERVIACERO ESPECIALES, S.A. DE CV",
+            "importer_rfc": "MXSES7402068M2"
+          },
+          "operation": "B"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "bl_numero",
+          "pedimento_value": "MEDUE1503261",
+          "sources": {
+            "BL REV.pdf": {
+              "value": "IBC1399710",
+              "status": "mismatch"
+            },
+            "BL.pdf": {
+              "value": "IBC1399710",
+              "status": "mismatch"
+            },
+            "CE.pdf": {
+              "value": "IBC1399710",
+              "status": "mismatch"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": "IBC1399710",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "bultos",
+          "pedimento_value": 25,
+          "sources": {
+            "BL.pdf": {
+              "value": 24,
+              "status": "mismatch"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": 24,
+              "status": "mismatch"
+            },
+            "FV25288.pdf": {
+              "value": 24,
+              "status": "mismatch"
+            },
+            "SES3555 FA.pdf": {
+              "value": 24,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "consignee",
+          "pedimento_value": null,
+          "sources": {
+            "BL.pdf": {
+              "value": "SERVIACERO ESPECIALES SA DE CV",
+              "status": "missing_in_pedimento"
+            },
+            "CE.pdf": {
+              "value": "GUILLERMO ORTEGA HURTADO DE MENDOZA",
+              "status": "missing_in_pedimento"
+            },
+            "CERTIFICADO PRODUCCION.pdf": {
+              "value": "Serviacero Especiales, S.A. de C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "Carta 3.1.8.pdf": {
+              "value": "NUEVA INCAL, S.A.U.",
+              "status": "missing_in_pedimento"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": "Serviacero Especiales S.A. de C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "FV25288.pdf": {
+              "value": "Serviacero Especiales S.A de C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "MV SES3555.pdf": {
+              "value": "SERVIACERO ESPECIALES SA DE CV",
+              "status": "missing_in_pedimento"
+            },
+            "SES3555 FA.pdf": {
+              "value": "SERVIACERO ESPECIALES, S.A. DE CV",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "contenedor",
+          "pedimento_value": "GLDU3540997",
+          "sources": {
+            "BL REV.pdf": {
+              "value": "JAYU1098003",
+              "status": "mismatch"
+            },
+            "BL.pdf": {
+              "value": "JAYU1098003",
+              "status": "mismatch"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": "JAYU1098003",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "importer_rfc",
+          "pedimento_value": "SES7402068M2",
+          "sources": {
+            "FV25288.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "SES3555 FA.pdf": {
+              "value": "MXSES7402068M2",
+              "status": "match"
+            }
+          }
+        },
+        {
+          "field": "invoice_number",
+          "pedimento_value": null,
+          "sources": {
+            "FV25288.pdf": {
+              "value": "FV25/288",
+              "status": "missing_in_pedimento"
+            },
+            "SES3555 FA.pdf": {
+              "value": "FV25/288",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "peso_bruto",
+          "pedimento_value": 25458.0,
+          "sources": {
+            "BL.pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            },
+            "CERTIFICADO PRODUCCION.pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            },
+            "Carta 3.1.8.pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            },
+            "FV25288.pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            },
+            "SES3555 FA.pdf": {
+              "value": 24797,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "port_discharge",
+          "pedimento_value": "ALTAMIRA",
+          "sources": {
+            "BL.pdf": {
+              "value": "ALTAMIRA",
+              "status": "match"
+            }
+          }
+        },
+        {
+          "field": "supplier_name",
+          "pedimento_value": null,
+          "sources": {
+            "BL.pdf": {
+              "value": "NUEVA INCAL SA",
+              "status": "missing_in_pedimento"
+            },
+            "CE.pdf": {
+              "value": "SERVIACERO ESPECIALES S.A. DE C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "CERTIFICADO PRODUCCION.pdf": {
+              "value": "Nueva Incal, S.A.U.",
+              "status": "missing_in_pedimento"
+            },
+            "Carta 3.1.8.pdf": {
+              "value": "SERVIACERO ESPECIALES S.A DE C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": "Nueva Incal S.A.U.",
+              "status": "missing_in_pedimento"
+            },
+            "FV25288.pdf": {
+              "value": "Nueva Incal S.A.U.",
+              "status": "missing_in_pedimento"
+            },
+            "MV SES3555.pdf": {
+              "value": "NUEVA INCAL S.A.U.",
+              "status": "missing_in_pedimento"
+            },
+            "SES3555 FA.pdf": {
+              "value": "nueva incal",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "valor_usd",
+          "pedimento_value": 92.98,
+          "sources": {
+            "CERTIFICADO PRODUCCION.pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            },
+            "Carta 3.1.8.pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            },
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            },
+            "FV25288.pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            },
+            "MV SES3555.pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            },
+            "SES3555 FA.pdf": {
+              "value": 28322.78,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "vessel",
+          "pedimento_value": "MSCEVERESTVIII",
+          "sources": {
+            "BL REV.pdf": {
+              "value": "APL MINNESOTA",
+              "status": "mismatch"
+            },
+            "BL.pdf": {
+              "value": "X-PRESS MULHACEN",
+              "status": "mismatch"
+            }
+          }
+        }
+      ],
+      "pedimento": {
+        "numero": "25 81 3645 5001495",
+        "peso_bruto": 25458.0,
+        "bl_numero": "MEDUE1503261",
+        "contenedor": "GLDU3540997",
+        "bultos": 25,
+        "importer_rfc": "SES7402068M2",
+        "vessel": "MSCEVERESTVIII",
+        "port_discharge": "ALTAMIRA",
+        "valor_usd": 92.98
+      }
+    },
+    {
+      "operation_id": "C",
+      "documents": [
+        {
+          "file": "26EZ705 BL.pdf",
+          "type": "bill_of_lading",
+          "extraction_method": "pdfplumber",
+          "fields": {
+            "bl_numero": "ONEYDLCG00246800",
+            "peso_bruto": 29037.5,
+            "contenedor": "TTNU8246386",
+            "bultos": 575,
+            "vessel": "HMM DAON",
+            "port_discharge": "MANZANILLO",
+            "supplier_name": "NORBRIGHT INDUSTRY CO.,LTD",
+            "consignee": "DISTRIBUIDORA DE SOSA"
+          },
+          "operation": "C"
+        },
+        {
+          "file": "26EZ705 COA-F.pdf",
+          "type": "factory_coa",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "C"
+        },
+        {
+          "file": "26EZ705 COA.pdf",
+          "type": "certificate_of_analysis",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "supplier_name": "NORBRIGHT INDUSTRY CO.,LTD"
+          },
+          "operation": "C"
+        },
+        {
+          "file": "26EZ705 INS.pdf",
+          "type": "cargo_insurance",
+          "extraction_method": "pdfplumber",
+          "fields": {
+            "valor_usd": 36084.13
+          },
+          "operation": "C"
+        },
+        {
+          "file": "26EZ705 INV.pdf",
+          "type": "commercial_invoice",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "invoice_number": "26EZ705",
+            "valor_usd": 32803.75,
+            "peso_bruto": 28750,
+            "bultos": 575,
+            "supplier_name": "NORBRIGHT INDUSTRY CO.,LTD",
+            "consignee": "DISTRIBUIDORA DE SOSA Y ACIDOS S.A. DE C.V.",
+            "importer_rfc": "DSA120213M87"
+          },
+          "operation": "C"
+        },
+        {
+          "file": "26EZ705 PL.pdf",
+          "type": "packing_list",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": 29037.5,
+            "bultos": 575,
+            "consignee": "NORBRIGHT INDUSTRY CO.,LTD"
+          },
+          "operation": "C"
+        },
+        {
+          "file": "CARTA ENCOMIENDA ONE .pdf",
+          "type": "carta_encomienda",
+          "extraction_method": "pdfplumber",
+          "fields": {},
+          "operation": "C"
+        }
+      ],
+      "comparisons": [
+        {
+          "field": "bl_numero",
+          "pedimento_value": "MEDUE1503261",
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "ONEYDLCG00246800",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "bultos",
+          "pedimento_value": 25,
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": 575,
+              "status": "mismatch"
+            },
+            "26EZ705 INV.pdf": {
+              "value": 575,
+              "status": "mismatch"
+            },
+            "26EZ705 PL.pdf": {
+              "value": 575,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "consignee",
+          "pedimento_value": null,
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "DISTRIBUIDORA DE SOSA",
+              "status": "missing_in_pedimento"
+            },
+            "26EZ705 INV.pdf": {
+              "value": "DISTRIBUIDORA DE SOSA Y ACIDOS S.A. DE C.V.",
+              "status": "missing_in_pedimento"
+            },
+            "26EZ705 PL.pdf": {
+              "value": "NORBRIGHT INDUSTRY CO.,LTD",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "contenedor",
+          "pedimento_value": "GLDU3540997",
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "TTNU8246386",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "importer_rfc",
+          "pedimento_value": "SES7402068M2",
+          "sources": {
+            "26EZ705 INV.pdf": {
+              "value": "DSA120213M87",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "invoice_number",
+          "pedimento_value": null,
+          "sources": {
+            "26EZ705 INV.pdf": {
+              "value": "26EZ705",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "peso_bruto",
+          "pedimento_value": 25458.0,
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": 29037.5,
+              "status": "mismatch"
+            },
+            "26EZ705 INV.pdf": {
+              "value": 28750,
+              "status": "mismatch"
+            },
+            "26EZ705 PL.pdf": {
+              "value": 29037.5,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "port_discharge",
+          "pedimento_value": "ALTAMIRA",
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "MANZANILLO",
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "supplier_name",
+          "pedimento_value": null,
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "NORBRIGHT INDUSTRY CO.,LTD",
+              "status": "missing_in_pedimento"
+            },
+            "26EZ705 COA.pdf": {
+              "value": "NORBRIGHT INDUSTRY CO.,LTD",
+              "status": "missing_in_pedimento"
+            },
+            "26EZ705 INV.pdf": {
+              "value": "NORBRIGHT INDUSTRY CO.,LTD",
+              "status": "missing_in_pedimento"
+            }
+          }
+        },
+        {
+          "field": "valor_usd",
+          "pedimento_value": 92.98,
+          "sources": {
+            "26EZ705 INS.pdf": {
+              "value": 36084.13,
+              "status": "mismatch"
+            },
+            "26EZ705 INV.pdf": {
+              "value": 32803.75,
+              "status": "mismatch"
+            }
+          }
+        },
+        {
+          "field": "vessel",
+          "pedimento_value": "MSCEVERESTVIII",
+          "sources": {
+            "26EZ705 BL.pdf": {
+              "value": "HMM DAON",
+              "status": "mismatch"
+            }
+          }
+        }
+      ],
+      "pedimento": {
+        "numero": "25 81 3645 5001495",
+        "peso_bruto": 25458.0,
+        "bl_numero": "MEDUE1503261",
+        "contenedor": "GLDU3540997",
+        "bultos": 25,
+        "importer_rfc": "SES7402068M2",
+        "vessel": "MSCEVERESTVIII",
+        "port_discharge": "ALTAMIRA",
+        "valor_usd": 92.98
+      }
+    },
+    {
+      "operation_id": "shared",
+      "documents": [
+        {
+          "file": "escaneo_grupo4pl100-050_2026-01-29-10-14-45.pdf",
+          "type": "scanned_docs",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": 29037.5,
+            "valor_usd": 32803.75,
+            "contenedor": "TTNU8246386",
+            "bl_numero": "DSA2337",
+            "bultos": 575,
+            "supplier_name": "NORBRIGHT INDUSTRY CO., LTD.",
+            "consignee": "DISTRIBUIDORA DE SOSA Y ACIDOS SA DE CV"
+          },
+          "operation": "shared"
+        },
+        {
+          "file": "escaneo_grupo4pl100-050_2026-01-29-10-15-42.pdf",
+          "type": "scanned_docs",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "peso_bruto": null,
+            "valor_usd": 32803.75,
+            "contenedor": null,
+            "bl_numero": null,
+            "bultos": 1,
+            "supplier_name": "NORBRIGHT INDUSTRY CO., LTD.",
+            "consignee": "DISTRIBUIDORA DE SOSA Y ACIDOS SA DE CV"
+          },
+          "operation": "shared"
+        }
+      ],
+      "comparisons": [],
+      "pedimento": {
+        "numero": "25 81 3645 5001495",
+        "peso_bruto": 25458.0,
+        "bl_numero": "MEDUE1503261",
+        "contenedor": "GLDU3540997",
+        "bultos": 25,
+        "importer_rfc": "SES7402068M2",
+        "vessel": "MSCEVERESTVIII",
+        "port_discharge": "ALTAMIRA",
+        "valor_usd": 92.98
+      }
+    }
+  ],
+  "summary": {
+    "total_documents": 28,
+    "total_fields_compared": 66,
+    "matches": 3,
+    "mismatches": 38,
+    "missing": 25
+  }
+}
