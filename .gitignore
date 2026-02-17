@@ -1,2 +1,10 @@
-CLAUDE.md 
-.claude 
+CLAUDE.md
+.claude/
+
+# Local secrets
+.env
+
+# OS / Python artifacts
+.DS_Store
+__pycache__/
+*.pyc
