@@ -21,7 +21,12 @@
           "file": "278864553.pdf",
           "type": "vucem_acuse",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SCO8007138GA",
+            "importer_name": "SERVIACERO COMERCIAL SA DE CV",
+            "e_document": "04382514200L5",
+            "folio": null
+          },
           "operation": "A"
         },
         {
@@ -42,7 +47,22 @@
           "operation": "A"
         }
       ],
-      "comparisons": [],
+      "comparisons": [
+        {
+          "field": "importer_rfc",
+          "pedimento_value": "SCO8007138GA",
+          "sources": {
+            "278864553.pdf": {
+              "value": "SCO8007138GA",
+              "status": "match"
+            },
+            "3645_81_5000103_IP_PN_1.pdf": {
+              "value": "SCO8007138GA",
+              "status": "match"
+            }
+          }
+        }
+      ],
       "pedimento": {
         "numero": "25 81 3645 5001495",
         "peso_bruto": 25458.0,
@@ -62,49 +82,119 @@
           "file": "1119C125184334.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184334",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 1892.0,
+            "valor_usd": 2156.88,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184583.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184583",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 13635.0,
+            "valor_usd": 15271.2,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184584.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184584",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 1070.0,
+            "valor_usd": 1241.2,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184585.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184585",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 2110.0,
+            "valor_usd": 2405.4,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184586.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184586",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 1050.0,
+            "valor_usd": 1281.0,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184587.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184587",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 995.0,
+            "valor_usd": 1194.0,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
           "file": "1119C125184588.pdf",
           "type": "aviso_automatico",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES SA DE CV",
+            "clave_aviso": "1119C125184588",
+            "certificado": "AV25/338",
+            "fraccion_arancelaria": "72155091",
+            "pais_origen": "ESPAÑA",
+            "peso_bruto": 4045.0,
+            "valor_usd": 4773.1,
+            "aduana": "Altamira, Tamaulipas"
+          },
           "operation": "B"
         },
         {
@@ -114,7 +204,14 @@
           "fields": {
             "bl_numero": "IBC1399710",
             "contenedor": "JAYU1098003",
-            "vessel": "APL MINNESOTA"
+            "vessel": "APL MINNESOTA",
+            "peso_bruto": 24797.0,
+            "bultos": 24,
+            "seal": "L6611229",
+            "port_discharge": "ALTAMIRA",
+            "supplier_name": "NUEVA INCAL SA",
+            "consignee": "SERVIACERO ESPECIALES SA DE CV",
+            "eta": "12/11/2025"
           },
           "operation": "B"
         },
@@ -125,42 +222,12 @@
           "fields": {
             "bl_numero": "IBC1399710",
             "peso_bruto": 24797,
-            "contenedor": "JAYU1098003",
+            "contenedor": null,
             "bultos": 24,
             "supplier_name": "NUEVA INCAL SA",
-            "consignee": "SERVIACERO ESPECIALES SA DE CV",
+            "consignee": "SERVICACERO ESPECIALES SA DE CV",
             "vessel": "X-PRESS MULHACEN",
             "port_discharge": "ALTAMIRA"
-          },
-          "operation": "B"
-        },
-        {
-          "file": "CE.pdf",
-          "type": "carta_encomienda",
-          "extraction_method": "gpt-4.1-mini",
-          "fields": {
-            "peso_bruto": null,
-            "valor_usd": null,
-            "contenedor": null,
-            "bl_numero": "IBC1399710",
-            "bultos": null,
-            "supplier_name": "SERVIACERO ESPECIALES S.A. DE C.V.",
-            "consignee": "GUILLERMO ORTEGA HURTADO DE MENDOZA"
-          },
-          "operation": "B"
-        },
-        {
-          "file": "CERTIFICADO PRODUCCION.pdf",
-          "type": "certificado_produccion",
-          "extraction_method": "gpt-4.1-mini",
-          "fields": {
-            "peso_bruto": 24797,
-            "valor_usd": 28322.78,
-            "contenedor": null,
-            "bl_numero": null,
-            "bultos": null,
-            "supplier_name": "Nueva Incal, S.A.U.",
-            "consignee": "Serviacero Especiales, S.A. de C.V."
           },
           "operation": "B"
         },
@@ -169,13 +236,32 @@
           "type": "carta_3_1_8",
           "extraction_method": "gpt-4.1-mini",
           "fields": {
-            "peso_bruto": 24797,
-            "valor_usd": 28322.78,
-            "contenedor": null,
-            "bl_numero": null,
-            "bultos": null,
-            "supplier_name": "SERVIACERO ESPECIALES S.A DE C.V.",
-            "consignee": "NUEVA INCAL, S.A.U."
+            "importer_rfc": "AAZA701109H47",
+            "importer_name": "SERVIACERO ESPECIALES S.A DE C.V.",
+            "supplier_name": "NUEVA INCAL, S.A.U."
+          },
+          "operation": "B"
+        },
+        {
+          "file": "CE.pdf",
+          "type": "carta_encomienda",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "bl_numero": "IBC1399710",
+            "importer_rfc": "SES7402068M2",
+            "importer_name": "SERVIACERO ESPECIALES S.A. DE C.V.",
+            "agente_aduanal": "GUILLERMO ORTEGA HURTADO DE MENDOZA",
+            "patente": 3645
+          },
+          "operation": "B"
+        },
+        {
+          "file": "CERTIFICADO PRODUCCION.pdf",
+          "type": "certificado_produccion",
+          "extraction_method": "gpt-4.1-mini",
+          "fields": {
+            "supplier_name": "Nueva Incal, S.A.U.",
+            "product_name": "BARRAS DE ACERO SOL 1018 R.F."
           },
           "operation": "B"
         },
@@ -189,8 +275,8 @@
             "contenedor": "JAYU1098003",
             "bl_numero": "IBC1399710",
             "bultos": 24,
-            "supplier_name": "Nueva Incal S.A.U.",
-            "consignee": "Serviacero Especiales S.A. de C.V."
+            "supplier_name": "Nueva Incal, S.A.U.",
+            "consignee": "Serviacero Especiales, S.A. de C.V."
           },
           "operation": "B"
         },
@@ -198,7 +284,14 @@
           "file": "EIR JAYU1098003.pdf",
           "type": "equipment_interchange_receipt",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "contenedor": "JAYU1098003",
+            "vgm_weight": 2200.0,
+            "size_type": "20 DRY",
+            "seal": "SIN",
+            "cliente": "SERVIACERO ESPECIALES S.A. DE C.V.",
+            "linea_naviera": "CMA CGM MEXICO"
+          },
           "operation": "B"
         },
         {
@@ -221,13 +314,10 @@
           "type": "manifestacion_de_valor",
           "extraction_method": "gpt-4.1-mini",
           "fields": {
-            "peso_bruto": null,
-            "valor_usd": 28322.78,
-            "contenedor": null,
-            "bl_numero": null,
-            "bultos": null,
+            "importer_rfc": "SES7402068M2",
             "supplier_name": "NUEVA INCAL S.A.U.",
-            "consignee": "SERVIACERO ESPECIALES SA DE CV"
+            "valor_usd": 28322.78,
+            "invoice_number": "FV25288"
           },
           "operation": "B"
         },
@@ -240,7 +330,7 @@
             "valor_usd": 28322.78,
             "peso_bruto": 24797,
             "bultos": 24,
-            "supplier_name": "nueva incal",
+            "supplier_name": "NUEVA INCAL",
             "consignee": "SERVIACERO ESPECIALES, S.A. DE CV",
             "importer_rfc": "MXSES7402068M2"
           },
@@ -274,6 +364,10 @@
           "field": "bultos",
           "pedimento_value": 25,
           "sources": {
+            "BL REV.pdf": {
+              "value": 24,
+              "status": "mismatch"
+            },
             "BL.pdf": {
               "value": 24,
               "status": "mismatch"
@@ -296,32 +390,20 @@
           "field": "consignee",
           "pedimento_value": null,
           "sources": {
-            "BL.pdf": {
+            "BL REV.pdf": {
               "value": "SERVIACERO ESPECIALES SA DE CV",
               "status": "missing_in_pedimento"
             },
-            "CE.pdf": {
-              "value": "GUILLERMO ORTEGA HURTADO DE MENDOZA",
-              "status": "missing_in_pedimento"
-            },
-            "CERTIFICADO PRODUCCION.pdf": {
-              "value": "Serviacero Especiales, S.A. de C.V.",
-              "status": "missing_in_pedimento"
-            },
-            "Carta 3.1.8.pdf": {
-              "value": "NUEVA INCAL, S.A.U.",
+            "BL.pdf": {
+              "value": "SERVICACERO ESPECIALES SA DE CV",
               "status": "missing_in_pedimento"
             },
             "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
-              "value": "Serviacero Especiales S.A. de C.V.",
+              "value": "Serviacero Especiales, S.A. de C.V.",
               "status": "missing_in_pedimento"
             },
             "FV25288.pdf": {
               "value": "Serviacero Especiales S.A de C.V.",
-              "status": "missing_in_pedimento"
-            },
-            "MV SES3555.pdf": {
-              "value": "SERVIACERO ESPECIALES SA DE CV",
               "status": "missing_in_pedimento"
             },
             "SES3555 FA.pdf": {
@@ -338,11 +420,11 @@
               "value": "JAYU1098003",
               "status": "mismatch"
             },
-            "BL.pdf": {
+            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
               "value": "JAYU1098003",
               "status": "mismatch"
             },
-            "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
+            "EIR JAYU1098003.pdf": {
               "value": "JAYU1098003",
               "status": "mismatch"
             }
@@ -352,7 +434,47 @@
           "field": "importer_rfc",
           "pedimento_value": "SES7402068M2",
           "sources": {
+            "1119C125184334.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184583.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184584.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184585.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184586.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184587.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "1119C125184588.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "Carta 3.1.8.pdf": {
+              "value": "AAZA701109H47",
+              "status": "mismatch"
+            },
+            "CE.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
             "FV25288.pdf": {
+              "value": "SES7402068M2",
+              "status": "match"
+            },
+            "MV SES3555.pdf": {
               "value": "SES7402068M2",
               "status": "match"
             },
@@ -370,6 +492,10 @@
               "value": "FV25/288",
               "status": "missing_in_pedimento"
             },
+            "MV SES3555.pdf": {
+              "value": "FV25288",
+              "status": "missing_in_pedimento"
+            },
             "SES3555 FA.pdf": {
               "value": "FV25/288",
               "status": "missing_in_pedimento"
@@ -380,15 +506,39 @@
           "field": "peso_bruto",
           "pedimento_value": 25458.0,
           "sources": {
+            "1119C125184334.pdf": {
+              "value": 1892.0,
+              "status": "mismatch"
+            },
+            "1119C125184583.pdf": {
+              "value": 13635.0,
+              "status": "mismatch"
+            },
+            "1119C125184584.pdf": {
+              "value": 1070.0,
+              "status": "mismatch"
+            },
+            "1119C125184585.pdf": {
+              "value": 2110.0,
+              "status": "mismatch"
+            },
+            "1119C125184586.pdf": {
+              "value": 1050.0,
+              "status": "mismatch"
+            },
+            "1119C125184587.pdf": {
+              "value": 995.0,
+              "status": "mismatch"
+            },
+            "1119C125184588.pdf": {
+              "value": 4045.0,
+              "status": "mismatch"
+            },
+            "BL REV.pdf": {
+              "value": 24797.0,
+              "status": "mismatch"
+            },
             "BL.pdf": {
-              "value": 24797,
-              "status": "mismatch"
-            },
-            "CERTIFICADO PRODUCCION.pdf": {
-              "value": 24797,
-              "status": "mismatch"
-            },
-            "Carta 3.1.8.pdf": {
               "value": 24797,
               "status": "mismatch"
             },
@@ -410,6 +560,10 @@
           "field": "port_discharge",
           "pedimento_value": "ALTAMIRA",
           "sources": {
+            "BL REV.pdf": {
+              "value": "ALTAMIRA",
+              "status": "match"
+            },
             "BL.pdf": {
               "value": "ALTAMIRA",
               "status": "match"
@@ -420,24 +574,24 @@
           "field": "supplier_name",
           "pedimento_value": null,
           "sources": {
+            "BL REV.pdf": {
+              "value": "NUEVA INCAL SA",
+              "status": "missing_in_pedimento"
+            },
             "BL.pdf": {
               "value": "NUEVA INCAL SA",
               "status": "missing_in_pedimento"
             },
-            "CE.pdf": {
-              "value": "SERVIACERO ESPECIALES S.A. DE C.V.",
+            "Carta 3.1.8.pdf": {
+              "value": "NUEVA INCAL, S.A.U.",
               "status": "missing_in_pedimento"
             },
             "CERTIFICADO PRODUCCION.pdf": {
               "value": "Nueva Incal, S.A.U.",
               "status": "missing_in_pedimento"
             },
-            "Carta 3.1.8.pdf": {
-              "value": "SERVIACERO ESPECIALES S.A DE C.V.",
-              "status": "missing_in_pedimento"
-            },
             "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
-              "value": "Nueva Incal S.A.U.",
+              "value": "Nueva Incal, S.A.U.",
               "status": "missing_in_pedimento"
             },
             "FV25288.pdf": {
@@ -449,7 +603,7 @@
               "status": "missing_in_pedimento"
             },
             "SES3555 FA.pdf": {
-              "value": "nueva incal",
+              "value": "NUEVA INCAL",
               "status": "missing_in_pedimento"
             }
           }
@@ -458,12 +612,32 @@
           "field": "valor_usd",
           "pedimento_value": 92.98,
           "sources": {
-            "CERTIFICADO PRODUCCION.pdf": {
-              "value": 28322.78,
+            "1119C125184334.pdf": {
+              "value": 2156.88,
               "status": "mismatch"
             },
-            "Carta 3.1.8.pdf": {
-              "value": 28322.78,
+            "1119C125184583.pdf": {
+              "value": 15271.2,
+              "status": "mismatch"
+            },
+            "1119C125184584.pdf": {
+              "value": 1241.2,
+              "status": "mismatch"
+            },
+            "1119C125184585.pdf": {
+              "value": 2405.4,
+              "status": "mismatch"
+            },
+            "1119C125184586.pdf": {
+              "value": 1281.0,
+              "status": "mismatch"
+            },
+            "1119C125184587.pdf": {
+              "value": 1194.0,
+              "status": "mismatch"
+            },
+            "1119C125184588.pdf": {
+              "value": 4773.1,
               "status": "mismatch"
             },
             "DOCS FV25-288 SERVIACERO (JAYU1098003).pdf": {
@@ -534,7 +708,11 @@
           "file": "26EZ705 COA-F.pdf",
           "type": "factory_coa",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "product_name": "58号全精炼石蜡Ⅰ 规格牌号： 58号",
+            "batch_number": "20260107206",
+            "quantity": "2220"
+          },
           "operation": "C"
         },
         {
@@ -542,7 +720,9 @@
           "type": "certificate_of_analysis",
           "extraction_method": "gpt-4.1-mini",
           "fields": {
-            "supplier_name": "NORBRIGHT INDUSTRY CO.,LTD"
+            "supplier_name": "NORBRIGHT INDUSTRY CO.,LTD",
+            "product_name": "PARAFFIN WAX FR 58",
+            "batch_number": "20260107206#004"
           },
           "operation": "C"
         },
@@ -551,7 +731,15 @@
           "type": "cargo_insurance",
           "extraction_method": "pdfplumber",
           "fields": {
-            "valor_usd": 36084.13
+            "valor_usd": 36084.13,
+            "policy_number": "PYIE202644011607E05785",
+            "insured_name": "DISTRIBUIDORA DE SOSA Y ACIDOS S.A. DE C.V.",
+            "invoice_number": "26EZ705",
+            "bl_numero": null,
+            "vessel": "HMM DAON 020W",
+            "bultos": 575,
+            "origin": "DALIAN CHINA",
+            "destination": "MANZANILLO MEXICO"
           },
           "operation": "C"
         },
@@ -585,7 +773,14 @@
           "file": "CARTA ENCOMIENDA ONE .pdf",
           "type": "carta_encomienda",
           "extraction_method": "pdfplumber",
-          "fields": {},
+          "fields": {
+            "bl_numero": "ONEYDLCG00246800",
+            "importer_name": "DISTRIBUIDORA DE SOSA Y ACIDOS SA DE CV",
+            "importer_rfc": "DSA120213M87",
+            "agente_aduanal": "GUILLERMO ORTEGA HURTADO DE MENDOZA",
+            "patente": "3645",
+            "aduana": "Manzanillo"
+          },
           "operation": "C"
         }
       ],
@@ -597,6 +792,10 @@
             "26EZ705 BL.pdf": {
               "value": "ONEYDLCG00246800",
               "status": "mismatch"
+            },
+            "CARTA ENCOMIENDA ONE .pdf": {
+              "value": "ONEYDLCG00246800",
+              "status": "mismatch"
             }
           }
         },
@@ -605,6 +804,10 @@
           "pedimento_value": 25,
           "sources": {
             "26EZ705 BL.pdf": {
+              "value": 575,
+              "status": "mismatch"
+            },
+            "26EZ705 INS.pdf": {
               "value": 575,
               "status": "mismatch"
             },
@@ -653,6 +856,10 @@
             "26EZ705 INV.pdf": {
               "value": "DSA120213M87",
               "status": "mismatch"
+            },
+            "CARTA ENCOMIENDA ONE .pdf": {
+              "value": "DSA120213M87",
+              "status": "mismatch"
             }
           }
         },
@@ -660,6 +867,10 @@
           "field": "invoice_number",
           "pedimento_value": null,
           "sources": {
+            "26EZ705 INS.pdf": {
+              "value": "26EZ705",
+              "status": "missing_in_pedimento"
+            },
             "26EZ705 INV.pdf": {
               "value": "26EZ705",
               "status": "missing_in_pedimento"
@@ -733,6 +944,10 @@
             "26EZ705 BL.pdf": {
               "value": "HMM DAON",
               "status": "mismatch"
+            },
+            "26EZ705 INS.pdf": {
+              "value": "HMM DAON 020W",
+              "status": "mismatch"
             }
           }
         }
@@ -773,10 +988,10 @@
           "extraction_method": "gpt-4.1-mini",
           "fields": {
             "peso_bruto": null,
-            "valor_usd": 32803.75,
+            "valor_usd": 32803,
             "contenedor": null,
-            "bl_numero": null,
-            "bultos": 1,
+            "bl_numero": "26EZ705",
+            "bultos": 5,
             "supplier_name": "NORBRIGHT INDUSTRY CO., LTD.",
             "consignee": "DISTRIBUIDORA DE SOSA Y ACIDOS SA DE CV"
           },
@@ -799,9 +1014,9 @@
   ],
   "summary": {
     "total_documents": 28,
-    "total_fields_compared": 66,
-    "matches": 3,
-    "mismatches": 38,
-    "missing": 25
+    "total_fields_compared": 94,
+    "matches": 15,
+    "mismatches": 55,
+    "missing": 24
   }
 }

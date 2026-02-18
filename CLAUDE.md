@@ -31,18 +31,22 @@ Copy `.env.example` to `.env` and set `OPENAI_API_KEY`. The key is required for 
 
 ## Architecture
 
-### Three Python Scripts
+### Module Structure
 
-- **`extract_pedimento.py`** — Core pedimento parser. Uses `pdfplumber` + regex to extract all fields from Pedimento Simplificado PDFs. Exports `collect_lines()`, `extract_fields()`, and `normalize_amount()` used by the pipeline.
-
-- **`parse_and_compare.py`** — Main pipeline orchestrator. Imports from `extract_pedimento.py`. Does:
-  1. Extracts the main pedimento (PED SIMPLIFICADO) as the reference document
-  2. Discovers and classifies all PDFs in `data/raw/drive-download-*/` using filename regex patterns (`CLASSIFICATION_RULES`) then content heuristics (`CONTENT_HEURISTICS`)
-  3. Extracts cross-referenceable fields from text PDFs via regex, or from image PDFs via OpenAI GPT-4.1-mini vision API (parallel with `ThreadPoolExecutor`)
-  4. Groups documents into operations (A/B/C) using known identifiers in `OPERATION_IDENTIFIERS`
-  5. Cross-references extracted fields against pedimento data with numeric tolerance (0.5%) and fuzzy string matching
-
-- **`check.py`** — Standalone OpenAI API smoke test. Uploads a PDF and asks GPT to summarize it.
+- **`config.py`** — Paths (`DRIVE_DIR`, `PED_SIMPLIFICADO`, etc.), `NUMERIC_TOLERANCE`, and `load_dotenv()`.
+- **`classifier.py`** — `CLASSIFICATION_RULES`, `CONTENT_HEURISTICS`, `classify_document()`.
+- **`extractors/`** — Package for text-based PDF extraction:
+  - `common.py` — `first_match()`, `get_pdf_text()`, `is_image_pdf()`.
+  - `__init__.py` — `extract_text_pdf()` dispatcher by doc_type.
+  - `bill_of_lading.py`, `commercial_invoice.py`, `packing_list.py`, `cargo_insurance.py`, `certificate_of_analysis.py`, `delivery_order.py`, `aviso_automatico.py`, `vucem_acuse.py`, `carta_encomienda.py`, `eir.py`, `factory_coa.py` — Each exports `extract(text, upper)`.
+  - `pedimento.py` — `extract(pdf_path)` + `pedimento_to_crossref()`.
+- **`gpt_extraction.py`** — `GPT_FIELD_DEFS`, `build_gpt_prompt()`, `extract_image_pdf()`, `extract_image_pdf_file_upload()`.
+- **`operations.py`** — `OPERATION_IDENTIFIERS`, `group_by_operation()`.
+- **`crossref.py`** — `CROSS_REF_FIELDS`, `compare_values()`, `cross_reference()`.
+- **`pipeline.py`** — `main()` orchestrator (entry point).
+- **`parse_and_compare.py`** — Thin wrapper: `from pipeline import main`.
+- **`extract_pedimento.py`** — Core pedimento parser (`collect_lines()`, `extract_fields()`, `normalize_amount()`).
+- **`check.py`** — Standalone OpenAI API smoke test.
 
 ### Data Flow
 
@@ -56,9 +60,9 @@ data/raw/PED_SIMPLIFICADO.pdf → extract_fields() → ped_crossref (reference)
 
 ### Key Hardcoded Paths
 
-In `parse_and_compare.py`:
+In `config.py`:
 - `DRIVE_DIR` = `data/raw/drive-download-20260205T220732Z-1-001/`
-- `PED_SIMPLIFICADO` = `data/raw/81_5001570_IC_PN_1.pdf`
+- `PED_SIMPLIFICADO` = `data/raw/PED. SIMPLIFICADO AT2501392.pdf`
 - `TAXONOMY_PATH` = taxonomy JSON inside drive download folder
 - `OUTPUT_PATH` = `data/output/comparison_results.json`
 
