@@ -50,6 +50,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             alt="Mocerto logo"
             width={320}
             height={100}
+            style={{ width: "320px", height: "auto" }}
             className="object-contain"
             priority
           />
@@ -75,10 +76,11 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         {/* Mobile logo */}
         <div className="lg:hidden mb-10">
           <Image
-            src="/images/mocerto-logo-white.jpg"
+            src="/images/mocerto-logo-black.jpg"
             alt="Mocerto logo"
             width={200}
             height={60}
+            style={{ width: "200px", height: "auto" }}
             className="object-contain"
             priority
           />
