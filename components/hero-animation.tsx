@@ -12,54 +12,41 @@ export function HeroAnimation({ onComplete }: HeroAnimationProps) {
     "dark"
   );
 
-  // Dark -> sunrise (gradient starts appearing)
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPhase("sunrise");
-    }, 400);
-    return () => clearTimeout(timer);
+    const t1 = setTimeout(() => setPhase("sunrise"), 200);
+    return () => clearTimeout(t1);
   }, []);
 
-  // Sunrise -> hold (fully revealed, pause for a moment)
   useEffect(() => {
     if (phase !== "sunrise") return;
-    const timer = setTimeout(() => {
-      setPhase("hold");
-    }, 2800);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setPhase("hold"), 1500);
+    return () => clearTimeout(t);
   }, [phase]);
 
-  // Hold -> fadeout
   useEffect(() => {
     if (phase !== "hold") return;
-    const timer = setTimeout(() => {
-      setPhase("fadeout");
-    }, 800);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setPhase("fadeout"), 600);
+    return () => clearTimeout(t);
   }, [phase]);
 
-  // Fadeout -> complete
   useEffect(() => {
     if (phase !== "fadeout") return;
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 700);
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => onComplete(), 700);
+    return () => clearTimeout(t);
   }, [phase, onComplete]);
 
   const handleSkip = useCallback(() => {
     onComplete();
   }, [onComplete]);
 
-  const isSunriseOrLater =
+  const gradientVisible =
     phase === "sunrise" || phase === "hold" || phase === "fadeout";
-  const isHoldOrLater = phase === "hold" || phase === "fadeout";
 
   return (
     <div className="fixed inset-0 z-[100] bg-[#060809] overflow-hidden">
-      {/* Main red/magenta glow - rises from bottom-right like a sunrise */}
+      {/* Red/magenta glow - bottom right */}
       <div
-        className="absolute pointer-events-none transition-all"
+        className="absolute pointer-events-none"
         style={{
           bottom: "-20%",
           right: "-10%",
@@ -69,18 +56,15 @@ export function HeroAnimation({ onComplete }: HeroAnimationProps) {
           background:
             "radial-gradient(ellipse at center, #C61030 0%, #C8266E 40%, transparent 70%)",
           filter: "blur(120px)",
-          opacity: isSunriseOrLater ? 0.55 : 0,
-          transform: isSunriseOrLater
-            ? "translateY(-15vh)"
-            : "translateY(20vh)",
-          transitionDuration: "2800ms",
-          transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          opacity: gradientVisible ? 0.55 : 0,
+          transform: gradientVisible ? "translateY(-15vh)" : "translateY(20vh)",
+          transition: "opacity 1.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 1.5s cubic-bezier(0.25,0.46,0.45,0.94)",
         }}
       />
 
-      {/* Cyan/blue accent glow - appears from top-right */}
+      {/* Cyan/blue glow - top right */}
       <div
-        className="absolute pointer-events-none transition-all"
+        className="absolute pointer-events-none"
         style={{
           top: "-15%",
           right: "-5%",
@@ -90,17 +74,15 @@ export function HeroAnimation({ onComplete }: HeroAnimationProps) {
           background:
             "radial-gradient(circle, #6EE1FC 0%, #233BA8 50%, transparent 75%)",
           filter: "blur(80px)",
-          opacity: isSunriseOrLater ? 0.7 : 0,
-          transform: isSunriseOrLater ? "translateY(0)" : "translateY(-10vh)",
-          transitionDuration: "3000ms",
-          transitionDelay: "400ms",
-          transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          opacity: gradientVisible ? 0.7 : 0,
+          transform: gradientVisible ? "translateY(0)" : "translateY(-10vh)",
+          transition: "opacity 1.5s cubic-bezier(0.25,0.46,0.45,0.94) 0.1s, transform 1.5s cubic-bezier(0.25,0.46,0.45,0.94) 0.1s",
         }}
       />
 
-      {/* Deep blue mid-layer glow */}
+      {/* Deep blue mid-layer */}
       <div
-        className="absolute pointer-events-none transition-all"
+        className="absolute pointer-events-none"
         style={{
           top: "5%",
           right: "10%",
@@ -110,24 +92,13 @@ export function HeroAnimation({ onComplete }: HeroAnimationProps) {
           background:
             "radial-gradient(ellipse at center, #233BA8 0%, transparent 70%)",
           filter: "blur(100px)",
-          opacity: isSunriseOrLater ? 0.4 : 0,
-          transitionDuration: "3200ms",
-          transitionDelay: "200ms",
-          transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          opacity: gradientVisible ? 0.4 : 0,
+          transition: "opacity 1.5s cubic-bezier(0.25,0.46,0.45,0.94) 0.05s",
         }}
       />
 
-      {/* Logo in center - fades in after gradient starts */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-10 transition-all"
-        style={{
-          opacity: isSunriseOrLater ? 1 : 0,
-          transform: `translate(-50%, -50%) scale(${isSunriseOrLater ? 1 : 0.97})`,
-          transitionDuration: "1400ms",
-          transitionDelay: "600ms",
-          transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-        }}
-      >
+      {/* Logo + tagline -- always visible, no animation */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-10">
         <Image
           src="/images/mocerto-logo-white-transparent.png"
           alt="Mocerto logo"
@@ -137,23 +108,15 @@ export function HeroAnimation({ onComplete }: HeroAnimationProps) {
           className="object-contain"
           priority
         />
-
-        {/* Tagline */}
         <p
-          className="text-xs tracking-wider transition-all"
-          style={{
-            color: "hsl(210, 4%, 40%)",
-            opacity: isHoldOrLater ? 1 : 0,
-            transform: isHoldOrLater ? "translateY(0)" : "translateY(6px)",
-            transitionDuration: "800ms",
-            transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
+          className="text-xs tracking-wider"
+          style={{ color: "hsl(210, 4%, 40%)" }}
         >
           Simplifying international commerce
         </p>
       </div>
 
-      {/* Skip button */}
+      {/* Skip */}
       <button
         onClick={handleSkip}
         className="absolute bottom-8 right-8 text-xs tracking-wider transition-opacity duration-500"
