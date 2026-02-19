@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 interface ReportPageProps {
   review: Review;
   onBack: () => void;
+  hideNav?: boolean;
 }
 
 type FilterType = "all" | "match" | "mismatch" | "warning";
@@ -52,6 +53,12 @@ function FieldRow({
       color: "text-warning",
       bg: "bg-warning/10",
       label: "Warning",
+    },
+    missing_in_pedimento: {
+      icon: AlertTriangle,
+      color: "text-warning",
+      bg: "bg-warning/10",
+      label: "Missing",
     },
   };
 
@@ -128,7 +135,7 @@ function FieldRow({
   );
 }
 
-export function ReportPage({ review, onBack }: ReportPageProps) {
+export function ReportPage({ review, onBack, hideNav }: ReportPageProps) {
   const [filter, setFilter] = useState<FilterType>("all");
   const [expandedIds, setExpandedIds] = useState<Set<string>>(() => {
     // Auto-expand mismatches and warnings
@@ -151,14 +158,16 @@ export function ReportPage({ review, onBack }: ReportPageProps) {
   const filteredFields =
     filter === "all"
       ? review.fields
-      : review.fields.filter((f) => f.status === filter);
+      : filter === "warning"
+        ? review.fields.filter((f) => f.status === "warning" || f.status === "missing_in_pedimento")
+        : review.fields.filter((f) => f.status === filter);
 
   const matchCount = review.fields.filter((f) => f.status === "match").length;
   const mismatchCount = review.fields.filter(
     (f) => f.status === "mismatch"
   ).length;
   const warningCount = review.fields.filter(
-    (f) => f.status === "warning"
+    (f) => f.status === "warning" || f.status === "missing_in_pedimento"
   ).length;
   const totalFields = review.fields.length;
 
@@ -192,13 +201,15 @@ export function ReportPage({ review, onBack }: ReportPageProps) {
   return (
     <div className="flex flex-col gap-8 max-w-4xl mx-auto px-6 py-8">
       {/* Navigation */}
-      <button
-        onClick={onBack}
-        className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
-      >
-        <ArrowLeft className="h-4 w-4" />
-        Back to Dashboard
-      </button>
+      {!hideNav && (
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Dashboard
+        </button>
+      )}
 
       {/* Report Header */}
       <div className="flex flex-col gap-6 p-6 rounded-lg border border-border bg-card">

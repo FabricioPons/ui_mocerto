@@ -43,11 +43,11 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
   return (
     <div className="flex min-h-screen bg-[#060809] overflow-hidden">
-      {/* Left section - Branding (always visible) */}
+      {/* Left section - Branding (hidden on mobile when credentials are shown) */}
       <div
         className={`relative flex flex-col items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           showCredentials
-            ? "w-full lg:w-1/2"
+            ? "hidden lg:flex w-full lg:w-1/2"
             : "w-full"
         }`}
       >
@@ -135,9 +135,10 @@ export function LoginPage({ onLogin }: LoginPageProps) {
       <div
         className={`fixed right-0 top-0 h-full flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           showCredentials
-            ? "w-full lg:w-1/2 translate-x-0 opacity-100"
-            : "w-full lg:w-1/2 translate-x-full opacity-0"
+            ? "w-full lg:w-1/2 translate-x-0 opacity-100 z-50"
+            : "w-full lg:w-1/2 translate-x-full opacity-0 pointer-events-none"
         }`}
+        style={{ backgroundColor: "#060809" }}
       >
         {/* The dark credentials box */}
         <div

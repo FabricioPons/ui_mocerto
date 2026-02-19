@@ -6,7 +6,7 @@ import { AppHeader } from "@/components/app-header";
 import { Dashboard } from "@/components/dashboard";
 import { NewReview } from "@/components/new-review";
 import { ProcessingScreen } from "@/components/processing-screen";
-import { ReportPage } from "@/components/report-page";
+import { AnalysisView } from "@/components/analysis-view";
 import { Review } from "@/lib/types";
 import { mockReviews } from "@/lib/mock-data";
 
@@ -94,7 +94,7 @@ export default function Page() {
           />
         )}
         {view === "report" && currentReview && (
-          <ReportPage review={currentReview} onBack={handleBackToDashboard} />
+          <AnalysisView review={currentReview} onBack={handleBackToDashboard} />
         )}
       </main>
     </div>
