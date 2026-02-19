@@ -16,11 +16,12 @@ export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
         className="flex items-center gap-3 hover:opacity-80 transition-opacity"
       >
         <Image
-          src="/images/mocerto-icon-white.jpg"
+          src="/images/mocerto-icon-white-transparent.png"
           alt="Mocerto"
-          width={36}
-          height={36}
-          className="rounded-md"
+          width={32}
+          height={32}
+          style={{ width: "32px", height: "auto" }}
+          className="rounded"
         />
         <div className="flex flex-col">
           <span className="text-sm font-semibold text-foreground leading-tight">

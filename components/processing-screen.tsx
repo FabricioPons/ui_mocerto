@@ -65,13 +65,14 @@ export function ProcessingScreen({
     <div className="flex flex-col items-center justify-center min-h-[70vh] gap-10 px-6">
       {/* Animated logo */}
       <div className="relative">
-        <div className="absolute inset-0 rounded-2xl opacity-20 blur-xl animate-pulse-slow gradient-accent" />
-        <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-card border border-border flex items-center justify-center">
+        <div className="absolute inset-0 rounded-2xl opacity-15 blur-xl gradient-accent" />
+        <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-secondary border border-border flex items-center justify-center">
           <Image
-            src="/images/mocerto-icon-white.jpg"
+            src="/images/mocerto-icon-white-transparent.png"
             alt="Processing"
-            width={48}
-            height={48}
+            width={44}
+            height={44}
+            style={{ width: "44px", height: "auto" }}
             className="animate-pulse"
           />
         </div>

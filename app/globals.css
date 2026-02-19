@@ -4,30 +4,35 @@
 
 @layer base {
   :root {
+    /* Mocerto Brand: Black #060809 + White #F1F1F1 */
     --background: 210 11% 3.5%;
     --foreground: 0 0% 94.5%;
-    --card: 210 8% 6%;
+    --card: 210 8% 5.5%;
     --card-foreground: 0 0% 94.5%;
-    --popover: 210 8% 6%;
+    --popover: 210 8% 5.5%;
     --popover-foreground: 0 0% 94.5%;
     --primary: 0 0% 94.5%;
     --primary-foreground: 210 11% 3.5%;
-    --secondary: 210 6% 12%;
+    --secondary: 210 5% 10%;
     --secondary-foreground: 0 0% 94.5%;
-    --muted: 210 6% 15%;
-    --muted-foreground: 210 4% 55%;
-    --accent: 346 85% 55%;
+    --muted: 210 5% 14%;
+    --muted-foreground: 210 4% 50%;
+    --accent: 348 82% 42%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 51%;
+    --destructive: 348 82% 42%;
     --destructive-foreground: 0 0% 100%;
-    --success: 142 72% 45%;
+    --success: 152 60% 42%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
+    --warning: 38 85% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 210 6% 15%;
-    --input: 210 6% 15%;
-    --ring: 346 85% 55%;
-    --radius: 0.625rem;
+    --border: 210 5% 12%;
+    --input: 210 5% 12%;
+    --ring: 348 82% 42%;
+    --radius: 0.5rem;
+    /* Mocerto brand accent colors */
+    --mocerto-red: #C61030;
+    --mocerto-magenta: #C8266E;
+    --mocerto-cyan: #6EE1FC;
   }
 }
 
@@ -40,20 +45,22 @@
   }
 }
 
-/* Subtle gradient accent for cards/borders */
+/* Brand gradient for small accents only */
 .gradient-accent {
   background: linear-gradient(
     135deg,
-    hsl(346, 85%, 55%) 0%,
-    hsl(190, 85%, 55%) 100%
+    var(--mocerto-red) 0%,
+    var(--mocerto-magenta) 60%,
+    var(--mocerto-cyan) 100%
   );
 }
 
 .gradient-accent-subtle {
   background: linear-gradient(
     135deg,
-    hsla(346, 85%, 55%, 0.1) 0%,
-    hsla(190, 85%, 55%, 0.05) 100%
+    hsla(348, 82%, 42%, 0.08) 0%,
+    hsla(340, 72%, 38%, 0.04) 50%,
+    hsla(195, 95%, 71%, 0.03) 100%
   );
 }
 
@@ -63,14 +70,30 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(210, 8%, 6%);
+  background: hsl(210, 8%, 5%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(210, 6%, 20%);
+  background: hsl(210, 5%, 18%);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(210, 6%, 30%);
+  background: hsl(210, 5%, 26%);
+}
+
+/* Animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out;
 }
