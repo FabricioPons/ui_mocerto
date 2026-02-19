@@ -51,28 +51,30 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             : "w-full"
         }`}
       >
-        {/* Subtle cinematic gradient glow - bottom right corner */}
+        {/* Main red/magenta glow - large, emanating from right edge */}
         <div
-          className="absolute bottom-[-120px] right-[-120px] w-[500px] h-[500px] rounded-full opacity-[0.15] blur-[160px] pointer-events-none"
+          className="absolute top-[10%] right-[-10%] w-[70vw] h-[80vh] rounded-full opacity-[0.55] blur-[120px] pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, #C61030 0%, #C8266E 50%, transparent 75%)",
-          }}
-        />
-        <div
-          className="absolute bottom-[-40px] right-[-40px] w-[250px] h-[250px] rounded-full opacity-[0.08] blur-[120px] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, #6EE1FC 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, #C61030 0%, #C8266E 40%, transparent 70%)",
           }}
         />
 
-        {/* Very faint top-left glow for depth */}
+        {/* Cyan/blue accent glow - top right corner */}
         <div
-          className="absolute top-[-80px] left-[-80px] w-[350px] h-[350px] rounded-full opacity-[0.06] blur-[140px] pointer-events-none"
+          className="absolute top-[-15%] right-[-5%] w-[35vw] h-[35vh] rounded-full opacity-[0.7] blur-[80px] pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, #C8266E 0%, transparent 70%)",
+              "radial-gradient(circle, #6EE1FC 0%, #233BA8 50%, transparent 75%)",
+          }}
+        />
+
+        {/* Deep blue mid-layer for the transition between cyan and red */}
+        <div
+          className="absolute top-[5%] right-[10%] w-[45vw] h-[55vh] rounded-full opacity-[0.4] blur-[100px] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, #233BA8 0%, transparent 70%)",
           }}
         />
 
