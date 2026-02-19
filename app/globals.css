@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 11% 3.5%;
+    --foreground: 0 0% 94.5%;
+    --card: 210 8% 6%;
+    --card-foreground: 0 0% 94.5%;
+    --popover: 210 8% 6%;
+    --popover-foreground: 0 0% 94.5%;
+    --primary: 0 0% 94.5%;
+    --primary-foreground: 210 11% 3.5%;
+    --secondary: 210 6% 12%;
+    --secondary-foreground: 0 0% 94.5%;
+    --muted: 210 6% 15%;
+    --muted-foreground: 210 4% 55%;
+    --accent: 346 85% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 72% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 210 6% 15%;
+    --input: 210 6% 15%;
+    --ring: 346 85% 55%;
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Subtle gradient accent for cards/borders */
+.gradient-accent {
+  background: linear-gradient(
+    135deg,
+    hsl(346, 85%, 55%) 0%,
+    hsl(190, 85%, 55%) 100%
+  );
+}
+
+.gradient-accent-subtle {
+  background: linear-gradient(
+    135deg,
+    hsla(346, 85%, 55%, 0.1) 0%,
+    hsla(190, 85%, 55%, 0.05) 100%
+  );
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(210, 8%, 6%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(210, 6%, 20%);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(210, 6%, 30%);
+}

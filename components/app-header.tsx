@@ -1,0 +1,51 @@
+"use client";
+
+import Image from "next/image";
+import { LogOut, User } from "lucide-react";
+
+interface AppHeaderProps {
+  onLogout: () => void;
+  onNavigateDashboard: () => void;
+}
+
+export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
+  return (
+    <header className="flex items-center justify-between h-16 px-6 border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <button
+        onClick={onNavigateDashboard}
+        className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+      >
+        <Image
+          src="/images/mocerto-icon-white.jpg"
+          alt="Mocerto"
+          width={36}
+          height={36}
+          className="rounded-md"
+        />
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold text-foreground leading-tight">
+            Glosador Inteligente
+          </span>
+          <span className="text-[10px] text-muted-foreground uppercase tracking-wider">
+            by Mocerto
+          </span>
+        </div>
+      </button>
+
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-secondary">
+          <User className="h-3.5 w-3.5 text-muted-foreground" />
+          <span className="text-xs text-foreground">Demo User</span>
+        </div>
+        <button
+          onClick={onLogout}
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors px-2.5 py-1.5 rounded-md hover:bg-secondary"
+          aria-label="Sign out"
+        >
+          <LogOut className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">Sign out</span>
+        </button>
+      </div>
+    </header>
+  );
+}
