@@ -1,63 +1,126 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { Review, ReviewDocument, FieldRelation } from "@/lib/types";
+import { Review, ReviewDocument, FieldRelation, DocumentClassification } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import {
+  FileText,
+  Ship,
+  Receipt,
+  Package,
+  FileCheck,
+  Shield,
+  Scale,
+  Award,
+  Bell,
+  Truck,
+  FolderOpen,
+  ArrowLeftRight,
+  ScanLine,
+  Umbrella,
+  FlaskConical,
+  File,
+  ZoomIn,
+  ZoomOut,
+  Maximize2,
+} from "lucide-react";
 
-interface DiagramViewProps {
-  review: Review;
-}
+/* ─────── Constants ─────── */
 
-const STATUS_COLORS = {
-  match: { stroke: "#22c55e", fill: "#22c55e", bg: "bg-success/10", text: "text-success" },
-  mismatch: { stroke: "#ef4444", fill: "#ef4444", bg: "bg-destructive/10", text: "text-destructive" },
-  warning: { stroke: "#eab308", fill: "#eab308", bg: "bg-warning/10", text: "text-warning" },
+const CLASSIFICATION_META: Record<
+  DocumentClassification,
+  { label: string; shortLabel: string; color: string; borderColor: string; bgColor: string; icon: typeof FileText }
+> = {
+  pedimento: { label: "Pedimento", shortLabel: "PED", color: "text-foreground", borderColor: "border-primary/50", bgColor: "bg-primary/5", icon: FileText },
+  commercial_invoice: { label: "Invoice", shortLabel: "INV", color: "text-blue-400", borderColor: "border-blue-500/30", bgColor: "bg-blue-500/8", icon: Receipt },
+  bill_of_lading: { label: "Bill of Lading", shortLabel: "B/L", color: "text-cyan-400", borderColor: "border-cyan-500/30", bgColor: "bg-cyan-500/8", icon: Ship },
+  packing_list: { label: "Packing List", shortLabel: "PKG", color: "text-amber-400", borderColor: "border-amber-500/30", bgColor: "bg-amber-500/8", icon: Package },
+  carta_encomienda: { label: "Carta Encomienda", shortLabel: "C/E", color: "text-emerald-400", borderColor: "border-emerald-500/30", bgColor: "bg-emerald-500/8", icon: FileCheck },
+  carta_3_1_8: { label: "Carta 3.1.8", shortLabel: "3.1.8", color: "text-rose-400", borderColor: "border-rose-500/30", bgColor: "bg-rose-500/8", icon: Shield },
+  manifestacion_de_valor: { label: "Manif. Valor", shortLabel: "M/V", color: "text-violet-400", borderColor: "border-violet-500/30", bgColor: "bg-violet-500/8", icon: Scale },
+  certificado_produccion: { label: "Cert. Produccion", shortLabel: "C/P", color: "text-lime-400", borderColor: "border-lime-500/30", bgColor: "bg-lime-500/8", icon: Award },
+  aviso_automatico: { label: "Aviso Automatico", shortLabel: "A/A", color: "text-orange-400", borderColor: "border-orange-500/30", bgColor: "bg-orange-500/8", icon: Bell },
+  delivery_order: { label: "Delivery Order", shortLabel: "D/O", color: "text-teal-400", borderColor: "border-teal-500/30", bgColor: "bg-teal-500/8", icon: Truck },
+  document_compilation: { label: "Doc. Compilation", shortLabel: "DOC", color: "text-indigo-400", borderColor: "border-indigo-500/30", bgColor: "bg-indigo-500/8", icon: FolderOpen },
+  equipment_interchange_receipt: { label: "EIR", shortLabel: "EIR", color: "text-pink-400", borderColor: "border-pink-500/30", bgColor: "bg-pink-500/8", icon: ArrowLeftRight },
+  vucem_acuse: { label: "VUCEM Acuse", shortLabel: "VCM", color: "text-sky-400", borderColor: "border-sky-500/30", bgColor: "bg-sky-500/8", icon: ScanLine },
+  cargo_insurance: { label: "Cargo Insurance", shortLabel: "INS", color: "text-yellow-400", borderColor: "border-yellow-500/30", bgColor: "bg-yellow-500/8", icon: Umbrella },
+  certificate_of_analysis: { label: "COA", shortLabel: "COA", color: "text-fuchsia-400", borderColor: "border-fuchsia-500/30", bgColor: "bg-fuchsia-500/8", icon: FlaskConical },
+  scanned_docs: { label: "Scanned Docs", shortLabel: "SCN", color: "text-stone-400", borderColor: "border-stone-500/30", bgColor: "bg-stone-500/8", icon: ScanLine },
+  other: { label: "Other", shortLabel: "OTH", color: "text-muted-foreground", borderColor: "border-border", bgColor: "bg-muted/10", icon: File },
 };
 
-interface NodePos {
+const STATUS_COLORS = {
+  match: { stroke: "#22c55e", label: "Match", badgeBg: "bg-emerald-500/15", badgeText: "text-emerald-500", darkBadgeText: "dark:text-emerald-400" },
+  mismatch: { stroke: "#ef4444", label: "Mismatch", badgeBg: "bg-red-500/15", badgeText: "text-red-600", darkBadgeText: "dark:text-red-400" },
+  warning: { stroke: "#eab308", label: "Warning", badgeBg: "bg-amber-500/15", badgeText: "text-amber-600", darkBadgeText: "dark:text-amber-400" },
+};
+
+/* ─────── Layout types ─────── */
+
+interface NodeLayout {
   doc: ReviewDocument;
   x: number;
   y: number;
   w: number;
   h: number;
-  fieldDots: { fieldName: string; localX: number; localY: number; status: "match" | "mismatch" | "warning" }[];
   connectionCount: number;
+  fieldSummary: { match: number; mismatch: number; warning: number };
+  connectedFields: string[];
 }
 
-/* ---------- Force-directed layout ---------- */
-function computeForceLayout(
+interface EdgeLayout {
+  relation: FieldRelation;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  cx: number;
+  cy: number;
+}
+
+/* ─────── Layout computation ─────── */
+
+function computeLayout(
   documents: ReviewDocument[],
   relations: FieldRelation[],
   width: number,
   height: number
-): NodePos[] {
+): NodeLayout[] {
   const pedimento = documents.find((d) => d.isPedimento);
   const others = documents.filter((d) => !d.isPedimento);
   if (!pedimento) return [];
 
-  // Count connections per document
+  // Count connections and field summary per document
   const connCount = new Map<string, number>();
-  for (const d of documents) connCount.set(d.id, 0);
+  const fieldSummary = new Map<string, { match: number; mismatch: number; warning: number }>();
+  const connectedFields = new Map<string, Set<string>>();
+
+  for (const d of documents) {
+    connCount.set(d.id, 0);
+    fieldSummary.set(d.id, { match: 0, mismatch: 0, warning: 0 });
+    connectedFields.set(d.id, new Set());
+  }
+
   for (const r of relations) {
     connCount.set(r.sourceDocId, (connCount.get(r.sourceDocId) || 0) + 1);
     connCount.set(r.targetDocId, (connCount.get(r.targetDocId) || 0) + 1);
-  }
 
-  // Get unique fields per doc from relations
-  function getDocFields(docId: string) {
-    const fieldMap = new Map<string, "match" | "mismatch" | "warning">();
-    for (const r of relations) {
-      if (r.sourceDocId === docId || r.targetDocId === docId) {
-        const existing = fieldMap.get(r.fieldName);
-        if (!existing || r.status === "mismatch" || (r.status === "warning" && existing === "match")) {
-          fieldMap.set(r.fieldName, r.status);
-        }
+    const srcFields = connectedFields.get(r.sourceDocId);
+    const tgtFields = connectedFields.get(r.targetDocId);
+    if (srcFields) srcFields.add(r.fieldName);
+    if (tgtFields) tgtFields.add(r.fieldName);
+
+    // Count unique field+status per doc (deduplicate by fieldName for summary)
+    for (const docId of [r.sourceDocId, r.targetDocId]) {
+      const summary = fieldSummary.get(docId);
+      if (summary) {
+        summary[r.status]++;
       }
     }
-    return Array.from(fieldMap.entries()).map(([name, status]) => ({ fieldName: name, status }));
   }
 
-  // Sort non-pedimento docs: most connected first, then group by classification
+  // Sort by connections
   const sorted = [...others].sort((a, b) => {
     const ca = connCount.get(a.id) || 0;
     const cb = connCount.get(b.id) || 0;
@@ -65,20 +128,15 @@ function computeForceLayout(
     return a.classification.localeCompare(b.classification);
   });
 
-  // Node sizes
-  const pedW = 200;
-  const pedH = 160;
-  const nodeW = 150;
-  const nodeH = 110;
+  const pedW = 220;
+  const pedH = 120;
+  const nodeW = 190;
+  const nodeH = 100;
 
-  // Center pedimento
   const cx = width / 2;
   const cy = height / 2;
 
-  // Place nodes in elliptical tiers to avoid overlapping
-  // Tier 1: Highly connected docs (>3 connections) in inner ring
-  // Tier 2: Moderately connected (1-3) in outer ring
-  // Tier 3: Zero connections furthest out
+  // Tier system
   const tier1: ReviewDocument[] = [];
   const tier2: ReviewDocument[] = [];
   const tier3: ReviewDocument[] = [];
@@ -90,80 +148,44 @@ function computeForceLayout(
     else tier3.push(doc);
   }
 
-  // Radii for each tier - spread wider horizontally since screens are typically landscape
-  const baseRx = Math.max(width * 0.28, 220);
-  const baseRy = Math.max(height * 0.26, 180);
+  const baseRx = Math.max(width * 0.26, 240);
+  const baseRy = Math.max(height * 0.24, 190);
   const tierRadii = [
     { rx: baseRx, ry: baseRy },
-    { rx: baseRx * 1.6, ry: baseRy * 1.5 },
-    { rx: baseRx * 2.1, ry: baseRy * 1.9 },
+    { rx: baseRx * 1.55, ry: baseRy * 1.45 },
+    { rx: baseRx * 2.0, ry: baseRy * 1.85 },
   ];
 
-  // Build field dots for a node
-  function buildFieldDots(docId: string, nw: number, nh: number) {
-    const fields = getDocFields(docId);
-    const headerH = 28;
-    const padding = 8;
-    const usableW = nw - padding * 2;
-    const usableH = nh - headerH - padding * 2;
-    const cols = Math.max(1, Math.ceil(Math.sqrt(fields.length)));
-    const rows = Math.max(1, Math.ceil(fields.length / cols));
-    const spacingX = usableW / (cols + 1);
-    const spacingY = usableH / (rows + 1);
+  const buildNode = (doc: ReviewDocument, x: number, y: number, w: number, h: number): NodeLayout => ({
+    doc,
+    x,
+    y,
+    w,
+    h,
+    connectionCount: connCount.get(doc.id) || 0,
+    fieldSummary: fieldSummary.get(doc.id) || { match: 0, mismatch: 0, warning: 0 },
+    connectedFields: Array.from(connectedFields.get(doc.id) || []),
+  });
 
-    return fields.map((f, i) => {
-      const col = i % cols;
-      const row = Math.floor(i / cols);
-      return {
-        fieldName: f.fieldName,
-        localX: padding + spacingX * (col + 1),
-        localY: headerH + padding + spacingY * (row + 1),
-        status: f.status,
-      };
-    });
-  }
+  const nodes: NodeLayout[] = [buildNode(pedimento, cx - pedW / 2, cy - pedH / 2, pedW, pedH)];
 
-  // Pedimento node
-  const nodes: NodePos[] = [
-    {
-      doc: pedimento,
-      x: cx - pedW / 2,
-      y: cy - pedH / 2,
-      w: pedW,
-      h: pedH,
-      fieldDots: buildFieldDots(pedimento.id, pedW, pedH),
-      connectionCount: connCount.get(pedimento.id) || 0,
-    },
-  ];
-
-  // Place each tier
   const tiers = [tier1, tier2, tier3];
   tiers.forEach((tierDocs, tierIdx) => {
     if (tierDocs.length === 0) return;
     const { rx, ry } = tierRadii[tierIdx];
-    const startAngle = -Math.PI / 2; // top
+    const startAngle = -Math.PI / 2;
     const n = tierDocs.length;
 
     tierDocs.forEach((doc, i) => {
-      // Spread evenly around the ellipse with offset per tier
       const angle = startAngle + (2 * Math.PI * i) / n + (tierIdx * Math.PI) / (n + 3);
       const nx = cx + rx * Math.cos(angle) - nodeW / 2;
       const ny = cy + ry * Math.sin(angle) - nodeH / 2;
-
-      nodes.push({
-        doc,
-        x: nx,
-        y: ny,
-        w: nodeW,
-        h: nodeH,
-        fieldDots: buildFieldDots(doc.id, nodeW, nodeH),
-        connectionCount: connCount.get(doc.id) || 0,
-      });
+      nodes.push(buildNode(doc, nx, ny, nodeW, nodeH));
     });
   });
 
-  // Simple collision resolution: push overlapping nodes apart
-  for (let iter = 0; iter < 20; iter++) {
+  // Collision resolution
+  for (let iter = 0; iter < 25; iter++) {
     let moved = false;
     for (let i = 1; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
@@ -175,11 +197,10 @@ function computeForceLayout(
         const bCy = b.y + b.h / 2;
         const dx = bCx - aCx;
         const dy = bCy - aCy;
-        const minDistX = (a.w + b.w) / 2 + 20;
-        const minDistY = (a.h + b.h) / 2 + 16;
+        const minDistX = (a.w + b.w) / 2 + 24;
+        const minDistY = (a.h + b.h) / 2 + 20;
 
         if (Math.abs(dx) < minDistX && Math.abs(dy) < minDistY) {
-          // Push apart
           const pushX = (minDistX - Math.abs(dx)) * 0.5 * Math.sign(dx || 1);
           const pushY = (minDistY - Math.abs(dy)) * 0.5 * Math.sign(dy || 1);
           a.x -= pushX;
@@ -196,28 +217,195 @@ function computeForceLayout(
   return nodes;
 }
 
-function shortLabel(name: string) {
+function shortLabel(name: string, maxLen = 22) {
   const n = name.replace(/\.(pdf|jpg|png)$/i, "");
-  if (n.length <= 18) return n;
-  return n.slice(0, 16) + "...";
+  if (n.length <= maxLen) return n;
+  return n.slice(0, maxLen - 1) + "\u2026";
 }
 
-export function DiagramView({ review }: DiagramViewProps) {
+/* ─────── Edge computation ─────── */
+
+function computeEdges(
+  relations: FieldRelation[],
+  nodeMap: Map<string, NodeLayout>
+): EdgeLayout[] {
+  // Group relations by source-target pair to offset overlapping edges
+  const pairGroups = new Map<string, FieldRelation[]>();
+  for (const rel of relations) {
+    const key = [rel.sourceDocId, rel.targetDocId].sort().join("::");
+    const arr = pairGroups.get(key) || [];
+    arr.push(rel);
+    pairGroups.set(key, arr);
+  }
+
+  const edges: EdgeLayout[] = [];
+
+  for (const [, group] of pairGroups) {
+    group.forEach((rel, idx) => {
+      const sourceNode = nodeMap.get(rel.sourceDocId);
+      const targetNode = nodeMap.get(rel.targetDocId);
+      if (!sourceNode || !targetNode) return;
+
+      // Connect from center of each node
+      const sx = sourceNode.x + sourceNode.w / 2;
+      const sy = sourceNode.y + sourceNode.h / 2;
+      const tx = targetNode.x + targetNode.w / 2;
+      const ty = targetNode.y + targetNode.h / 2;
+
+      const mx = (sx + tx) / 2;
+      const my = (sy + ty) / 2;
+      const dx = tx - sx;
+      const dy = ty - sy;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+
+      // Spread multiple edges between same pair with increasing perpendicular offset
+      const spreadIndex = idx - (group.length - 1) / 2;
+      const spreadMag = Math.min(len * 0.12, 35) * spreadIndex;
+      const baseCurveMag = Math.min(len * 0.08, 25);
+
+      const controlX = mx + (-dy / len) * (baseCurveMag + spreadMag);
+      const controlY = my + (dx / len) * (baseCurveMag + spreadMag);
+
+      edges.push({ relation: rel, x1: sx, y1: sy, x2: tx, y2: ty, cx: controlX, cy: controlY });
+    });
+  }
+
+  return edges;
+}
+
+/* ─────── Document Node Component ─────── */
+
+function DocumentNode({
+  node,
+  isHovered,
+  isDimmed,
+  isConnectedToHovered,
+  onHover,
+  onLeave,
+}: {
+  node: NodeLayout;
+  isHovered: boolean;
+  isDimmed: boolean;
+  isConnectedToHovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
+}) {
+  const isPed = node.doc.isPedimento;
+  const meta = CLASSIFICATION_META[node.doc.classification];
+  const Icon = meta.icon;
+  const { match: m, mismatch: mm, warning: w } = node.fieldSummary;
+  const total = m + mm + w;
+
+  return (
+    <foreignObject x={node.x} y={node.y} width={node.w} height={node.h} onMouseEnter={onHover} onMouseLeave={onLeave}>
+      <div
+        className={cn(
+          "w-full h-full rounded-lg border-2 overflow-hidden transition-all duration-200 flex flex-col",
+          isPed
+            ? "border-primary/60 bg-card shadow-lg shadow-primary/5"
+            : cn("bg-card", meta.borderColor),
+          isHovered && "ring-2 ring-primary/40 shadow-xl scale-[1.03]",
+          isConnectedToHovered && !isHovered && "ring-1 ring-primary/20 shadow-md",
+          isDimmed && "opacity-25 scale-[0.98]"
+        )}
+        style={{ transition: "all 0.2s ease" }}
+      >
+        {/* Header */}
+        <div
+          className={cn(
+            "flex items-center gap-2 px-3 py-2 border-b",
+            isPed ? "border-primary/20 bg-primary/5" : cn("border-border/50", meta.bgColor)
+          )}
+        >
+          <Icon className={cn("h-3.5 w-3.5 shrink-0", isPed ? "text-foreground" : meta.color)} />
+          <span className={cn("text-[11px] font-semibold truncate flex-1", isPed ? "text-foreground" : "text-foreground")}>
+            {shortLabel(node.doc.name)}
+          </span>
+          <span
+            className={cn(
+              "text-[9px] font-bold px-1.5 py-0.5 rounded shrink-0 uppercase tracking-wider",
+              isPed ? "bg-primary/10 text-primary" : cn(meta.bgColor, meta.color)
+            )}
+          >
+            {meta.shortLabel}
+          </span>
+        </div>
+
+        {/* Body: field status summary */}
+        <div className="flex-1 flex items-center px-3 py-1.5">
+          {total > 0 ? (
+            <div className="flex items-center gap-2 w-full">
+              {/* Mini status bar */}
+              <div className="flex-1 flex flex-col gap-1.5">
+                <div className="flex h-1.5 rounded-full overflow-hidden bg-muted/50">
+                  {m > 0 && (
+                    <div className="bg-emerald-500 transition-all" style={{ width: `${(m / total) * 100}%` }} />
+                  )}
+                  {w > 0 && (
+                    <div className="bg-amber-500 transition-all" style={{ width: `${(w / total) * 100}%` }} />
+                  )}
+                  {mm > 0 && (
+                    <div className="bg-red-500 transition-all" style={{ width: `${(mm / total) * 100}%` }} />
+                  )}
+                </div>
+                <div className="flex items-center gap-2.5 text-[10px]">
+                  {m > 0 && (
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                      <span className="text-muted-foreground">{m}</span>
+                    </span>
+                  )}
+                  {w > 0 && (
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block" />
+                      <span className="text-muted-foreground">{w}</span>
+                    </span>
+                  )}
+                  {mm > 0 && (
+                    <span className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />
+                      <span className="text-muted-foreground">{mm}</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+              {/* Total count badge */}
+              <div className="flex flex-col items-center shrink-0">
+                <span className="text-lg font-bold text-foreground leading-none">{total}</span>
+                <span className="text-[9px] text-muted-foreground">fields</span>
+              </div>
+            </div>
+          ) : (
+            <span className="text-[10px] text-muted-foreground/60 italic">No connections</span>
+          )}
+        </div>
+
+        {/* Pedimento decoration */}
+        {isPed && (
+          <div className="h-0.5 w-full gradient-accent opacity-60" />
+        )}
+      </div>
+    </foreignObject>
+  );
+}
+
+/* ─────── Main Component ─────── */
+
+export function DiagramView({ review }: { review: Review }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 1200, height: 700 });
   const [hoveredRelation, setHoveredRelation] = useState<FieldRelation | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [activeFilter, setActiveFilter] = useState<"all" | "match" | "mismatch" | "warning">("all");
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        setDimensions({
-          width: entry.contentRect.width,
-          height: entry.contentRect.height,
-        });
+        setDimensions({ width: entry.contentRect.width, height: entry.contentRect.height });
       }
     });
     observer.observe(container);
@@ -227,68 +415,41 @@ export function DiagramView({ review }: DiagramViewProps) {
   const relations = review.fieldRelations || [];
 
   const nodes = useMemo(
-    () => computeForceLayout(review.documents, relations, dimensions.width, dimensions.height),
+    () => computeLayout(review.documents, relations, dimensions.width, dimensions.height),
     [review.documents, relations, dimensions]
   );
 
   const nodeMap = useMemo(() => {
-    const m = new Map<string, NodePos>();
+    const m = new Map<string, NodeLayout>();
     for (const n of nodes) m.set(n.doc.id, n);
     return m;
   }, [nodes]);
 
-  // Compute edges with absolute dot positions
-  const edges = useMemo(() => {
-    return relations
-      .map((rel) => {
-        const sourceNode = nodeMap.get(rel.sourceDocId);
-        const targetNode = nodeMap.get(rel.targetDocId);
-        if (!sourceNode || !targetNode) return null;
+  const edges = useMemo(() => computeEdges(relations, nodeMap), [relations, nodeMap]);
 
-        const sourceDot = sourceNode.fieldDots.find((d) => d.fieldName === rel.fieldName);
-        const targetDot = targetNode.fieldDots.find((d) => d.fieldName === rel.fieldName);
-        if (!sourceDot || !targetDot) return null;
+  const filteredEdges = useMemo(() => {
+    if (activeFilter === "all") return edges;
+    return edges.filter((e) => e.relation.status === activeFilter);
+  }, [edges, activeFilter]);
 
-        const sx = sourceNode.x + sourceDot.localX;
-        const sy = sourceNode.y + sourceDot.localY;
-        const tx = targetNode.x + targetDot.localX;
-        const ty = targetNode.y + targetDot.localY;
+  const handleEdgeHover = useCallback((rel: FieldRelation | null, e?: React.MouseEvent) => {
+    setHoveredRelation(rel);
+    if (e) setTooltipPos({ x: e.clientX, y: e.clientY });
+  }, []);
 
-        // Curved control point: offset perpendicular to the line
-        const mx = (sx + tx) / 2;
-        const my = (sy + ty) / 2;
-        const dx = tx - sx;
-        const dy = ty - sy;
-        const len = Math.sqrt(dx * dx + dy * dy) || 1;
-        // Perpendicular offset for curve, proportional to length
-        const offsetMag = Math.min(len * 0.15, 40);
-        const controlX = mx + (-dy / len) * offsetMag;
-        const controlY = my + (dx / len) * offsetMag;
+  // Determine connected nodes when hovering a node
+  const connectedNodeIds = useMemo(() => {
+    if (!hoveredNodeId) return new Set<string>();
+    const ids = new Set<string>();
+    ids.add(hoveredNodeId);
+    for (const r of relations) {
+      if (r.sourceDocId === hoveredNodeId) ids.add(r.targetDocId);
+      if (r.targetDocId === hoveredNodeId) ids.add(r.sourceDocId);
+    }
+    return ids;
+  }, [hoveredNodeId, relations]);
 
-        return { relation: rel, x1: sx, y1: sy, x2: tx, y2: ty, cx: controlX, cy: controlY };
-      })
-      .filter(Boolean) as {
-      relation: FieldRelation;
-      x1: number; y1: number;
-      x2: number; y2: number;
-      cx: number; cy: number;
-    }[];
-  }, [relations, nodeMap]);
-
-  const handleEdgeHover = useCallback(
-    (rel: FieldRelation | null, e?: React.MouseEvent) => {
-      setHoveredRelation(rel);
-      if (e) setTooltipPos({ x: e.clientX, y: e.clientY });
-    },
-    []
-  );
-
-  function isEdgeDimmed(rel: FieldRelation) {
-    if (!hoveredNodeId) return false;
-    return rel.sourceDocId !== hoveredNodeId && rel.targetDocId !== hoveredNodeId;
-  }
-
-  // Compute SVG viewBox to contain all nodes with padding
+  // ViewBox
   const viewBox = useMemo(() => {
     if (nodes.length === 0) return `0 0 ${dimensions.width} ${dimensions.height}`;
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
@@ -298,12 +459,31 @@ export function DiagramView({ review }: DiagramViewProps) {
       maxX = Math.max(maxX, n.x + n.w);
       maxY = Math.max(maxY, n.y + n.h);
     }
-    const pad = 60;
-    return `${minX - pad} ${minY - pad} ${maxX - minX + pad * 2} ${maxY - minY + pad * 2}`;
-  }, [nodes, dimensions]);
+    const pad = 80;
+    const vw = maxX - minX + pad * 2;
+    const vh = maxY - minY + pad * 2;
+    const cx = minX - pad + vw / 2;
+    const cy = minY - pad + vh / 2;
+    const scaledW = vw / zoom;
+    const scaledH = vh / zoom;
+    return `${cx - scaledW / 2} ${cy - scaledH / 2} ${scaledW} ${scaledH}`;
+  }, [nodes, dimensions, zoom]);
+
+  // Summary counts
+  const summary = useMemo(() => {
+    const s = { match: 0, mismatch: 0, warning: 0 };
+    for (const r of relations) s[r.status]++;
+    return s;
+  }, [relations]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-full overflow-auto bg-background">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-background">
+      {/* Background grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: "radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
+      }} />
+
       <svg
         width="100%"
         height="100%"
@@ -311,118 +491,135 @@ export function DiagramView({ review }: DiagramViewProps) {
         className="absolute inset-0"
         preserveAspectRatio="xMidYMid meet"
       >
+        <defs>
+          {/* Arrowheads for each status */}
+          {(["match", "mismatch", "warning"] as const).map((status) => (
+            <marker
+              key={status}
+              id={`arrow-${status}`}
+              viewBox="0 0 10 6"
+              refX="10"
+              refY="3"
+              markerWidth="8"
+              markerHeight="5"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 0 L 10 3 L 0 6 z" fill={STATUS_COLORS[status].stroke} />
+            </marker>
+          ))}
+          {/* Glow filter */}
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         {/* Edges */}
-        {edges.map((edge, i) => {
+        {filteredEdges.map((edge, i) => {
           const color = STATUS_COLORS[edge.relation.status];
-          const dimmed = isEdgeDimmed(edge.relation);
-          const isHovered = hoveredRelation?.id === edge.relation.id;
+          const isEdgeHovered = hoveredRelation?.id === edge.relation.id;
+          const isNodeDimming = hoveredNodeId !== null;
+          const isEdgeConnected =
+            !isNodeDimming ||
+            edge.relation.sourceDocId === hoveredNodeId ||
+            edge.relation.targetDocId === hoveredNodeId;
+
           return (
-            <path
-              key={`edge-${i}`}
-              d={`M ${edge.x1} ${edge.y1} Q ${edge.cx} ${edge.cy} ${edge.x2} ${edge.y2}`}
-              stroke={color.stroke}
-              strokeWidth={isHovered ? 3 : 1.5}
-              strokeOpacity={dimmed ? 0.06 : isHovered ? 1 : 0.4}
-              fill="none"
-              className="transition-all duration-200 cursor-pointer"
-              onMouseEnter={(e) => handleEdgeHover(edge.relation, e)}
-              onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
-              onMouseLeave={() => handleEdgeHover(null)}
-            />
+            <g key={`edge-${i}`}>
+              {/* Hit area (wider invisible stroke for easier hover) */}
+              <path
+                d={`M ${edge.x1} ${edge.y1} Q ${edge.cx} ${edge.cy} ${edge.x2} ${edge.y2}`}
+                stroke="transparent"
+                strokeWidth={16}
+                fill="none"
+                className="cursor-pointer"
+                onMouseEnter={(e) => handleEdgeHover(edge.relation, e)}
+                onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
+                onMouseLeave={() => handleEdgeHover(null)}
+              />
+              {/* Visible edge */}
+              <path
+                d={`M ${edge.x1} ${edge.y1} Q ${edge.cx} ${edge.cy} ${edge.x2} ${edge.y2}`}
+                stroke={color.stroke}
+                strokeWidth={isEdgeHovered ? 3 : 2}
+                strokeOpacity={!isEdgeConnected ? 0.07 : isEdgeHovered ? 1 : 0.5}
+                strokeDasharray={edge.relation.status === "warning" ? "6 4" : undefined}
+                fill="none"
+                markerEnd={`url(#arrow-${edge.relation.status})`}
+                filter={isEdgeHovered ? "url(#glow)" : undefined}
+                className="transition-all duration-200 pointer-events-none"
+              />
+              {/* Field name label on hovered edge */}
+              {isEdgeHovered && (
+                <text
+                  x={edge.cx}
+                  y={edge.cy - 8}
+                  textAnchor="middle"
+                  className="text-[9px] font-semibold fill-foreground pointer-events-none"
+                >
+                  {edge.relation.fieldName}
+                </text>
+              )}
+            </g>
           );
         })}
 
-        {/* Nodes (SVG foreignObject for HTML content) */}
+        {/* Nodes */}
         {nodes.map((node) => {
-          const isPed = node.doc.isPedimento;
           const isHovered = hoveredNodeId === node.doc.id;
-          const isDimmed = hoveredNodeId !== null && !isHovered;
+          const isDimmed = hoveredNodeId !== null && !connectedNodeIds.has(node.doc.id);
+          const isConnectedToHovered = hoveredNodeId !== null && connectedNodeIds.has(node.doc.id) && !isHovered;
 
           return (
-            <foreignObject
+            <DocumentNode
               key={node.doc.id}
-              x={node.x}
-              y={node.y}
-              width={node.w}
-              height={node.h}
-              onMouseEnter={() => setHoveredNodeId(node.doc.id)}
-              onMouseLeave={() => setHoveredNodeId(null)}
-            >
-              <div
-                className={cn(
-                  "w-full h-full rounded-lg border overflow-hidden transition-all duration-200",
-                  isPed ? "border-primary/40 bg-card shadow-md" : "border-border bg-card/90",
-                  isHovered && "ring-1 ring-primary/50 shadow-lg",
-                  isDimmed && "opacity-40"
-                )}
-              >
-                {/* Folded corner */}
-                <div className="absolute top-0 right-0 w-4 h-4">
-                  <div className="absolute top-0 right-0 w-0 h-0 border-t-[16px] border-t-background border-l-[16px] border-l-transparent" />
-                </div>
-
-                {/* Label */}
-                <div
-                  className={cn(
-                    "px-2 py-1.5 border-b text-[10px] font-medium truncate",
-                    isPed ? "border-primary/20 text-primary bg-primary/5" : "border-border text-foreground"
-                  )}
-                >
-                  {shortLabel(node.doc.name)}
-                  {isPed && <span className="ml-1 text-[8px] text-primary/60">(Pedimento)</span>}
-                </div>
-
-                {/* Field dots */}
-                <div className="relative w-full" style={{ height: node.h - 28 }}>
-                  {node.fieldDots.map((dot, di) => {
-                    const dotColor = STATUS_COLORS[dot.status];
-                    return (
-                      <div
-                        key={di}
-                        className="absolute w-2.5 h-2.5 rounded-full transition-transform hover:scale-150"
-                        style={{
-                          left: dot.localX - 5,
-                          top: dot.localY - 28 - 5,
-                          backgroundColor: dotColor.fill,
-                          opacity: isDimmed ? 0.3 : 0.85,
-                        }}
-                        title={`${dot.fieldName}: ${dot.status}`}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </foreignObject>
+              node={node}
+              isHovered={isHovered}
+              isDimmed={isDimmed}
+              isConnectedToHovered={isConnectedToHovered}
+              onHover={() => setHoveredNodeId(node.doc.id)}
+              onLeave={() => setHoveredNodeId(null)}
+            />
           );
         })}
       </svg>
 
-      {/* Tooltip */}
+      {/* Edge Tooltip */}
       {hoveredRelation && (
         <div
           className="fixed z-50 pointer-events-none"
-          style={{ left: tooltipPos.x + 14, top: tooltipPos.y - 12 }}
+          style={{ left: tooltipPos.x + 16, top: tooltipPos.y - 14 }}
         >
-          <div className="bg-card border border-border rounded-lg shadow-xl p-3 max-w-xs">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: STATUS_COLORS[hoveredRelation.status].fill }} />
-              <span className="text-xs font-semibold text-foreground">{hoveredRelation.fieldName}</span>
-              <span className={cn("text-[10px] font-medium px-1.5 py-0.5 rounded-full", STATUS_COLORS[hoveredRelation.status].bg, STATUS_COLORS[hoveredRelation.status].text)}>
-                {hoveredRelation.status}
+          <div className="bg-card border border-border rounded-xl shadow-2xl p-3.5 max-w-xs animate-slide-up">
+            <div className="flex items-center gap-2 mb-2.5">
+              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: STATUS_COLORS[hoveredRelation.status].stroke }} />
+              <span className="text-xs font-bold text-foreground">{hoveredRelation.fieldName}</span>
+              <span
+                className={cn(
+                  "text-[10px] font-semibold px-2 py-0.5 rounded-full",
+                  STATUS_COLORS[hoveredRelation.status].badgeBg,
+                  STATUS_COLORS[hoveredRelation.status].badgeText,
+                  STATUS_COLORS[hoveredRelation.status].darkBadgeText
+                )}
+              >
+                {STATUS_COLORS[hoveredRelation.status].label}
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-2 text-[11px]">
-              <div className="flex flex-col">
-                <span className="text-muted-foreground">Source</span>
-                <span className="font-mono text-foreground">{hoveredRelation.sourceValue}</span>
+            <div className="grid grid-cols-2 gap-3 text-[11px]">
+              <div className="flex flex-col gap-0.5 p-2 rounded-md bg-secondary/60">
+                <span className="text-[9px] text-muted-foreground uppercase tracking-wider font-medium">Source</span>
+                <span className="font-mono text-foreground font-medium">{hoveredRelation.sourceValue}</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-muted-foreground">Target</span>
-                <span className="font-mono text-foreground">{hoveredRelation.targetValue}</span>
+              <div className="flex flex-col gap-0.5 p-2 rounded-md bg-secondary/60">
+                <span className="text-[9px] text-muted-foreground uppercase tracking-wider font-medium">Target</span>
+                <span className="font-mono text-foreground font-medium">{hoveredRelation.targetValue}</span>
               </div>
             </div>
             {hoveredRelation.note && (
-              <p className="text-[10px] text-muted-foreground mt-2 leading-relaxed border-t border-border pt-2">
+              <p className="text-[10px] text-muted-foreground mt-2.5 leading-relaxed border-t border-border pt-2">
                 {hoveredRelation.note}
               </p>
             )}
@@ -430,20 +627,80 @@ export function DiagramView({ review }: DiagramViewProps) {
         </div>
       )}
 
+      {/* Top bar: summary stats + filter */}
+      <div className="absolute top-4 left-4 flex items-center gap-2">
+        {(["all", "match", "mismatch", "warning"] as const).map((filter) => {
+          const isActive = activeFilter === filter;
+          const count = filter === "all" ? relations.length : summary[filter];
+          return (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={cn(
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all border",
+                isActive
+                  ? "bg-card border-border shadow-sm text-foreground"
+                  : "bg-card/60 border-transparent text-muted-foreground hover:bg-card hover:border-border"
+              )}
+            >
+              {filter !== "all" && (
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: STATUS_COLORS[filter].stroke }} />
+              )}
+              <span className="capitalize">{filter}</span>
+              <span className={cn("text-[10px] px-1.5 py-0.5 rounded-full", isActive ? "bg-secondary text-foreground" : "bg-secondary/50 text-muted-foreground")}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Zoom controls */}
+      <div className="absolute top-4 right-4 flex items-center gap-1 bg-card/95 border border-border rounded-lg p-1 backdrop-blur-sm">
+        <button
+          onClick={() => setZoom((z) => Math.min(z + 0.15, 2.5))}
+          className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+          title="Zoom in"
+        >
+          <ZoomIn className="h-4 w-4" />
+        </button>
+        <span className="text-[10px] font-mono text-muted-foreground w-10 text-center">{Math.round(zoom * 100)}%</span>
+        <button
+          onClick={() => setZoom((z) => Math.max(z - 0.15, 0.4))}
+          className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+          title="Zoom out"
+        >
+          <ZoomOut className="h-4 w-4" />
+        </button>
+        <div className="w-px h-4 bg-border mx-0.5" />
+        <button
+          onClick={() => setZoom(1)}
+          className="p-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+          title="Reset zoom"
+        >
+          <Maximize2 className="h-4 w-4" />
+        </button>
+      </div>
+
       {/* Legend */}
       <div className="absolute bottom-4 left-4 flex items-center gap-4 bg-card/95 border border-border rounded-lg px-4 py-2.5 backdrop-blur-sm">
-        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Legend</span>
+        <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Legend</span>
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-success" />
+          <div className="w-5 h-0.5 bg-emerald-500 rounded-full" />
           <span className="text-[10px] text-muted-foreground">Match</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-destructive" />
+          <div className="w-5 h-0.5 bg-red-500 rounded-full" />
           <span className="text-[10px] text-muted-foreground">Mismatch</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-warning" />
+          <div className="w-5 h-0.5 bg-amber-500 rounded-full border-dashed" style={{ borderTop: "2px dashed #eab308", height: 0, backgroundColor: "transparent" }} />
           <span className="text-[10px] text-muted-foreground">Warning</span>
+        </div>
+        <div className="w-px h-3.5 bg-border" />
+        <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded border-2 border-primary/50 bg-primary/5" />
+          <span className="text-[10px] text-muted-foreground">Pedimento</span>
         </div>
       </div>
     </div>
