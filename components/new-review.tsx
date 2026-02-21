@@ -291,7 +291,7 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
           <button
             onClick={() => canSubmit && onSubmit(files)}
             disabled={!canSubmit}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#F1F1F1] text-[#060809] text-sm font-medium hover:bg-[#F1F1F1]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Start Analysis
             <ArrowRight className="h-4 w-4" />

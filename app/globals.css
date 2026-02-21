@@ -4,7 +4,39 @@
 
 @layer base {
   :root {
-    /* Mocerto Brand: Black #060809 + White #F1F1F1 */
+    /* Mocerto Brand Light Mode: White #F1F1F1 base */
+    --background: 0 0% 97%;
+    --foreground: 210 11% 3.5%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 3.5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 3.5%;
+    --primary: 210 11% 3.5%;
+    --primary-foreground: 0 0% 94.5%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 210 11% 3.5%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 210 4% 40%;
+    --accent: 348 82% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 348 82% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 60% 38%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 85% 45%;
+    --warning-foreground: 0 0% 100%;
+    --border: 0 0% 86%;
+    --input: 0 0% 86%;
+    --ring: 348 82% 42%;
+    --radius: 0.5rem;
+    /* Mocerto brand accent colors */
+    --mocerto-red: #C61030;
+    --mocerto-magenta: #C8266E;
+    --mocerto-cyan: #6EE1FC;
+  }
+
+  .dark {
+    /* Mocerto Brand Dark Mode: Black #060809 base */
     --background: 210 11% 3.5%;
     --foreground: 0 0% 94.5%;
     --card: 210 8% 5.5%;
@@ -29,7 +61,6 @@
     --input: 210 5% 12%;
     --ring: 348 82% 42%;
     --radius: 0.5rem;
-    /* Mocerto brand accent colors */
     --mocerto-red: #C61030;
     --mocerto-magenta: #C8266E;
     --mocerto-cyan: #6EE1FC;
@@ -64,22 +95,31 @@
   );
 }
 
+.dark .gradient-accent-subtle {
+  background: linear-gradient(
+    135deg,
+    hsla(348, 82%, 42%, 0.08) 0%,
+    hsla(340, 72%, 38%, 0.04) 50%,
+    hsla(195, 95%, 71%, 0.03) 100%
+  );
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(210, 8%, 5%);
+  background: hsl(var(--secondary));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(210, 5%, 18%);
+  background: hsl(var(--muted-foreground) / 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(210, 5%, 26%);
+  background: hsl(var(--muted-foreground) / 0.5);
 }
 
 /* Animations */

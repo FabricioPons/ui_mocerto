@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { LogOut, User } from "lucide-react";
+import { useTheme } from "./theme-provider";
+import { ThemeToggle } from "./theme-toggle";
 
 interface AppHeaderProps {
   onLogout: () => void;
@@ -9,6 +11,8 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
+  const { theme } = useTheme();
+
   return (
     <header className="flex items-center justify-between h-16 px-6 border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
       <button
@@ -16,7 +20,11 @@ export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
         className="flex items-center gap-3 hover:opacity-80 transition-opacity"
       >
         <Image
-          src="/images/mocerto-icon-white-transparent.png"
+          src={
+            theme === "dark"
+              ? "/images/mocerto-icon-white-transparent.png"
+              : "/images/mocerto-icon-black.png"
+          }
           alt="Mocerto"
           width={32}
           height={32}
@@ -34,6 +42,7 @@ export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
       </button>
 
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-secondary">
           <User className="h-3.5 w-3.5 text-muted-foreground" />
           <span className="text-xs text-foreground">Demo User</span>
