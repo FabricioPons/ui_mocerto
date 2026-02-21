@@ -62,7 +62,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         {/* Main red/magenta glow - large, emanating from right edge */}
         <div
           className={`absolute top-[10%] right-[-10%] w-[70vw] h-[80vh] rounded-full blur-[120px] pointer-events-none ${
-            theme === "dark" ? "opacity-[0.55]" : "opacity-[0.2]"
+            theme === "dark" ? "opacity-[0.55]" : "opacity-[0.45]"
           }`}
           style={{
             background:
@@ -73,7 +73,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         {/* Cyan/blue accent glow - top right corner */}
         <div
           className={`absolute top-[-15%] right-[-5%] w-[35vw] h-[35vh] rounded-full blur-[80px] pointer-events-none ${
-            theme === "dark" ? "opacity-[0.7]" : "opacity-[0.25]"
+            theme === "dark" ? "opacity-[0.7]" : "opacity-[0.55]"
           }`}
           style={{
             background:
@@ -84,7 +84,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         {/* Deep blue mid-layer for the transition between cyan and red */}
         <div
           className={`absolute top-[5%] right-[10%] w-[45vw] h-[55vh] rounded-full blur-[100px] pointer-events-none ${
-            theme === "dark" ? "opacity-[0.4]" : "opacity-[0.15]"
+            theme === "dark" ? "opacity-[0.4]" : "opacity-[0.3]"
           }`}
           style={{
             background:
