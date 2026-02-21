@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useTheme } from "./theme-provider";
 
 interface ProcessingScreenProps {
   documentsCount: number;
@@ -24,6 +25,7 @@ export function ProcessingScreen({
 }: ProcessingScreenProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const totalDuration = 6000;
@@ -68,7 +70,11 @@ export function ProcessingScreen({
         <div className="absolute inset-0 rounded-2xl opacity-15 blur-xl gradient-accent" />
         <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-secondary border border-border flex items-center justify-center">
           <Image
-            src="/images/mocerto-icon-white-transparent.png"
+            src={
+              theme === "dark"
+                ? "/images/mocerto-icon-white-transparent.png"
+                : "/images/mocerto-icon-black.png"
+            }
             alt="Processing"
             width={44}
             height={44}

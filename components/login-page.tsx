@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "./theme-provider";
+import { ThemeToggle } from "./theme-toggle";
 
 interface LoginPageProps {
   onLogin: () => void;
@@ -16,6 +18,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
   const [error, setError] = useState("");
   const [showCredentials, setShowCredentials] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (showCredentials) {
@@ -42,7 +45,12 @@ export function LoginPage({ onLogin }: LoginPageProps) {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#060809] overflow-hidden">
+    <div className="flex min-h-screen bg-background overflow-hidden">
+      {/* Theme toggle - floating */}
+      <div className="fixed top-4 right-4 z-[60]">
+        <ThemeToggle />
+      </div>
+
       {/* Left section - Branding (hidden on mobile when credentials are shown) */}
       <div
         className={`relative flex flex-col items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
@@ -53,7 +61,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
       >
         {/* Main red/magenta glow - large, emanating from right edge */}
         <div
-          className="absolute top-[10%] right-[-10%] w-[70vw] h-[80vh] rounded-full opacity-[0.55] blur-[120px] pointer-events-none"
+          className={`absolute top-[10%] right-[-10%] w-[70vw] h-[80vh] rounded-full blur-[120px] pointer-events-none ${
+            theme === "dark" ? "opacity-[0.55]" : "opacity-[0.45]"
+          }`}
           style={{
             background:
               "radial-gradient(ellipse at center, #C61030 0%, #C8266E 40%, transparent 70%)",
@@ -62,7 +72,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
         {/* Cyan/blue accent glow - top right corner */}
         <div
-          className="absolute top-[-15%] right-[-5%] w-[35vw] h-[35vh] rounded-full opacity-[0.7] blur-[80px] pointer-events-none"
+          className={`absolute top-[-15%] right-[-5%] w-[35vw] h-[35vh] rounded-full blur-[80px] pointer-events-none ${
+            theme === "dark" ? "opacity-[0.7]" : "opacity-[0.55]"
+          }`}
           style={{
             background:
               "radial-gradient(circle, #6EE1FC 0%, #233BA8 50%, transparent 75%)",
@@ -71,7 +83,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
         {/* Deep blue mid-layer for the transition between cyan and red */}
         <div
-          className="absolute top-[5%] right-[10%] w-[45vw] h-[55vh] rounded-full opacity-[0.4] blur-[100px] pointer-events-none"
+          className={`absolute top-[5%] right-[10%] w-[45vw] h-[55vh] rounded-full blur-[100px] pointer-events-none ${
+            theme === "dark" ? "opacity-[0.4]" : "opacity-[0.3]"
+          }`}
           style={{
             background:
               "radial-gradient(ellipse at center, #233BA8 0%, transparent 70%)",
@@ -81,7 +95,11 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         <div className="relative z-10 flex flex-col items-center gap-10 px-8">
           {/* Logo */}
           <Image
-            src="/images/mocerto-logo-white-transparent.png"
+            src={
+              theme === "dark"
+                ? "/images/mocerto-logo-white-transparent.png"
+                : "/images/mocerto-logo-black-transparent.png"
+            }
             alt="Mocerto logo"
             width={320}
             height={86}
@@ -92,13 +110,10 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
           {/* Product title + description */}
           <div className="flex flex-col items-center gap-4 max-w-lg">
-            <h2 className="text-2xl font-semibold text-[#F1F1F1] tracking-tight text-center text-balance">
+            <h2 className="text-2xl font-semibold text-foreground tracking-tight text-center text-balance">
               Glosador Inteligente
             </h2>
-            <p
-              className="text-sm text-center leading-relaxed max-w-sm"
-              style={{ color: "hsl(210, 4%, 50%)" }}
-            >
+            <p className="text-sm text-center leading-relaxed max-w-sm text-muted-foreground">
               Your AI-powered copilot for customs compliance. Detect errors,
               inconsistencies, and risks before submission.
             </p>
@@ -114,7 +129,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           >
             <button
               onClick={() => setShowCredentials(true)}
-              className="group flex items-center gap-2.5 px-8 py-3 rounded-md bg-[#F1F1F1] text-[#060809] text-sm font-medium hover:bg-[#F1F1F1]/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#F1F1F1]/30 focus:ring-offset-2 focus:ring-offset-[#060809]"
+              className="group flex items-center gap-2.5 px-8 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background"
             >
               Sign in
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -123,26 +138,22 @@ export function LoginPage({ onLogin }: LoginPageProps) {
         </div>
 
         {/* Bottom tagline */}
-        <p
-          className="absolute bottom-8 text-xs tracking-wide"
-          style={{ color: "hsl(210, 4%, 35%)" }}
-        >
+        <p className="absolute bottom-8 text-xs tracking-wide text-muted-foreground/60">
           Simplifying international commerce
         </p>
       </div>
 
       {/* Right section - Credentials panel (slides in) */}
       <div
-        className={`fixed right-0 top-0 h-full flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        className={`fixed right-0 top-0 h-full flex items-center justify-center bg-background transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           showCredentials
             ? "w-full lg:w-1/2 translate-x-0 opacity-100 z-50"
             : "w-full lg:w-1/2 translate-x-full opacity-0 pointer-events-none"
         }`}
-        style={{ backgroundColor: "#060809" }}
       >
-        {/* The dark credentials box */}
+        {/* The credentials box */}
         <div
-          className={`w-full max-w-md mx-6 sm:mx-auto rounded-xl border border-[hsl(210,5%,12%)] bg-[hsl(210,8%,5.5%)] p-8 sm:p-10 shadow-2xl shadow-black/40 transition-all duration-700 delay-100 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          className={`w-full max-w-md mx-6 sm:mx-auto rounded-xl border border-border bg-card p-8 sm:p-10 shadow-2xl shadow-foreground/5 transition-all duration-700 delay-100 ease-[cubic-bezier(0.4,0,0.2,1)] ${
             showCredentials
               ? "translate-y-0 opacity-100 scale-100"
               : "translate-y-6 opacity-0 scale-[0.97]"
@@ -151,30 +162,28 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           {/* Mocerto icon at top of credentials box */}
           <div className="flex items-center gap-3 mb-8">
             <Image
-              src="/images/mocerto-icon-white-transparent.png"
+              src={
+                theme === "dark"
+                  ? "/images/mocerto-icon-white-transparent.png"
+                  : "/images/mocerto-icon-black.png"
+              }
               alt="Mocerto"
               width={28}
               height={28}
               style={{ width: "28px", height: "auto" }}
               className="object-contain"
             />
-            <div className="h-5 w-px bg-[hsl(210,5%,18%)]" />
-            <span
-              className="text-xs font-medium uppercase tracking-widest"
-              style={{ color: "hsl(210, 4%, 45%)" }}
-            >
+            <div className="h-5 w-px bg-border" />
+            <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               Secure login
             </span>
           </div>
 
           <div className="flex flex-col gap-2 mb-7">
-            <h1 className="text-xl font-semibold tracking-tight text-[#F1F1F1]">
+            <h1 className="text-xl font-semibold tracking-tight text-foreground">
               Welcome back
             </h1>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ color: "hsl(210, 4%, 50%)" }}
-            >
+            <p className="text-sm leading-relaxed text-muted-foreground">
               Enter your credentials to access your account.
             </p>
           </div>
@@ -184,8 +193,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="email"
-                className="text-xs font-medium uppercase tracking-wider"
-                style={{ color: "hsl(210, 4%, 50%)" }}
+                className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
               >
                 Email
               </label>
@@ -196,7 +204,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="w-full rounded-md border border-[hsl(210,5%,12%)] bg-[hsl(210,8%,8%)] px-3.5 py-2.5 text-sm text-[#F1F1F1] placeholder:text-[hsl(210,4%,35%)] focus:outline-none focus:ring-1 focus:ring-[hsl(210,5%,22%)] focus:border-[hsl(210,5%,22%)] transition-colors"
+                className="w-full rounded-md border border-border bg-secondary px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-colors"
                 autoComplete="email"
               />
             </div>
@@ -205,8 +213,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="password"
-                className="text-xs font-medium uppercase tracking-wider"
-                style={{ color: "hsl(210, 4%, 50%)" }}
+                className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
               >
                 Password
               </label>
@@ -217,14 +224,13 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
-                  className="w-full rounded-md border border-[hsl(210,5%,12%)] bg-[hsl(210,8%,8%)] px-3.5 py-2.5 pr-10 text-sm text-[#F1F1F1] placeholder:text-[hsl(210,4%,35%)] focus:outline-none focus:ring-1 focus:ring-[hsl(210,5%,22%)] focus:border-[hsl(210,5%,22%)] transition-colors"
+                  className="w-full rounded-md border border-border bg-secondary px-3.5 py-2.5 pr-10 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-colors"
                   autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors"
-                  style={{ color: "hsl(210, 4%, 40%)" }}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 transition-colors text-muted-foreground"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
@@ -238,7 +244,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
             {/* Error */}
             {error && (
-              <p className="text-xs" style={{ color: "#C61030" }} role="alert">
+              <p className="text-xs text-destructive" role="alert">
                 {error}
               </p>
             )}
@@ -247,10 +253,10 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex items-center justify-center gap-2 w-full rounded-md bg-[#F1F1F1] text-[#060809] px-4 py-2.5 text-sm font-medium hover:bg-[#F1F1F1]/90 focus:outline-none focus:ring-2 focus:ring-[#F1F1F1]/30 focus:ring-offset-2 focus:ring-offset-[hsl(210,8%,5.5%)] transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-1"
+              className="flex items-center justify-center gap-2 w-full rounded-md bg-primary text-primary-foreground px-4 py-2.5 text-sm font-medium hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-card transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-1"
             >
               {isLoading ? (
-                <div className="h-4 w-4 border-2 border-[#060809]/30 border-t-[#060809] rounded-full animate-spin" />
+                <div className="h-4 w-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
               ) : (
                 <>
                   Sign in
@@ -260,12 +266,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             </button>
           </form>
 
-          <p
-            className="text-center text-xs mt-6"
-            style={{ color: "hsl(210, 4%, 45%)" }}
-          >
+          <p className="text-center text-xs mt-6 text-muted-foreground">
             {"Don't have an account? "}
-            <button className="text-[#F1F1F1] hover:underline font-medium">
+            <button className="text-foreground hover:underline font-medium">
               Contact your administrator
             </button>
           </p>
@@ -273,8 +276,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           {/* Back button to collapse */}
           <button
             onClick={() => setShowCredentials(false)}
-            className="mt-5 flex items-center justify-center gap-1.5 text-xs w-full transition-colors"
-            style={{ color: "hsl(210, 4%, 40%)" }}
+            className="mt-5 flex items-center justify-center gap-1.5 text-xs w-full transition-colors text-muted-foreground"
           >
             <ArrowRight className="h-3 w-3 rotate-180" />
             Back
