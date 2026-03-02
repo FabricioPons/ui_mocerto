@@ -10,7 +10,16 @@ interface ProcessingScreenProps {
   onComplete: () => void;
 }
 
-const stepKeys = [
+type StepKey = 
+  | "domain.extractingData"
+  | "domain.parsingFields"
+  | "domain.readingInvoice"
+  | "domain.analyzingBol"
+  | "domain.crossReferencing"
+  | "domain.identifyingDiscrepancies"
+  | "domain.generatingReport";
+
+const stepKeys: StepKey[] = [
   "domain.extractingData",
   "domain.parsingFields",
   "domain.readingInvoice",
@@ -18,7 +27,7 @@ const stepKeys = [
   "domain.crossReferencing",
   "domain.identifyingDiscrepancies",
   "domain.generatingReport",
-] as const;
+];
 
 export function ProcessingScreen({
   documentsCount,
@@ -65,7 +74,7 @@ export function ProcessingScreen({
       clearInterval(stepTimer);
       clearTimeout(completeTimer);
     };
-  }, [onComplete]);
+  }, [onComplete, steps.length]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] gap-10 px-6">
