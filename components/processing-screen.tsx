@@ -3,21 +3,22 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "./theme-provider";
+import { useTranslation } from "@/lib/i18n";
 
 interface ProcessingScreenProps {
   documentsCount: number;
   onComplete: () => void;
 }
 
-const steps = [
-  "Extracting document data...",
-  "Parsing pedimento fields...",
-  "Reading commercial invoice...",
-  "Analyzing bill of lading...",
-  "Cross-referencing documents...",
-  "Identifying discrepancies...",
-  "Generating compliance report...",
-];
+const stepKeys = [
+  "domain.extractingData",
+  "domain.parsingFields",
+  "domain.readingInvoice",
+  "domain.analyzingBol",
+  "domain.crossReferencing",
+  "domain.identifyingDiscrepancies",
+  "domain.generatingReport",
+] as const;
 
 export function ProcessingScreen({
   documentsCount,
@@ -26,6 +27,9 @@ export function ProcessingScreen({
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const { theme } = useTheme();
+  const { t } = useTranslation();
+
+  const steps = stepKeys.map((key) => t(key));
 
   useEffect(() => {
     const totalDuration = 6000;
@@ -86,11 +90,10 @@ export function ProcessingScreen({
 
       <div className="flex flex-col items-center gap-3 max-w-md">
         <h2 className="text-xl font-semibold text-foreground tracking-tight">
-          Analyzing Documents
+          {t("domain.analyzingDocuments")}
         </h2>
         <p className="text-sm text-muted-foreground text-center">
-          Processing {documentsCount} documents. Our AI engine is extracting and
-          cross-referencing all fields.
+          {t("common.loading")} {documentsCount} {t("domain.processingDocs")}
         </p>
       </div>
 

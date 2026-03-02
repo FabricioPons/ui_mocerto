@@ -13,6 +13,7 @@ import {
   Search,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "@/lib/i18n";
 
 interface DashboardProps {
   reviews: Review[];
@@ -22,11 +23,13 @@ interface DashboardProps {
 }
 
 function StatusBadge({ status }: { status: Review["status"] }) {
+  const { t } = useTranslation();
+
   if (status === "completed") {
     return (
       <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-success/10 text-success">
         <CheckCircle2 className="h-3 w-3" />
-        Completed
+        {t("domain.completed")}
       </span>
     );
   }
@@ -34,14 +37,14 @@ function StatusBadge({ status }: { status: Review["status"] }) {
     return (
       <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-warning/10 text-warning">
         <Clock className="h-3 w-3" />
-        In Progress
+        {t("domain.inProgress")}
       </span>
     );
   }
   return (
     <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-accent/10 text-accent">
       <Clock className="h-3 w-3 animate-spin" />
-      Processing
+      {t("common.loading")}
     </span>
   );
 }
@@ -55,7 +58,8 @@ function ReviewCard({
   onViewReport: () => void;
   onContinue: () => void;
 }) {
-  const formattedDate = new Date(review.createdAt).toLocaleDateString("en-US", {
+  const { t } = useTranslation();
+  const formattedDate = new Date(review.createdAt).toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -82,7 +86,7 @@ function ReviewCard({
       </div>
 
       <div className="flex items-center gap-4 text-xs text-muted-foreground">
-        <span>{review.documentsCount} documents</span>
+        <span>{review.documentsCount} {t("domain.documents")}</span>
         <span className="w-px h-3 bg-border" />
         <span>{formattedDate}</span>
       </div>
@@ -92,19 +96,19 @@ function ReviewCard({
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-success" />
             <span className="text-xs text-muted-foreground">
-              {review.matchCount} matches
+              {review.matchCount} {t("domain.matches")}
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-destructive" />
             <span className="text-xs text-muted-foreground">
-              {review.mismatchCount} mismatches
+              {review.mismatchCount} {t("domain.mismatches")}
             </span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-warning" />
             <span className="text-xs text-muted-foreground">
-              {review.warningCount} warnings
+              {review.warningCount} {t("domain.warnings")}
             </span>
           </div>
         </div>
@@ -116,7 +120,7 @@ function ReviewCard({
             onClick={onViewReport}
             className="flex items-center gap-1.5 text-xs font-medium text-foreground hover:text-accent transition-colors"
           >
-            View Report
+            {t("domain.viewReport")}
             <ChevronRight className="h-3.5 w-3.5" />
           </button>
         ) : review.status === "in_progress" ? (
@@ -124,7 +128,7 @@ function ReviewCard({
             onClick={onContinue}
             className="flex items-center gap-1.5 text-xs font-medium text-accent hover:text-accent/80 transition-colors"
           >
-            Continue Review
+            {t("domain.continueReview")}
             <ArrowRight className="h-3.5 w-3.5" />
           </button>
         ) : null}
@@ -140,6 +144,7 @@ export function Dashboard({
   onContinueReview,
 }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation();
 
   const completedCount = reviews.filter(
     (r) => r.status === "completed"
@@ -160,10 +165,10 @@ export function Dashboard({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-semibold text-foreground tracking-tight">
-            Reviews
+            {t("domain.reviews")}
           </h1>
           <p className="text-sm text-muted-foreground">
-            Manage your pedimento compliance reviews.
+            {t("domain.reviewsSubtitle")}
           </p>
         </div>
         <button
@@ -171,7 +176,7 @@ export function Dashboard({
           className="flex items-center gap-2 px-4 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors self-start sm:self-auto"
         >
           <Plus className="h-4 w-4" />
-          New Review
+          {t("dashboard.newReview")}
         </button>
       </div>
 
@@ -186,7 +191,7 @@ export function Dashboard({
               {reviews.length}
             </span>
             <span className="text-xs text-muted-foreground">
-              Total Reviews
+              {t("dashboard.totalReviews")}
             </span>
           </div>
         </div>
@@ -198,7 +203,7 @@ export function Dashboard({
             <span className="text-xl font-semibold text-foreground">
               {completedCount}
             </span>
-            <span className="text-xs text-muted-foreground">Completed</span>
+            <span className="text-xs text-muted-foreground">{t("dashboard.completedReviews")}</span>
           </div>
         </div>
         <div className="flex items-center gap-4 p-4 rounded-lg border border-border bg-card">
@@ -209,7 +214,7 @@ export function Dashboard({
             <span className="text-xl font-semibold text-foreground">
               {inProgressCount}
             </span>
-            <span className="text-xs text-muted-foreground">In Progress</span>
+            <span className="text-xs text-muted-foreground">{t("domain.inProgress")}</span>
           </div>
         </div>
       </div>
@@ -221,7 +226,7 @@ export function Dashboard({
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search by pedimento number or importer name..."
+          placeholder={t("domain.searchPlaceholder")}
           className="w-full rounded-md border border-border bg-card pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring transition-colors"
         />
       </div>
@@ -241,7 +246,7 @@ export function Dashboard({
       {filteredReviews.length === 0 && (
         <div className="flex flex-col items-center justify-center py-16 gap-3">
           <FileText className="h-10 w-10 text-muted-foreground/40" />
-          <p className="text-sm text-muted-foreground">No reviews found.</p>
+          <p className="text-sm text-muted-foreground">{t("domain.noReviewsFound")}</p>
         </div>
       )}
     </div>
