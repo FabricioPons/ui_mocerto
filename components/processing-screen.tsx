@@ -78,8 +78,8 @@ export function ProcessingScreen({
             alt="Processing"
             width={44}
             height={44}
-            style={{ width: "44px", height: "auto" }}
-            className="animate-pulse"
+            style={{ width: "auto", height: "auto" }}
+            className="animate-pulse w-11"
           />
         </div>
       </div>

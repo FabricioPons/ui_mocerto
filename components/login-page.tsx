@@ -103,8 +103,8 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             alt="Mocerto logo"
             width={320}
             height={86}
-            style={{ width: "320px", height: "auto" }}
-            className="object-contain"
+            style={{ width: "auto", height: "auto" }}
+            className="object-contain max-w-[320px]"
             priority
           />
 
@@ -170,8 +170,8 @@ export function LoginPage({ onLogin }: LoginPageProps) {
               alt="Mocerto"
               width={28}
               height={28}
-              style={{ width: "28px", height: "auto" }}
-              className="object-contain"
+              style={{ width: "auto", height: "auto" }}
+              className="object-contain w-7"
             />
             <div className="h-5 w-px bg-border" />
             <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">

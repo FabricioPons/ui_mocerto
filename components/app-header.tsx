@@ -28,8 +28,8 @@ export function AppHeader({ onLogout, onNavigateDashboard }: AppHeaderProps) {
           alt="Mocerto"
           width={32}
           height={32}
-          style={{ width: "32px", height: "auto" }}
-          className="rounded"
+          style={{ width: "auto", height: "auto" }}
+          className="rounded w-8"
         />
         <div className="flex flex-col">
           <span className="text-sm font-semibold text-foreground leading-tight">
