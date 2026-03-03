@@ -7,6 +7,7 @@ import { WorkspaceView } from "./workspace-view";
 import { DiagramView } from "./diagram-view";
 import { ArrowLeft, FileText, LayoutPanelLeft, Network } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 
 type AnalysisTab = "report" | "workspace" | "diagram";
 
@@ -15,14 +16,15 @@ interface AnalysisViewProps {
   onBack: () => void;
 }
 
-const tabs: { key: AnalysisTab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-  { key: "report", label: "Report", icon: FileText },
-  { key: "workspace", label: "Workspace", icon: LayoutPanelLeft },
-  { key: "diagram", label: "Diagram", icon: Network },
-];
-
 export function AnalysisView({ review, onBack }: AnalysisViewProps) {
   const [activeTab, setActiveTab] = useState<AnalysisTab>("report");
+  const { t } = useTranslation();
+
+  const tabs: { key: AnalysisTab; labelKey: "tabs.report" | "tabs.workspace" | "tabs.diagram"; icon: React.ComponentType<{ className?: string }> }[] = [
+    { key: "report", labelKey: "tabs.report", icon: FileText },
+    { key: "workspace", labelKey: "tabs.workspace", icon: LayoutPanelLeft },
+    { key: "diagram", labelKey: "tabs.diagram", icon: Network },
+  ];
 
   return (
     <div className="flex flex-col h-[calc(100vh-3.5rem)]">
@@ -33,7 +35,7 @@ export function AnalysisView({ review, onBack }: AnalysisViewProps) {
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mr-2"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span className="hidden sm:inline">Dashboard</span>
+          <span className="hidden sm:inline">{t("tabs.dashboard")}</span>
         </button>
 
         <div className="h-5 w-px bg-border" />
@@ -54,7 +56,7 @@ export function AnalysisView({ review, onBack }: AnalysisViewProps) {
                 )}
               >
                 <Icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
+                <span className="hidden sm:inline">{t(tab.labelKey)}</span>
               </button>
             );
           })}

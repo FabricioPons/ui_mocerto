@@ -12,6 +12,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 
 interface UploadedFile {
   id: string;
@@ -34,6 +35,7 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
 
   const addFiles = useCallback(
     (newFiles: FileList | File[]) => {
@@ -121,14 +123,14 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
           className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Dashboard
+          {t("domain.backToDashboard")}
         </button>
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-semibold text-foreground tracking-tight">
-            New Review
+            {t("dashboard.newReview")}
           </h1>
           <p className="text-sm text-muted-foreground">
-            Upload the pedimento and all supporting documents for analysis.
+            {t("newReview.uploadDescription")}
           </p>
         </div>
       </div>
@@ -137,17 +139,16 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
       <div className="flex items-start gap-3 p-4 rounded-lg border border-border bg-card">
         <AlertCircle className="h-4 w-4 text-accent mt-0.5 shrink-0" />
         <div className="flex flex-col gap-1">
-          <p className="text-sm text-foreground font-medium">How it works</p>
+          <p className="text-sm text-foreground font-medium">{t("domain.howItWorks")}</p>
           <ol className="text-xs text-muted-foreground flex flex-col gap-1">
             <li>
-              1. Drop a folder or select files containing the pedimento and
-              supporting documents.
+              1. {t("domain.howItWorksStep1")}
             </li>
             <li>
-              2. Mark one document as the main pedimento (click the star icon).
+              2. {t("domain.howItWorksStep2")}
             </li>
             <li>
-              3. Click "Start Analysis" to begin the compliance review.
+              3. {t("domain.howItWorksStep3")}
             </li>
           </ol>
         </div>
@@ -193,11 +194,11 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
         <div className="flex flex-col items-center gap-1">
           <p className="text-sm font-medium text-foreground">
             {isDragOver
-              ? "Drop files or folder here"
-              : "Drag & drop files or a folder here"}
+              ? t("domain.dropFilesHere")
+              : t("domain.dragDropFiles")}
           </p>
           <p className="text-xs text-muted-foreground">
-            or click to browse. Supports PDF, XLSX, DOCX, JPG, PNG
+            {t("domain.supportedFormatsShort")}
           </p>
         </div>
       </div>
@@ -207,11 +208,11 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-medium text-foreground">
-              Uploaded Documents ({files.length})
+              {t("domain.uploadedDocuments")} ({files.length})
             </h2>
             {!hasPedimento && (
               <span className="text-xs text-accent">
-                Mark one file as the main pedimento
+                {t("domain.markPedimento")}
               </span>
             )}
           </div>
@@ -240,7 +241,7 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
                     {formatFileSize(f.file.size)}
                     {f.isPedimento && (
                       <span className="ml-2 text-accent font-medium">
-                        Main Pedimento
+                        {t("domain.mainPedimento")}
                       </span>
                     )}
                   </span>
@@ -283,17 +284,17 @@ export function NewReview({ onBack, onSubmit }: NewReviewProps) {
         <div className="flex items-center justify-between pt-4 border-t border-border">
           <p className="text-xs text-muted-foreground">
             {canSubmit
-              ? "Ready to analyze. Click to start the compliance review."
+              ? t("domain.readyToAnalyze")
               : !hasPedimento
-                ? "Please mark one document as the main pedimento."
-                : "Upload at least 2 documents (1 pedimento + supporting docs)."}
+                ? t("domain.pleaseMarkPedimento")
+                : t("domain.uploadAtLeast")}
           </p>
           <button
             onClick={() => canSubmit && onSubmit(files)}
             disabled={!canSubmit}
             className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            Start Analysis
+            {t("domain.startAnalysis")}
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>

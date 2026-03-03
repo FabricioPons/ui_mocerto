@@ -5,6 +5,8 @@ import { Eye, EyeOff, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "./theme-provider";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageToggle } from "./language-toggle";
+import { useTranslation } from "@/lib/i18n";
 
 interface LoginPageProps {
   onLogin: () => void;
@@ -19,6 +21,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
   const [showCredentials, setShowCredentials] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (showCredentials) {
@@ -46,8 +49,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
   return (
     <div className="flex min-h-screen bg-background overflow-hidden">
-      {/* Theme toggle - floating */}
-      <div className="fixed top-4 right-4 z-[60]">
+      {/* Theme and language toggle - floating */}
+      <div className="fixed top-4 right-4 z-[60] flex items-center gap-2">
+        <LanguageToggle />
         <ThemeToggle />
       </div>
 
@@ -111,11 +115,10 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           {/* Product title + description */}
           <div className="flex flex-col items-center gap-4 max-w-lg">
             <h2 className="text-2xl font-semibold text-foreground tracking-tight text-center text-balance">
-              Glosador Inteligente
+              {t("domain.glosadorInteligente")}
             </h2>
             <p className="text-sm text-center leading-relaxed max-w-sm text-muted-foreground">
-              Your AI-powered copilot for customs compliance. Detect errors,
-              inconsistencies, and risks before submission.
+              {t("domain.productDescription")}
             </p>
           </div>
 
@@ -131,7 +134,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
               onClick={() => setShowCredentials(true)}
               className="group flex items-center gap-2.5 px-8 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:ring-offset-2 focus:ring-offset-background"
             >
-              Sign in
+              {t("login.signIn")}
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>
           </div>
@@ -139,7 +142,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
         {/* Bottom tagline */}
         <p className="absolute bottom-8 text-xs tracking-wide text-muted-foreground/60">
-          Simplifying international commerce
+          {t("domain.simplifyingCommerce")}
         </p>
       </div>
 
@@ -175,16 +178,16 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             />
             <div className="h-5 w-px bg-border" />
             <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              Secure login
+              {t("domain.secureLogin")}
             </span>
           </div>
 
           <div className="flex flex-col gap-2 mb-7">
             <h1 className="text-xl font-semibold tracking-tight text-foreground">
-              Welcome back
+              {t("login.title")}
             </h1>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Enter your credentials to access your account.
+              {t("domain.enterCredentials")}
             </p>
           </div>
 
@@ -195,7 +198,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 htmlFor="email"
                 className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
               >
-                Email
+                {t("login.emailLabel")}
               </label>
               <input
                 ref={emailInputRef}
@@ -203,7 +206,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
+                placeholder={t("login.emailPlaceholder")}
                 className="w-full rounded-md border border-border bg-secondary px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-colors"
                 autoComplete="email"
               />
@@ -215,7 +218,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 htmlFor="password"
                 className="text-xs font-medium uppercase tracking-wider text-muted-foreground"
               >
-                Password
+                {t("login.passwordLabel")}
               </label>
               <div className="relative">
                 <input
@@ -223,7 +226,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
+                  placeholder={t("login.passwordPlaceholder")}
                   className="w-full rounded-md border border-border bg-secondary px-3.5 py-2.5 pr-10 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-colors"
                   autoComplete="current-password"
                 />
@@ -259,7 +262,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 <div className="h-4 w-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
               ) : (
                 <>
-                  Sign in
+                  {t("login.signIn")}
                   <ArrowRight className="h-4 w-4" />
                 </>
               )}
@@ -267,9 +270,9 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           </form>
 
           <p className="text-center text-xs mt-6 text-muted-foreground">
-            {"Don't have an account? "}
+            {t("login.noAccount")}{" "}
             <button className="text-foreground hover:underline font-medium">
-              Contact your administrator
+              {t("domain.contactAdmin")}
             </button>
           </p>
 
@@ -279,7 +282,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             className="mt-5 flex items-center justify-center gap-1.5 text-xs w-full transition-colors text-muted-foreground"
           >
             <ArrowRight className="h-3 w-3 rotate-180" />
-            Back
+            {t("common.back")}
           </button>
         </div>
       </div>
