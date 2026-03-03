@@ -204,6 +204,12 @@ export type TranslationKeys = {
   "domain.all": string
   "domain.export": string
   "domain.noFieldsMatch": string
+
+  // Tabs
+  "tabs.report": string
+  "tabs.workspace": string
+  "tabs.diagram": string
+  "tabs.dashboard": string
 }
 
 export type Translations = TranslationKeys

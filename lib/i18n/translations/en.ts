@@ -197,4 +197,10 @@ export const en: Translations = {
   "domain.all": "All",
   "domain.export": "Export",
   "domain.noFieldsMatch": "No fields match the selected filter.",
+
+  // Tabs
+  "tabs.report": "Report",
+  "tabs.workspace": "Workspace",
+  "tabs.diagram": "Diagram",
+  "tabs.dashboard": "Dashboard",
 }

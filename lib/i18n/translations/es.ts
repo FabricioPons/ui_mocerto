@@ -197,4 +197,10 @@ export const es: Translations = {
   "domain.all": "Todos",
   "domain.export": "Exportar",
   "domain.noFieldsMatch": "No hay campos que coincidan con el filtro seleccionado.",
+
+  // Tabs
+  "tabs.report": "Informe",
+  "tabs.workspace": "Espacio de Trabajo",
+  "tabs.diagram": "Diagrama",
+  "tabs.dashboard": "Panel",
 }
