@@ -210,6 +210,30 @@ export type TranslationKeys = {
   "tabs.workspace": string
   "tabs.diagram": string
   "tabs.dashboard": string
+
+  // Advanced Search
+  "search.advancedSearch": string
+  "search.filterByPedimento": string
+  "search.anexo22Structure": string
+  "search.pedimentoStructure": string
+  "search.yearValidation": string
+  "search.customsOffice": string
+  "search.patentNumber": string
+  "search.operationType": string
+  "search.status": string
+  "search.year": string
+  "search.customs": string
+  "search.patent": string
+  "search.progressive": string
+  "search.allYears": string
+  "search.allOffices": string
+  "search.allOperations": string
+  "search.allStatuses": string
+  "search.importation": string
+  "search.exportation": string
+  "search.clearFilters": string
+  "search.clearAll": string
+  "search.showingResults": string
 }
 
 export type Translations = TranslationKeys

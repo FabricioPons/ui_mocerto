@@ -10,10 +10,10 @@ import {
   AlertTriangle,
   CheckCircle2,
   FileText,
-  Search,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useTranslation } from "@/lib/i18n";
+import { AdvancedPedimentoSearch } from "./advanced-pedimento-search";
 
 interface DashboardProps {
   reviews: Review[];
@@ -143,7 +143,7 @@ export function Dashboard({
   onViewReport,
   onContinueReview,
 }: DashboardProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredReviews, setFilteredReviews] = useState<Review[]>(reviews);
   const { t } = useTranslation();
 
   const completedCount = reviews.filter(
@@ -153,11 +153,9 @@ export function Dashboard({
     (r) => r.status === "in_progress"
   ).length;
 
-  const filteredReviews = reviews.filter(
-    (r) =>
-      r.pedimentoNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      r.importerName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleFilteredReviewsChange = useCallback((newFilteredReviews: Review[]) => {
+    setFilteredReviews(newFilteredReviews);
+  }, []);
 
   return (
     <div className="flex flex-col gap-8 max-w-5xl mx-auto px-6 py-8">
@@ -219,17 +217,11 @@ export function Dashboard({
         </div>
       </div>
 
-      {/* Search */}
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={t("domain.searchPlaceholder")}
-          className="w-full rounded-md border border-border bg-card pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-ring transition-colors"
-        />
-      </div>
+      {/* Advanced Search */}
+      <AdvancedPedimentoSearch
+        reviews={reviews}
+        onFilteredReviewsChange={handleFilteredReviewsChange}
+      />
 
       {/* Reviews grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
